@@ -1193,10 +1193,8 @@ function showSuccess(message) {
   openModal(
     '<div class="result-green"><div class="hd"><span class="ok-circ">&#10003;</span>Request Successful</div>'
     + esc(message) + "</div>"
-    + '<div class="modal-btns"><button class="btn" id="m-close">Close</button>'
-    + '<button class="btn" id="m-email">Send Me Email Confirmation</button></div>');
+    + '<div class="modal-btns"><button class="btn" id="m-close">Close</button></div>');
   $("#m-close").addEventListener("click", closeModal);
-  $("#m-email").addEventListener("click", closeModal);
 }
 
 function showModalError(e, mode, course, unit) {
