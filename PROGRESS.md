@@ -18,3 +18,6 @@
 - Recon: legacy Schedule of Classes still live (browser UA required; terms end at SU26/S326 — **FA26 exists only in TSS**). Server intermittently 500s "Max Sessions Exceeded" (enrollment-season load) → scraper needs retry/backoff.
 - Scaffold: Flask app (`app.py`, port 5070 — moved off 5060 during integration: Chrome/Firefox block 5060 as an unsafe SIP port), SQLite schema (`schema.sql`), repo `SahirSSharma/webreg-revival` (private) created and pushed.
 - Research workflow launched: WebReg UI spec from real screenshots, SOC HTML format, TSS recon, feature inventory → `docs/research/`.
+
+### Data-quality sweep (FA26)
+1,766 courses · 153 subjects · 8,061 section rows · 5,888 enrollable rows with seat counts · 1,216 finals. ~2,422 rows have no meeting day/time — verified these are legitimately-TBA sections (grad tutorials, independent study, research), exactly as WebReg displays them.
