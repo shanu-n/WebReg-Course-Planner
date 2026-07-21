@@ -36,3 +36,10 @@ DB rebuilt (schema change), verified live at :5070 (screenshots in docs/research
 
 ## 2026-07-21 — Feedback: planned-state button
 Once a section is planned it can't be planned again — its Plan button turns into a dark, non-interactive "Planned" chip (`.planned-chip`, #0A4A65). Backend rejects a duplicate of the same section (409); the results grid re-renders on any schedule change so Plan↔Planned stays in sync (removing the class reverts it to Plan). Different sections of the same course can still be planned to compare.
+
+## 2026-07-21 — Distribution: static site on GitHub Pages 🚀
+**LIVE: https://sahirssharma.github.io/WebReg-Course-Planner/** — shareable link, nothing to install.
+- Converted to a browser-only build under `site/`: `scripts/export_static.py` bakes the FA26 catalog to `site/data/catalog.json` (2.8 MB), and `site/js/localdb.js` overrides `window.fetch` for `/api/*` so the existing `webreg.js` runs unchanged — client-side search + each visitor's schedule in their own browser (localStorage, key `webreg_fa26_schedule_v1`). No server, no shared-schedule clobbering.
+- Deployed via a `gh-pages` branch (root); repo made public (Pages free tier). Repo canonical name is now **WebReg-Course-Planner**.
+- Redeploy after a data/UI change: `python3 scripts/export_static.py` → copy `static/*` into `site/` if the app JS/CSS changed → push `site/` contents to the `gh-pages` branch.
+- Caveat: seats/waitlists are a snapshot (baked at export). Refresh = re-run the TSS capture + import + export.
