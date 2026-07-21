@@ -1,0 +1,164 @@
+[
+ {
+  "subject": "REV",
+  "number": "1",
+  "title": "First Year Experience",
+  "units": "2.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "M",
+    "time_start": "4:00p",
+    "time_end": "4:50p",
+    "building": "Cognitive Science Building",
+    "room": "002",
+    "instructor": "Brian Leigh",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "157382",
+    "group": "A",
+    "type": "DI",
+    "code": "A01",
+    "days": "W",
+    "time_start": "4:00p",
+    "time_end": "4:50p",
+    "building": "Cognitive Science Building",
+    "room": "002",
+    "instructor": "Brian Leigh",
+    "avail": 100,
+    "limit": 100,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/08/2026",
+    "days": "",
+    "time_start": "3:00p",
+    "time_end": "5:59p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "REV",
+  "number": "20",
+  "title": "Revelle Honors Seminar",
+  "units": "1.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "154067",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "Tu",
+    "time_start": "3:30p",
+    "time_end": "4:50p",
+    "building": "64 Degrees (Revelle Commons)",
+    "room": "FORML",
+    "instructor": "",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "REV",
+  "number": "87",
+  "title": "First-year Seminar",
+  "units": "1.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "157400",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "M",
+    "time_start": "5:00p",
+    "time_end": "5:50p",
+    "building": "Galbraith Hall",
+    "room": "174",
+    "instructor": "Bretton Rodriguez",
+    "avail": 20,
+    "limit": 20,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "157401",
+    "group": "B",
+    "type": "SE",
+    "code": "B81",
+    "days": "Th",
+    "time_start": "11:00a",
+    "time_end": "11:50a",
+    "building": "64 Degrees (Revelle Commons)",
+    "room": "C",
+    "instructor": "Antony Lyon",
+    "avail": 20,
+    "limit": 20,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "REV",
+  "number": "88",
+  "title": "Succeeding in Scientific Research",
+  "units": "1.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "157502",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "W",
+    "time_start": "1:00p",
+    "time_end": "1:50p",
+    "building": "64 Degrees (Revelle Commons)",
+    "room": "FORML",
+    "instructor": "Paul Yu",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

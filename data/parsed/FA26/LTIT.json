@@ -1,0 +1,47 @@
+[
+ {
+  "subject": "LTIT",
+  "number": "2A",
+  "title": "Intermediate Italian I",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155757",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "12:00p",
+    "time_end": "12:50p",
+    "building": "Humanities and Social Sciences",
+    "room": "2321",
+    "instructor": "Adriana De Marchi Gherini",
+    "avail": 25,
+    "limit": 25,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/10/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ }
+]

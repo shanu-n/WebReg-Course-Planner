@@ -1,0 +1,56 @@
+[
+ {
+  "subject": "COSE",
+  "number": "215",
+  "title": "Decision and Risk Analysis",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "157746",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Jon Wade",
+    "avail": 30,
+    "limit": 30,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "COSE",
+  "number": "230A",
+  "title": "Quarterly Team Project",
+  "units": "1.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "157613",
+    "group": "A",
+    "type": "IN",
+    "code": "A81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Alexander Zak",
+    "avail": 30,
+    "limit": 30,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

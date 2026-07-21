@@ -1,0 +1,263 @@
+[
+ {
+  "subject": "COGR",
+  "number": "200A",
+  "title": "Introduction to the Study of Communication as Social Force",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153030",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "M",
+    "time_start": "3:00p",
+    "time_end": "5:50p",
+    "building": "Communication Building",
+    "room": "127",
+    "instructor": "Andrew deWaard",
+    "avail": 5,
+    "limit": 5,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "COGR",
+  "number": "200C",
+  "title": "Introduction to the Study of Communication: Communication and the Individual",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153031",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "F",
+    "time_start": "3:00p",
+    "time_end": "5:50p",
+    "building": "Communication Building",
+    "room": "127",
+    "instructor": "Morana Alac",
+    "avail": 5,
+    "limit": 5,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "COGR",
+  "number": "201B",
+  "title": "Ethnographic Methds/Comm Rsrch",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153040",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "W",
+    "time_start": "3:00p",
+    "time_end": "5:50p",
+    "building": "Communication Building",
+    "room": "127",
+    "instructor": "Alexander Fattal",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "COGR",
+  "number": "225C",
+  "title": "Colloquium in Science Studies",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153111",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "M",
+    "time_start": "12:00p",
+    "time_end": "2:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0472",
+    "instructor": "Kerry Mckenzie",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "COGR",
+  "number": "262",
+  "title": "Geographies of Difference, Exclusion and Conflict",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153117",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "Th",
+    "time_start": "2:00p",
+    "time_end": "4:50p",
+    "building": "Communication Building",
+    "room": "127",
+    "instructor": "Elana Zilberg",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "COGR",
+  "number": "275",
+  "title": "Topics in Communication/Proseminar",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153118",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "Tu",
+    "time_start": "5:00p",
+    "time_end": "7:50p",
+    "building": "Communication Building",
+    "room": "127",
+    "instructor": "Brian Goldfarb",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "COGR",
+  "number": "500",
+  "title": "Practice Teaching/Communicatn",
+  "units": "1.00 - 4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153125",
+    "group": "A",
+    "type": "IN",
+    "code": "A81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Alexander Fattal",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "153126",
+    "group": "B",
+    "type": "IN",
+    "code": "B81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Christo Sims",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "153127",
+    "group": "C",
+    "type": "IN",
+    "code": "C81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Gavin Halm",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "153128",
+    "group": "D",
+    "type": "IN",
+    "code": "D81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Patricia Ahn",
+    "avail": 1,
+    "limit": 1,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "153129",
+    "group": "E",
+    "type": "IN",
+    "code": "E81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Lilly Irani",
+    "avail": 1,
+    "limit": 1,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

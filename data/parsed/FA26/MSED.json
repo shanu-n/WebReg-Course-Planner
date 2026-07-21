@@ -1,0 +1,74 @@
+[
+ {
+  "subject": "MSED",
+  "number": "295",
+  "title": "MSED Orientation Practicum",
+  "units": "1.00 - 3.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154139",
+    "group": "A",
+    "type": "PR",
+    "code": "A81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": 15,
+    "limit": 15,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "MSED",
+  "number": "299",
+  "title": "Reading and Research",
+  "units": "1.00 - 12.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154173",
+    "group": "A",
+    "type": "IN",
+    "code": "A81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Stanley Lo",
+    "avail": 15,
+    "limit": 15,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "154174",
+    "group": "B",
+    "type": "IN",
+    "code": "B81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": 15,
+    "limit": 15,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

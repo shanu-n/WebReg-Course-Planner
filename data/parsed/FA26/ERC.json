@@ -1,0 +1,47 @@
+[
+ {
+  "subject": "ERC",
+  "number": "20",
+  "title": "Frshmn Honors Sem:Intntl Theme",
+  "units": "1.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153517",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "Th",
+    "time_start": "4:00p",
+    "time_end": "4:50p",
+    "building": "Asante House",
+    "room": "123B",
+    "instructor": "",
+    "avail": 30,
+    "limit": 30,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "153518",
+    "group": "B",
+    "type": "SE",
+    "code": "B81",
+    "days": "Th",
+    "time_start": "5:00p",
+    "time_end": "5:50p",
+    "building": "Asante House",
+    "room": "123B",
+    "instructor": "",
+    "avail": 30,
+    "limit": 30,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

@@ -1,0 +1,182 @@
+[
+ {
+  "subject": "DDPM",
+  "number": "200",
+  "title": "Opportunities in Pharma, Biotech, and Managed Care",
+  "units": "1.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155278",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "Tu",
+    "time_start": "4:00p",
+    "time_end": "5:00p",
+    "building": "Skaggs Pharmaceutical Sciences Building",
+    "room": "1160",
+    "instructor": "Joseph Ma",
+    "avail": 35,
+    "limit": 35,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/08/2026",
+    "days": "",
+    "time_start": "4:00p",
+    "time_end": "5:00p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "DDPM",
+  "number": "201",
+  "title": "Pharmacotherapy and Diseases",
+  "units": "3.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155279",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "Tu",
+    "time_start": "5:00p",
+    "time_end": "8:00p",
+    "building": "Skaggs Pharmaceutical Sciences Building",
+    "room": "1160",
+    "instructor": "Joseph Ma",
+    "avail": 35,
+    "limit": 35,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/08/2026",
+    "days": "",
+    "time_start": "5:00p",
+    "time_end": "8:00p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "DDPM",
+  "number": "202",
+  "title": "Pharmaceutics for Small Molecules and Macromolecules",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155280",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "Th",
+    "time_start": "4:00p",
+    "time_end": "8:00p",
+    "building": "Skaggs Pharmaceutical Sciences Building",
+    "room": "1160",
+    "instructor": "",
+    "avail": 35,
+    "limit": 35,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/10/2026",
+    "days": "",
+    "time_start": "4:00p",
+    "time_end": "7:00p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "DDPM",
+  "number": "203",
+  "title": "Pre-Clinical and Clinical Regulatory Submissions and Strategy",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155281",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "W",
+    "time_start": "4:00p",
+    "time_end": "8:00p",
+    "building": "Skaggs Pharmaceutical Sciences Building",
+    "room": "1160",
+    "instructor": "Jeremiah Momper",
+    "avail": 35,
+    "limit": 35,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/09/2026",
+    "days": "",
+    "time_start": "4:00p",
+    "time_end": "7:00p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ }
+]

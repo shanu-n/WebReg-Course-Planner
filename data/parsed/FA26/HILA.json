@@ -1,0 +1,218 @@
+[
+ {
+  "subject": "HILA",
+  "number": "118",
+  "title": "US Agression/Latin Am 1898-Prs",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154845",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "11:00a",
+    "time_end": "12:20p",
+    "building": "Mosaic",
+    "room": "0204",
+    "instructor": "Sara Kozameh",
+    "avail": 65,
+    "limit": 65,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/09/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HILA",
+  "number": "122",
+  "title": "From Colony to Socialist Republic: Cuba",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155726",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "2:00p",
+    "time_end": "3:20p",
+    "building": "Warren Lecture Hall",
+    "room": "2205",
+    "instructor": "Sara Kozameh",
+    "avail": 65,
+    "limit": 65,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/10/2026",
+    "days": "",
+    "time_start": "3:00p",
+    "time_end": "5:59p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HILA",
+  "number": "132",
+  "title": "Modern Mexico: From Revolution to Drug War Violence",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155725",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "12:30p",
+    "time_end": "1:50p",
+    "building": "Center Hall",
+    "room": "109",
+    "instructor": "Matthew Vitz",
+    "avail": 123,
+    "limit": 123,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/11/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HILA",
+  "number": "135",
+  "title": "Knowledge and Science in Colonial Latin America 1500-1800",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "157459",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "M",
+    "time_start": "5:00p",
+    "time_end": "7:50p",
+    "building": "Peterson Hall",
+    "room": "102",
+    "instructor": "Nydia Pineda de Avila",
+    "avail": 65,
+    "limit": 65,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HILA",
+  "number": "169",
+  "title": "Schlr/Latin American 20th Cent",
+  "units": "4.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "154899",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "Tu",
+    "time_start": "2:00p",
+    "time_end": "4:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0846",
+    "instructor": "Benjamin Cowan",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HILA",
+  "number": "269",
+  "title": "Schlr/Latin American 20th Cent",
+  "units": "4.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "154907",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "Tu",
+    "time_start": "2:00p",
+    "time_end": "4:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0846",
+    "instructor": "Benjamin Cowan",
+    "avail": 5,
+    "limit": 5,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

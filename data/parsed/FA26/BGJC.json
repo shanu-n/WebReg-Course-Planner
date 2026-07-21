@@ -1,0 +1,56 @@
+[
+ {
+  "subject": "BGJC",
+  "number": "204",
+  "title": "Cellular & Moleculr Immunology",
+  "units": "1.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "151461",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Li-Fan Lu",
+    "avail": 9999,
+    "limit": 9999,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "BGJC",
+  "number": "215",
+  "title": "Journal Club: Biology Education Research",
+  "units": "1.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "151462",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Ella Tour",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

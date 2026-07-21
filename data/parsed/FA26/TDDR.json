@@ -1,0 +1,101 @@
+[
+ {
+  "subject": "TDDR",
+  "number": "101",
+  "title": "Stage Management",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153353",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "11:00a",
+    "time_end": "12:20p",
+    "building": "Galbraith Hall",
+    "room": "254",
+    "instructor": "Lora Powell",
+    "avail": 20,
+    "limit": 20,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "TDDR",
+  "number": "108",
+  "title": "Text Analysis for Actors and Directors",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152986",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "11:00a",
+    "time_end": "12:20p",
+    "building": "Social Sciences Building",
+    "room": "106",
+    "instructor": "Lisa Portes",
+    "avail": 20,
+    "limit": 20,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/09/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "TDDR",
+  "number": "190",
+  "title": "Major Project in Directing",
+  "units": "2.00 - 6.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "153456",
+    "group": "A",
+    "type": "ST",
+    "code": "A81",
+    "days": "TuWThF",
+    "time_start": "6:30p",
+    "time_end": "10:20p",
+    "building": "",
+    "room": "",
+    "instructor": "Lamar Perry",
+    "avail": 35,
+    "limit": 35,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

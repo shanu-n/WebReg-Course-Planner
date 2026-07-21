@@ -1,0 +1,92 @@
+[
+ {
+  "subject": "HIEA",
+  "number": "137",
+  "title": "Women and the Family in Chinese History",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154382",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "11:00a",
+    "time_end": "12:20p",
+    "building": "Coalition Building",
+    "room": "B17",
+    "instructor": "Weijing Lu",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/09/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HIEA",
+  "number": "150",
+  "title": "Modern Korea, 1800-1945",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154400",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "5:00p",
+    "time_end": "6:20p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0103",
+    "instructor": "Todd Henry",
+    "avail": 45,
+    "limit": 45,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/11/2026",
+    "days": "",
+    "time_start": "7:00p",
+    "time_end": "9:59p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ }
+]

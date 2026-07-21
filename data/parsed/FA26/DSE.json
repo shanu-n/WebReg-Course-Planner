@@ -1,0 +1,146 @@
+[
+ {
+  "subject": "DSE",
+  "number": "200",
+  "title": "Python for Data Anlaysis",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "157741",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "F",
+    "time_start": "9:00a",
+    "time_end": "5:00p",
+    "building": "",
+    "room": "",
+    "instructor": "Richard Gessner",
+    "avail": 30,
+    "limit": 30,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/09/2026",
+    "days": "",
+    "time_start": "8:00a",
+    "time_end": "10:59a",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "DSE",
+  "number": "203",
+  "title": "Data Integration and ETL",
+  "units": "4.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "157742",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "F",
+    "time_start": "9:00a",
+    "time_end": "5:00p",
+    "building": "",
+    "room": "",
+    "instructor": "Amarnath Gupta",
+    "avail": 20,
+    "limit": 20,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "DSE",
+  "number": "250",
+  "title": "Beyond Relational Data Models",
+  "units": "4.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "157743",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "Sa",
+    "time_start": "9:00a",
+    "time_end": "5:00p",
+    "building": "",
+    "room": "",
+    "instructor": "Alin Deutsch",
+    "avail": 20,
+    "limit": 20,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/12/2026",
+    "days": "",
+    "time_start": "8:00a",
+    "time_end": "10:59a",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "DSE",
+  "number": "290",
+  "title": "Case Studies in Data Science",
+  "units": "2.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "157744",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "F",
+    "time_start": "9:00a",
+    "time_end": "5:00p",
+    "building": "",
+    "room": "",
+    "instructor": "Ilkay Altintas De Callafon",
+    "avail": 30,
+    "limit": 30,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

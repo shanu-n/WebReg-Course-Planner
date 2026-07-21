@@ -1,0 +1,164 @@
+[
+ {
+  "subject": "LTEA",
+  "number": "110A",
+  "title": "Classical Chinese Fiction in Translation",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154652",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "3:00p",
+    "time_end": "3:50p",
+    "building": "Solis Hall",
+    "room": "111",
+    "instructor": "Ping-Hui Liao",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/11/2026",
+    "days": "",
+    "time_start": "3:00p",
+    "time_end": "5:59p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTEA",
+  "number": "138",
+  "title": "Japanese Films",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154682",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "12:30p",
+    "time_end": "1:50p",
+    "building": "Franklin Antonio Hall",
+    "room": "1301",
+    "instructor": "Andrea Mendoza",
+    "avail": 225,
+    "limit": 225,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTEA",
+  "number": "140",
+  "title": "Modern Korean Lit/Translation",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154689",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "2:00p",
+    "time_end": "2:50p",
+    "building": "Mandeville Center",
+    "room": "B-104",
+    "instructor": "Jin-Kyung Lee",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/09/2026",
+    "days": "",
+    "time_start": "3:00p",
+    "time_end": "5:59p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTEA",
+  "number": "143",
+  "title": "Gndr&Sexuality/Kor'n Lit&Cult.",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154692",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "11:00a",
+    "time_end": "11:50a",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0121",
+    "instructor": "Jin-Kyung Lee",
+    "avail": 75,
+    "limit": 75,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/08/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ }
+]

@@ -1,0 +1,29 @@
+[
+ {
+  "subject": "LTCO",
+  "number": "201",
+  "title": "Theories and Methods of Literary Analysis",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154500",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "W",
+    "time_start": "2:00p",
+    "time_end": "4:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0371",
+    "instructor": "",
+    "avail": 15,
+    "limit": 15,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

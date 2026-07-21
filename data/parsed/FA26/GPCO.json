@@ -1,0 +1,236 @@
+[
+ {
+  "subject": "GPCO",
+  "number": "401",
+  "title": "Microeconomics for Policy and Management",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "156652",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "9:30a",
+    "time_end": "10:50a",
+    "building": "Robinson Building 1",
+    "room": "AUD",
+    "instructor": "Gordon McCord",
+    "avail": 250,
+    "limit": 250,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/10/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "GPCO",
+  "number": "408",
+  "title": "Policy Analysis and Public Welfare",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153998",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "2:00p",
+    "time_end": "3:20p",
+    "building": "Robinson Building 1",
+    "room": "AUD",
+    "instructor": "Benjamin Appel",
+    "avail": 250,
+    "limit": 250,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "GPCO",
+  "number": "412",
+  "title": "Globalization, the World System, and the Pacific",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "156669",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MW",
+    "time_start": "11:00a",
+    "time_end": "12:20p",
+    "building": "Robinson Building 1",
+    "room": "AUD",
+    "instructor": "John Ahlquist",
+    "avail": 250,
+    "limit": 250,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/08/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "GPCO",
+  "number": "453",
+  "title": "Quantitative Method I",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MW",
+    "time_start": "2:00p",
+    "time_end": "3:20p",
+    "building": "Robinson Building 1",
+    "room": "AUD",
+    "instructor": "Teevrat Garg",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "156661",
+    "group": "A",
+    "type": "DI",
+    "code": "A01",
+    "days": "F",
+    "time_start": "9:30a",
+    "time_end": "10:50a",
+    "building": "Robinson Building 1",
+    "room": "AUD",
+    "instructor": "Teevrat Garg",
+    "avail": 250,
+    "limit": 250,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/07/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "GPCO",
+  "number": "481",
+  "title": "The Politics of International and National Policy Making",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152690",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "W",
+    "time_start": "6:30p",
+    "time_end": "9:20p",
+    "building": "Robinson Building 1",
+    "room": "3201",
+    "instructor": "Lauren Prather",
+    "avail": 80,
+    "limit": 80,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "GPCO",
+  "number": "482",
+  "title": "Global Economics and Markets",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152691",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "M",
+    "time_start": "6:30p",
+    "time_end": "9:20p",
+    "building": "Robinson Building 1",
+    "room": "3201",
+    "instructor": "Kyle Handley",
+    "avail": 80,
+    "limit": 80,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

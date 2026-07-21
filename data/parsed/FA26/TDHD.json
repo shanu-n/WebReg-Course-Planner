@@ -1,0 +1,29 @@
+[
+ {
+  "subject": "TDHD",
+  "number": "175",
+  "title": "Cultural Perspectives on Dance",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152480",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MW",
+    "time_start": "10:30a",
+    "time_end": "11:50a",
+    "building": "Galbraith Hall",
+    "room": "144",
+    "instructor": "Grace Jun",
+    "avail": 30,
+    "limit": 30,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

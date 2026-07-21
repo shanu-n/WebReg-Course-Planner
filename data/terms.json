@@ -1,13 +1,22 @@
 [
-  {
-    "code": "FA26",
-    "name": "Fall 2026",
-    "source": "tss"
-  },
-  {
-    "code": "DEMO",
-    "name": "Demo (real SP15 CSE data)",
-    "source": "soc",
-    "is_default": 1
-  }
+ {
+  "code": "FA26",
+  "name": "Fall 2026",
+  "source": "tss",
+  "is_default": 1,
+  "sort_key": 100
+ },
+ {
+  "code": "DEMO",
+  "name": "Demo (real SP15 CSE data)",
+  "source": "soc",
+  "is_default": 0
+ },
+ {
+  "code": "FA25",
+  "name": "Fall 2025",
+  "source": "soc",
+  "is_default": 0,
+  "sort_key": 90
+ }
 ]

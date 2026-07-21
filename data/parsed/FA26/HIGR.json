@@ -1,0 +1,164 @@
+[
+ {
+  "subject": "HIGR",
+  "number": "200",
+  "title": "History and Theory",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155861",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "Tu",
+    "time_start": "3:30p",
+    "time_end": "6:20p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0915",
+    "instructor": "Jeremy Prestholdt",
+    "avail": 15,
+    "limit": 15,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HIGR",
+  "number": "202A",
+  "title": "Topical Research Seminar I",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154693",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Nydia Pineda de Avila",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HIGR",
+  "number": "208",
+  "title": "Graduate Professional Development",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154720",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "W",
+    "time_start": "9:00a",
+    "time_end": "11:50a",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0759",
+    "instructor": "Luis Alvarez",
+    "avail": 15,
+    "limit": 15,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HIGR",
+  "number": "210",
+  "title": "H. Scholar/Modern Chinese Hist",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154773",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "M",
+    "time_start": "1:00p",
+    "time_end": "3:50p",
+    "building": "",
+    "room": "",
+    "instructor": "Micah Muscolino",
+    "avail": 15,
+    "limit": 15,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HIGR",
+  "number": "236B",
+  "title": "Rsrch Sem./History of Science",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154785",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HIGR",
+  "number": "240",
+  "title": "Colloquium in Science Studies",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154760",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "M",
+    "time_start": "12:00p",
+    "time_end": "2:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0472",
+    "instructor": "Kerry Mckenzie",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

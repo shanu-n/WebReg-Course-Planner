@@ -1,0 +1,119 @@
+[
+ {
+  "subject": "TDPR",
+  "number": "6",
+  "title": "Theatre Practicum",
+  "units": "4.00 - 6.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Mark Guirguis",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "152672",
+    "group": "A",
+    "type": "PR",
+    "code": "A81",
+    "days": "F",
+    "time_start": "2:30p",
+    "time_end": "4:20p",
+    "building": "Galbraith Hall",
+    "room": "102",
+    "instructor": "Mark Guirguis",
+    "avail": 25,
+    "limit": 25,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "152673",
+    "group": "A",
+    "type": "PR",
+    "code": "A82",
+    "days": "F",
+    "time_start": "2:30p",
+    "time_end": "4:20p",
+    "building": "Mandell Weiss",
+    "room": "SCENE",
+    "instructor": "Mark Guirguis",
+    "avail": 25,
+    "limit": 25,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "TDPR",
+  "number": "102",
+  "title": "Advanced Theatre Practicum",
+  "units": "2.00 - 6.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "154048",
+    "group": "A",
+    "type": "LA",
+    "code": "A50",
+    "days": "MTuWThF",
+    "time_start": "5:30p",
+    "time_end": "10:20p",
+    "building": "Mandell Weiss",
+    "room": "SCENE",
+    "instructor": "Mark Guirguis",
+    "avail": 20,
+    "limit": 20,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "TDPR",
+  "number": "104",
+  "title": "Advanced Practicum in Stage Management",
+  "units": "2.00 - 6.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "154050",
+    "group": "A",
+    "type": "LA",
+    "code": "A50",
+    "days": "MTuWThF",
+    "time_start": "5:30p",
+    "time_end": "10:20p",
+    "building": "",
+    "room": "",
+    "instructor": "Lora Powell",
+    "avail": 15,
+    "limit": 15,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

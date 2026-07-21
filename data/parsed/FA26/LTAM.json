@@ -1,0 +1,92 @@
+[
+ {
+  "subject": "LTAM",
+  "number": "110",
+  "title": "Latin American Literature in Translation",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155656",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "3:30p",
+    "time_end": "4:50p",
+    "building": "Warren Lecture Hall",
+    "room": "2112",
+    "instructor": "Gloria Chacon",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/07/2026",
+    "days": "",
+    "time_start": "3:00p",
+    "time_end": "5:59p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTAM",
+  "number": "120",
+  "title": "Ecocultural Narratives from Latin America",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154491",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "11:00a",
+    "time_end": "11:50a",
+    "building": "Solis Hall",
+    "room": "110",
+    "instructor": "Luis Martin-Cabrera",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/08/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ }
+]

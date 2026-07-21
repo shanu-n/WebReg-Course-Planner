@@ -1,0 +1,29 @@
+[
+ {
+  "subject": "TDDM",
+  "number": "1",
+  "title": "Introduction to Dance Making",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152311",
+    "group": "A",
+    "type": "ST",
+    "code": "A81",
+    "days": "TuTh",
+    "time_start": "10:00a",
+    "time_end": "11:50a",
+    "building": "Molli and Arthur Wagner Dance Building",
+    "room": "2",
+    "instructor": "Tonnie Sammartano",
+    "avail": 18,
+    "limit": 18,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

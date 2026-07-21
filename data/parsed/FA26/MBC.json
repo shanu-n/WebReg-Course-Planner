@@ -1,0 +1,47 @@
+[
+ {
+  "subject": "MBC",
+  "number": "258",
+  "title": "Marine Conservation and Communication Practicum I",
+  "units": "2.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "157745",
+    "group": "A",
+    "type": "PR",
+    "code": "A81",
+    "days": "F",
+    "time_start": "11:30a",
+    "time_end": "1:20p",
+    "building": "Eckart Building",
+    "room": "127",
+    "instructor": "Samantha Murray",
+    "avail": 25,
+    "limit": 25,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/08/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ }
+]

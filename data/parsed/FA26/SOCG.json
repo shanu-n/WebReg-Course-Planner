@@ -1,0 +1,209 @@
+[
+ {
+  "subject": "SOCG",
+  "number": "226",
+  "title": "Political Sociology",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155764",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "Th",
+    "time_start": "10:00a",
+    "time_end": "12:50p",
+    "building": "Social Sciences Building",
+    "room": "414",
+    "instructor": "John Skrentny",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "SOCG",
+  "number": "227",
+  "title": "Ethnographic Film: Media Meth",
+  "units": "6.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155869",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "W",
+    "time_start": "3:00p",
+    "time_end": "5:50p",
+    "building": "Social Sciences Building",
+    "room": "101",
+    "instructor": "",
+    "avail": 15,
+    "limit": 15,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "155869",
+    "group": "A",
+    "type": "LA",
+    "code": "A50",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": 15,
+    "limit": 15,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "SOCG",
+  "number": "252",
+  "title": "Research Practicum I",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155874",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "M",
+    "time_start": "9:00a",
+    "time_end": "11:50a",
+    "building": "Social Sciences Building",
+    "room": "414",
+    "instructor": "Thomas Medvetz",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "SOCG",
+  "number": "253",
+  "title": "Research Practicum II",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155876",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "Tu",
+    "time_start": "12:30p",
+    "time_end": "3:20p",
+    "building": "Social Sciences Building",
+    "room": "414",
+    "instructor": "John Evans",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "SOCG",
+  "number": "255C",
+  "title": "Colloquium in Science Studies",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155772",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "M",
+    "time_start": "12:00p",
+    "time_end": "2:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0472",
+    "instructor": "Kerry Mckenzie",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "SOCG",
+  "number": "271",
+  "title": "Teaching Sociology",
+  "units": "2.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155880",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "F",
+    "time_start": "9:00a",
+    "time_end": "11:50a",
+    "building": "Social Sciences Building",
+    "room": "414",
+    "instructor": "Michel Estefan",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "SOCG",
+  "number": "290",
+  "title": "Graduate Seminar",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155780",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "W",
+    "time_start": "2:00p",
+    "time_end": "4:50p",
+    "building": "Social Sciences Building",
+    "room": "414",
+    "instructor": "Neil Gong",
+    "avail": 10,
+    "limit": 10,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

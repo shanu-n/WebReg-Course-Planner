@@ -1,0 +1,83 @@
+[
+ {
+  "subject": "GPGN",
+  "number": "490",
+  "title": "Special Topics Course",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153342",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "Tu",
+    "time_start": "5:00p",
+    "time_end": "7:50p",
+    "building": "Robinson Building 1",
+    "room": "3202",
+    "instructor": "Peter Cowhey",
+    "avail": 50,
+    "limit": 50,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "153343",
+    "group": "B",
+    "type": "LE",
+    "code": "B00",
+    "days": "TuTh",
+    "time_start": "2:00p",
+    "time_end": "3:20p",
+    "building": "Robinson Building 1",
+    "room": "3202",
+    "instructor": "Lauren Prather",
+    "avail": 50,
+    "limit": 50,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "B",
+    "type": "FI",
+    "code": "12/07/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   },
+   {
+    "section_id": "153344",
+    "group": "C",
+    "type": "LE",
+    "code": "C00",
+    "days": "TuTh",
+    "time_start": "11:00a",
+    "time_end": "12:20p",
+    "building": "Robinson Building 1",
+    "room": "3203",
+    "instructor": "",
+    "avail": 50,
+    "limit": 50,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

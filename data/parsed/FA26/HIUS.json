@@ -1,0 +1,209 @@
+[
+ {
+  "subject": "HIUS",
+  "number": "112",
+  "title": "The U.S. Civil War",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "156070",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "10:00a",
+    "time_end": "10:50a",
+    "building": "Pepper Canyon Hall",
+    "room": "109",
+    "instructor": "Rebecca Plant",
+    "avail": 187,
+    "limit": 187,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/11/2026",
+    "days": "",
+    "time_start": "8:00a",
+    "time_end": "10:59a",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HIUS",
+  "number": "114A",
+  "title": "Early California: From Conquest to Gold Rush",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "156073",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "3:30p",
+    "time_end": "4:50p",
+    "building": "Peterson Hall",
+    "room": "103",
+    "instructor": "Julia Lewandoski",
+    "avail": 65,
+    "limit": 65,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/07/2026",
+    "days": "",
+    "time_start": "3:00p",
+    "time_end": "5:59p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HIUS",
+  "number": "141",
+  "title": "Economic History of the United States II",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155742",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "9:30a",
+    "time_end": "10:50a",
+    "building": "Cognitive Science Building",
+    "room": "004",
+    "instructor": "Mark Hendrickson",
+    "avail": 49,
+    "limit": 49,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/10/2026",
+    "days": "",
+    "time_start": "8:00a",
+    "time_end": "10:59a",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HIUS",
+  "number": "146",
+  "title": "Race, Riots, and Violence in the U.S.",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "156243",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "12:30p",
+    "time_end": "1:50p",
+    "building": "Peterson Hall",
+    "room": "103",
+    "instructor": "Luis Alvarez",
+    "avail": 65,
+    "limit": 65,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/11/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "HIUS",
+  "number": "181",
+  "title": "Topics in 20th Century U.S.",
+  "units": "4.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "156433",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "M",
+    "time_start": "11:00a",
+    "time_end": "1:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0846",
+    "instructor": "Veronica Martinez-Matsuda",
+    "avail": 15,
+    "limit": 15,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

@@ -1,0 +1,29 @@
+[
+ {
+  "subject": "SOCE",
+  "number": "194",
+  "title": "Research Seminar/Washington DC",
+  "units": "4.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "155863",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Seth Hill",
+    "avail": 9999,
+    "limit": 9999,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

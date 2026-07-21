@@ -1,0 +1,245 @@
+[
+ {
+  "subject": "PHB",
+  "number": "221",
+  "title": "Biostatistical Methods I",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153575",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "11:00a",
+    "time_end": "12:20p",
+    "building": "Solis Hall",
+    "room": "109",
+    "instructor": "Jingjing Zou",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "PHB",
+  "number": "224",
+  "title": "Biostatistical Methods in Clinical Trials",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "157563",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "8:00a",
+    "time_end": "9:20a",
+    "building": "Medical Education and Telemedicine Cente",
+    "room": "315",
+    "instructor": "Sonia Jain",
+    "avail": 25,
+    "limit": 25,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/10/2026",
+    "days": "",
+    "time_start": "8:00a",
+    "time_end": "10:59a",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "PHB",
+  "number": "227",
+  "title": "Statistical Learning and Multivariate Analysis",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153584",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "11:00a",
+    "time_end": "12:20p",
+    "building": "Pepper Canyon Hall",
+    "room": "240",
+    "instructor": "Lin Liu",
+    "avail": 25,
+    "limit": 25,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "PHB",
+  "number": "243A",
+  "title": "Practicum in Biostatistics A",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MW",
+    "time_start": "3:30p",
+    "time_end": "4:50p",
+    "building": "Pepper Canyon Hall",
+    "room": "240",
+    "instructor": "Xin Tu",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "153589",
+    "group": "A",
+    "type": "PR",
+    "code": "A81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Xin Tu",
+    "avail": 25,
+    "limit": 25,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "PHB",
+  "number": "244A",
+  "title": "Foundations in Biostatistics A",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153598",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MW",
+    "time_start": "2:00p",
+    "time_end": "3:20p",
+    "building": "Biomedical Sciences Building",
+    "room": "2100",
+    "instructor": "Xinlian Zhang",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/09/2026",
+    "days": "",
+    "time_start": "3:00p",
+    "time_end": "5:59p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "PHB",
+  "number": "280",
+  "title": "Biostatistics Journal Club",
+  "units": "1.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153605",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "Th",
+    "time_start": "2:00p",
+    "time_end": "4:50p",
+    "building": "Biomedical Sciences Building",
+    "room": "2100",
+    "instructor": "Karen Messer",
+    "avail": 75,
+    "limit": 75,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "PHB",
+  "number": "281",
+  "title": "Biostatistics Seminar Series",
+  "units": "1.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155803",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "W",
+    "time_start": "1:00p",
+    "time_end": "2:00p",
+    "building": "",
+    "room": "",
+    "instructor": "Jingjing Zou",
+    "avail": 65,
+    "limit": 65,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

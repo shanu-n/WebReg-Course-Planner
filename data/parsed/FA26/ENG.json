@@ -1,0 +1,146 @@
+[
+ {
+  "subject": "ENG",
+  "number": "5",
+  "title": "Orientation to Engineering Profession",
+  "units": "1.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "152909",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "M",
+    "time_start": "5:00p",
+    "time_end": "6:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0103",
+    "instructor": "",
+    "avail": 45,
+    "limit": 45,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "ENG",
+  "number": "10",
+  "title": "Fundamentals of Engineering Applications",
+  "units": "2.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152910",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "Tu",
+    "time_start": "5:00p",
+    "time_end": "6:50p",
+    "building": "Structural and Materials Engineering Bui",
+    "room": "304",
+    "instructor": "Ekaterina Evdokimenko",
+    "avail": 60,
+    "limit": 60,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "ENG",
+  "number": "15",
+  "title": "Engineer Your Success",
+  "units": "2.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152911",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "W",
+    "time_start": "10:00a",
+    "time_end": "11:50a",
+    "building": "Powell-Focht Bioengineering Hall (EBU3A)",
+    "room": "003",
+    "instructor": "Ekaterina Evdokimenko",
+    "avail": 35,
+    "limit": 35,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/11/2026",
+    "days": "",
+    "time_start": "8:00a",
+    "time_end": "10:59a",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "ENG",
+  "number": "20",
+  "title": "Introduction to Engineering Research",
+  "units": "2.00",
+  "restriction": "D",
+  "sections": [
+   {
+    "section_id": "157470",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "W",
+    "time_start": "2:00p",
+    "time_end": "3:50p",
+    "building": "Powell-Focht Bioengineering Hall (EBU3A)",
+    "room": "003",
+    "instructor": "Ekaterina Evdokimenko",
+    "avail": 30,
+    "limit": 30,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/09/2026",
+    "days": "",
+    "time_start": "3:00p",
+    "time_end": "5:59p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ }
+]

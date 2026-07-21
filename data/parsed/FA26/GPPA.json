@@ -1,0 +1,29 @@
+[
+ {
+  "subject": "GPPA",
+  "number": "464",
+  "title": "Environmental Justice",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154111",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "3:30p",
+    "time_end": "4:50p",
+    "building": "Robinson Building 1",
+    "room": "3201",
+    "instructor": "Dale Squires",
+    "avail": 80,
+    "limit": 80,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

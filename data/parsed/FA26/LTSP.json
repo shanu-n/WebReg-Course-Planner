@@ -1,0 +1,452 @@
+[
+ {
+  "subject": "LTSP",
+  "number": "2A",
+  "title": "Intermediate Spanish I",
+  "units": "5.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "10:00a",
+    "time_end": "10:50a",
+    "building": "Mandeville Center",
+    "room": "127",
+    "instructor": "Noelia Dominguez",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "155886",
+    "group": "A",
+    "type": "DI",
+    "code": "A01",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Noelia Dominguez",
+    "avail": 28,
+    "limit": 28,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTSP",
+  "number": "2B",
+  "title": "Intermediate Spanish II",
+  "units": "5.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "11:00a",
+    "time_end": "11:50a",
+    "building": "Mandeville Center",
+    "room": "127",
+    "instructor": "Noelia Dominguez",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "155890",
+    "group": "A",
+    "type": "DI",
+    "code": "A01",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Noelia Dominguez",
+    "avail": 28,
+    "limit": 28,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTSP",
+  "number": "2C",
+  "title": "Intermediate Spanish III",
+  "units": "5.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "12:00p",
+    "time_end": "12:50p",
+    "building": "Warren Lecture Hall",
+    "room": "2110",
+    "instructor": "Allie Mastromartino",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "155879",
+    "group": "A",
+    "type": "DI",
+    "code": "A01",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Allie Mastromartino",
+    "avail": 28,
+    "limit": 28,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTSP",
+  "number": "2F",
+  "title": "Spanish for Heritage Learners II",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155881",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "11:00a",
+    "time_end": "11:50a",
+    "building": "Warren Lecture Hall",
+    "room": "2110",
+    "instructor": "Allie Mastromartino",
+    "avail": 28,
+    "limit": 28,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTSP",
+  "number": "3F",
+  "title": "Spanish for Heritage Learners III",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155883",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "12:00p",
+    "time_end": "12:50p",
+    "building": "Mandeville Center",
+    "room": "127",
+    "instructor": "Toni Lampell",
+    "avail": 28,
+    "limit": 28,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "155884",
+    "group": "B",
+    "type": "LE",
+    "code": "B00",
+    "days": "TuTh",
+    "time_start": "2:00p",
+    "time_end": "3:20p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0291",
+    "instructor": "Ryan Bessett",
+    "avail": 28,
+    "limit": 28,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTSP",
+  "number": "87",
+  "title": "First-year Seminar",
+  "units": "1.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155929",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "Th",
+    "time_start": "5:00p",
+    "time_end": "7:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0371",
+    "instructor": "Ryan Bessett",
+    "avail": 20,
+    "limit": 20,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "155930",
+    "group": "B",
+    "type": "SE",
+    "code": "B81",
+    "days": "TuTh",
+    "time_start": "1:00p",
+    "time_end": "1:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0371",
+    "instructor": "Jorge Sanchez Cruz",
+    "avail": 20,
+    "limit": 20,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTSP",
+  "number": "100A",
+  "title": "Advanced Spanish Language and Culture",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155933",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "12:30p",
+    "time_end": "1:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0292",
+    "instructor": "Carol Arcos Herrera",
+    "avail": 28,
+    "limit": 28,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTSP",
+  "number": "100F",
+  "title": "Advanced Spanish Language and Culture for Heritage Learners",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155934",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "11:00a",
+    "time_end": "12:20p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0292",
+    "instructor": "Ignacio Carvajal",
+    "avail": 28,
+    "limit": 28,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "155935",
+    "group": "B",
+    "type": "LE",
+    "code": "B00",
+    "days": "MWF",
+    "time_start": "10:00a",
+    "time_end": "10:50a",
+    "building": "Humanities and Social Sciences",
+    "room": "2321",
+    "instructor": "Nadia Villafuerte Vazquez",
+    "avail": 28,
+    "limit": 28,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTSP",
+  "number": "116",
+  "title": "Representations of Spanish Colonialism",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155939",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "8:00a",
+    "time_end": "9:20a",
+    "building": "Warren Lecture Hall",
+    "room": "2114",
+    "instructor": "Ignacio Carvajal",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTSP",
+  "number": "145",
+  "title": "Memory, Human Rights and Culture in Iberia and Latin America",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "156071",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "2:00p",
+    "time_end": "3:20p",
+    "building": "Warren Lecture Hall",
+    "room": "2110",
+    "instructor": "Gloria Chacon",
+    "avail": 28,
+    "limit": 28,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/10/2026",
+    "days": "",
+    "time_start": "3:00p",
+    "time_end": "5:59p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTSP",
+  "number": "175",
+  "title": "Feminisms, Gender, and Sexuality in Latin America",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "156079",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "11:00a",
+    "time_end": "12:20p",
+    "building": "Mandeville Center",
+    "room": "127",
+    "instructor": "Carol Arcos Herrera",
+    "avail": 28,
+    "limit": 28,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTSP",
+  "number": "192",
+  "title": "Senior Seminar",
+  "units": "1.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "156237",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "Th",
+    "time_start": "5:00p",
+    "time_end": "7:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0374",
+    "instructor": "Ryan Bessett",
+    "avail": 20,
+    "limit": 20,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

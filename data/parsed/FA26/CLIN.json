@@ -1,0 +1,101 @@
+[
+ {
+  "subject": "CLIN",
+  "number": "294A",
+  "title": "Proseminar in Neuropsychology",
+  "units": "3.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152767",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": 6,
+    "limit": 6,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "CLIN",
+  "number": "296",
+  "title": "Independent Study",
+  "units": "1.00 - 12.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152783",
+    "group": "A",
+    "type": "IN",
+    "code": "A81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "David Moore",
+    "avail": 80,
+    "limit": 80,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "152784",
+    "group": "B",
+    "type": "IN",
+    "code": "B81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Lauren Brookman-Frazee",
+    "avail": 6,
+    "limit": 6,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "CLIN",
+  "number": "297",
+  "title": "Advanced Clinical Practicum",
+  "units": "2.00 - 4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152785",
+    "group": "A",
+    "type": "PR",
+    "code": "A81",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "David Moore",
+    "avail": 60,
+    "limit": 60,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

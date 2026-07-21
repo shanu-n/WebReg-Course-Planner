@@ -1,0 +1,47 @@
+[
+ {
+  "subject": "HIAF",
+  "number": "111",
+  "title": "Modern Africa Since 1880",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155755",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "12:30p",
+    "time_end": "1:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0121",
+    "instructor": "Jeremy Prestholdt",
+    "avail": 65,
+    "limit": 65,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/11/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ }
+]

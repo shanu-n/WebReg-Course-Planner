@@ -1,0 +1,29 @@
+[
+ {
+  "subject": "HISA",
+  "number": "122",
+  "title": "History and Literature in South Asia",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155265",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "W",
+    "time_start": "5:00p",
+    "time_end": "7:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0103",
+    "instructor": "Aniket De",
+    "avail": 45,
+    "limit": 45,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

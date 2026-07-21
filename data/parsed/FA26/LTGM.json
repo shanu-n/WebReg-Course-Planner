@@ -1,0 +1,47 @@
+[
+ {
+  "subject": "LTGM",
+  "number": "2A",
+  "title": "Intermediate German I",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155283",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "11:00a",
+    "time_end": "11:50a",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0374",
+    "instructor": "Eva Fischer-Grunski",
+    "avail": 25,
+    "limit": 25,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/08/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ }
+]

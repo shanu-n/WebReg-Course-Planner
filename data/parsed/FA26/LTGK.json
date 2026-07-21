@@ -1,0 +1,74 @@
+[
+ {
+  "subject": "LTGK",
+  "number": "1",
+  "title": "Beginning Greek",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155266",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "3:00p",
+    "time_end": "3:50p",
+    "building": "Mandeville Center",
+    "room": "B-104",
+    "instructor": "Kourtney Murray",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/11/2026",
+    "days": "",
+    "time_start": "3:00p",
+    "time_end": "5:59p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTGK",
+  "number": "103",
+  "title": "Greek Drama",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "155272",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "11:00a",
+    "time_end": "11:50a",
+    "building": "Mandeville Center",
+    "room": "B-104",
+    "instructor": "Kourtney Murray",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

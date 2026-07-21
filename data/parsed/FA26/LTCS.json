@@ -1,0 +1,263 @@
+[
+ {
+  "subject": "LTCS",
+  "number": "10",
+  "title": "Studies in Popular Culture",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154551",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "9:30a",
+    "time_end": "10:50a",
+    "building": "Warren Lecture Hall",
+    "room": "2115",
+    "instructor": "Andrea Mendoza",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTCS",
+  "number": "87",
+  "title": "First-year Seminar",
+  "units": "1.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154557",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "W",
+    "time_start": "9:30a",
+    "time_end": "11:20a",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0371",
+    "instructor": "Hoang Nguyen",
+    "avail": 20,
+    "limit": 20,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTCS",
+  "number": "110",
+  "title": "Popular Culture",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154558",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MWF",
+    "time_start": "10:00a",
+    "time_end": "10:50a",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0115",
+    "instructor": "Megan Wesling",
+    "avail": 50,
+    "limit": 50,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/11/2026",
+    "days": "",
+    "time_start": "8:00a",
+    "time_end": "10:59a",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTCS",
+  "number": "130",
+  "title": "Gender, Race/Ethnicity, Class and Culture",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154561",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "9:30a",
+    "time_end": "10:50a",
+    "building": "Warren Lecture Hall",
+    "room": "2209",
+    "instructor": "Joo Ok Kim",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/10/2026",
+    "days": "",
+    "time_start": "8:00a",
+    "time_end": "10:59a",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTCS",
+  "number": "165",
+  "title": "Spec Topics: Politics of Food",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154624",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "8:00a",
+    "time_end": "9:20a",
+    "building": "Warren Lecture Hall",
+    "room": "2209",
+    "instructor": "Joo Ok Kim",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/08/2026",
+    "days": "",
+    "time_start": "8:00a",
+    "time_end": "10:59a",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTCS",
+  "number": "170",
+  "title": "Visual Culture",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154626",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "M",
+    "time_start": "5:00p",
+    "time_end": "7:50p",
+    "building": "Coalition Building",
+    "room": "121",
+    "instructor": "Sara Johnson",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/10/2026",
+    "days": "",
+    "time_start": "7:00p",
+    "time_end": "9:59p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "LTCS",
+  "number": "250",
+  "title": "Topics in Cultural Studies",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154646",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "W",
+    "time_start": "2:00p",
+    "time_end": "4:50p",
+    "building": "Ridgewalk Academic Complex",
+    "room": "0374",
+    "instructor": "Ameeth Vijay",
+    "avail": 15,
+    "limit": 15,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

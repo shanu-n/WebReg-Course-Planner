@@ -1,0 +1,47 @@
+[
+ {
+  "subject": "TDTR",
+  "number": "10",
+  "title": "Introduction to Dance",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152680",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "MW",
+    "time_start": "5:00p",
+    "time_end": "6:20p",
+    "building": "Podemos",
+    "room": "0133",
+    "instructor": "Bernard Brown",
+    "avail": 25,
+    "limit": 25,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/10/2026",
+    "days": "",
+    "time_start": "7:00p",
+    "time_end": "9:59p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ }
+]

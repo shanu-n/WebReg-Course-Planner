@@ -1,0 +1,137 @@
+[
+ {
+  "subject": "GPPS",
+  "number": "400",
+  "title": "International Relations of the Asia-Pacific",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152845",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "3:30p",
+    "time_end": "4:50p",
+    "building": "Robinson Building 1",
+    "room": "3202",
+    "instructor": "Stephan Haggard",
+    "avail": 50,
+    "limit": 50,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "GPPS",
+  "number": "433",
+  "title": "Debating US Security Policy",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152937",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "Tu",
+    "time_start": "5:00p",
+    "time_end": "7:50p",
+    "building": "Robinson Building 1",
+    "room": "3203",
+    "instructor": "Jesse Driscoll",
+    "avail": 50,
+    "limit": 50,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "GPPS",
+  "number": "439",
+  "title": "Eurasian Security",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "154175",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "M",
+    "time_start": "6:30p",
+    "time_end": "9:20p",
+    "building": "Robinson Building 1",
+    "room": "3202",
+    "instructor": "Jesse Driscoll",
+    "avail": 50,
+    "limit": 50,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "GPPS",
+  "number": "442",
+  "title": "Foundations of Strategic Studies",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "152963",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "Th",
+    "time_start": "6:30p",
+    "time_end": "9:20p",
+    "building": "Robinson Building 1",
+    "room": "3201",
+    "instructor": "Robert Thomas",
+    "avail": 80,
+    "limit": 80,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "GPPS",
+  "number": "476",
+  "title": "Chinese Sources and Methods",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "153144",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "W",
+    "time_start": "5:00p",
+    "time_end": "7:50p",
+    "building": "Robinson Building 1",
+    "room": "3202",
+    "instructor": "Victor Shih",
+    "avail": 60,
+    "limit": 60,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ }
+]

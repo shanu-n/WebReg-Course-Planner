@@ -1,0 +1,110 @@
+[
+ {
+  "subject": "AAS",
+  "number": "10R",
+  "title": "Introduction to African American Studies",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "TuTh",
+    "time_start": "5:00p",
+    "time_end": "6:20p",
+    "building": "RCLAS",
+    "room": "",
+    "instructor": "Libby Butler",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "150888",
+    "group": "A",
+    "type": "DI",
+    "code": "A01",
+    "days": "W",
+    "time_start": "2:00p",
+    "time_end": "2:50p",
+    "building": "RCLAS",
+    "room": "",
+    "instructor": "Libby Butler",
+    "avail": 38,
+    "limit": 38,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "150889",
+    "group": "A",
+    "type": "DI",
+    "code": "A02",
+    "days": "W",
+    "time_start": "3:00p",
+    "time_end": "3:50p",
+    "building": "RCLAS",
+    "room": "",
+    "instructor": "Libby Butler",
+    "avail": 37,
+    "limit": 37,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "AAS",
+  "number": "170",
+  "title": "Legacies of Research on Disenfranchised Communities",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "150890",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "TuTh",
+    "time_start": "11:00a",
+    "time_end": "12:20p",
+    "building": "Podemos",
+    "room": "0132",
+    "instructor": "Chadwick Campbell",
+    "avail": 40,
+    "limit": 40,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "FI",
+    "code": "12/09/2026",
+    "days": "",
+    "time_start": "11:30a",
+    "time_end": "2:29p",
+    "building": "",
+    "room": "",
+    "instructor": "",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": 0,
+    "note": ""
+   }
+  ]
+ }
+]
