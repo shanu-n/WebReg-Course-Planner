@@ -94,4 +94,10 @@ docs/               DESIGN.md, UI spec, research notes, screenshots
 
 ---
 
+## License
+
+Released under the [MIT License](LICENSE) — free to use, modify, and share.
+
+---
+
 *Not affiliated with or endorsed by UC San Diego. Independent, non-commercial planning tool — it doesn't perform enrollment or access your UCSD account; data is read from UCSD's own systems with your own login and stays on your device. Always confirm details in TSS before enrolling.*
