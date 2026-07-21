@@ -409,6 +409,27 @@ table.sec-table {
   cursor: pointer;
 }
 .tab.active { background: #fff; color: #CB6C12; }
+/* highlight the new Map tab until a user clicks it (glow + bold + NEW badge) */
+.tab.glow-new {
+  position: relative;
+  font-weight: bold;
+  color: #8a3f00;
+  background: linear-gradient(#fff7e0, #ffe08a);
+  border-color: #e0a400;
+  animation: map-glow 1.5s ease-in-out infinite;
+}
+@keyframes map-glow {
+  0%, 100% { box-shadow: 0 0 4px 1px rgba(255,180,0,.55); }
+  50%      { box-shadow: 0 0 14px 5px rgba(255,180,0,.95); }
+}
+.tab.glow-new::after {
+  content: "NEW";
+  position: absolute; top: -8px; right: -7px;
+  background: #CB6C12; color: #fff;
+  font-size: 8px; font-weight: bold; letter-spacing: .5px;
+  padding: 1px 4px; border-radius: 8px; line-height: 1;
+  box-shadow: 0 1px 2px rgba(0,0,0,.3);
+}
 .sched-links {
   margin-left: auto;
   color: #fff;

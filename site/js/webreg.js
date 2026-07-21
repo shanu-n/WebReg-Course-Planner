@@ -743,8 +743,14 @@ async function refreshSchedule() {
 }
 
 function wireScheduleChrome() {
+  const mapTab = $('.tab[data-view="map"]');
+  if (mapTab && localStorage.getItem("webreg_map_seen") !== "1") mapTab.classList.add("glow-new");
   $all(".tab").forEach(t => t.addEventListener("click", () => {
     S.view = t.dataset.view;
+    if (t.dataset.view === "map") {
+      t.classList.remove("glow-new");
+      localStorage.setItem("webreg_map_seen", "1");
+    }
     $all(".tab").forEach(x => x.classList.toggle("active", x === t));
     renderSchedule();
   }));
