@@ -82,8 +82,14 @@
   }
 
   function applySimpleQ(qtext, c) {
-    const toks = qtext.trim().split(/\s+/).filter(Boolean);
+    let toks = qtext.trim().split(/\s+/).filter(Boolean);
     if (!toks.length) return true;
+    // split a glued subject+number, "cse11" -> ["cse","11"], when the letters
+    // are a real subject (title words like "data" are left alone)
+    if (toks.length === 1) {
+      const gm = /^([A-Za-z]{2,6})(\d+[A-Za-z]{0,2})$/.exec(toks[0]);
+      if (gm && DATA.subjSet.has(gm[1].toUpperCase())) toks = [gm[1], gm[2]];
+    }
     const numlike = t => /^\d+[A-Za-z]{0,2}$/.test(t);
     const subj = c.subject_code.toUpperCase();
     const title = c.title.toLowerCase();
