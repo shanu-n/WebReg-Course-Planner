@@ -36,6 +36,29 @@ DAY_MAP = {"M": "M", "MO": "M", "TU": "Tu", "W": "W", "WE": "W",
            "TH": "Th", "F": "F", "FR": "F", "SA": "Sa", "SU": "Su"}
 DAY_ORDER = ["M", "Tu", "W", "Th", "F", "Sa", "Su"]
 
+# TSS truncates building names to 40 characters; restore the full names.
+BUILDING_FIX = {
+    "Computer Science and Engineering Buildin":
+        "Computer Science and Engineering Building",
+    "Structural and Materials Engineering Bui":
+        "Structural and Materials Engineering Building",
+    "Science and Engineering Research Facilit":
+        "Science and Engineering Research Facility",
+    "MCTF - Marine Conservation and Technolog":
+        "MCTF - Marine Conservation and Technology",
+    "Medical Education and Telemedicine Cente":
+        "Medical Education and Telemedicine Center",
+    # ambiguous truncated designator ("- G"/"- N") — drop to the base name
+    "Extended Studies and Public Programs - G":
+        "Extended Studies and Public Programs",
+    "Extended Studies and Public Programs - N":
+        "Extended Studies and Public Programs",
+}
+
+
+def fix_building(b):
+    return BUILDING_FIX.get(b, b)
+
 
 def course_parts(abbr):
     """'CSE-003' -> ('CSE','3'); '010R' keeps suffix -> '10R'."""
@@ -103,7 +126,7 @@ def parse_sched(sched):
         building, room = "", ""
         lm = _LOC.search(tail)
         if lm:
-            building, room = lm.group(1).strip(), lm.group(2).strip()
+            building, room = fix_building(lm.group(1).strip()), lm.group(2).strip()
         elif "online" in tail.lower():
             building = "RCLAS" if "live" in tail.lower() else "ONLINE"
         meetings.append({"days": days, "t0": to_wr_time(mm.group(2)),
