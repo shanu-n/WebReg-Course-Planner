@@ -878,7 +878,7 @@ function wireItemButtons(root) {
 
 /* ---------------- calendar view */
 
-const CAL_START = 7 * 60, CAL_END = 22 * 60, PX_PER_HOUR = 48;
+const CAL_START = 7 * 60, CAL_END = 22 * 60, PX_PER_HOUR = 60;
 const DAY_ORDER = ["M", "Tu", "W", "Th", "F", "Sa", "Su"];
 const DAY_NAMES = { M: "Monday", Tu: "Tuesday", W: "Wednesday", Th: "Thursday",
   F: "Friday", Sa: "Saturday", Su: "Sunday" };
@@ -977,7 +977,9 @@ function renderCalendarView() {
       + '<div class="cal-body" style="height:' + bodyH + 'px">';
     for (const blk of byDay[d]) {
       const top = (blk.a - CAL_START) / 60 * PX_PER_HOUR;
-      const h = Math.max(92, (blk.b - blk.a) / 60 * PX_PER_HOUR);
+      // block height = the class's real duration (1px per minute); short
+      // blocks show time + course, and expand on hover for full details.
+      const h = Math.max(30, (blk.b - blk.a) / 60 * PX_PER_HOUR);
       const conflict = conflictKeys.has(blk.it.item_id + ":" + blk.m.id);
       html += calBlockHtml(blk.it, blk.m, conflict, h, top, blk.lane);
     }
