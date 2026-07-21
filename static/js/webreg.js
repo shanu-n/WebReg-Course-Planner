@@ -143,9 +143,11 @@ async function init() {
   S.terms = terms; S.subjects = subjects;
 
   const land = $("#landing-term"), sw = $("#term-switch");
-  for (const t of terms) {
-    land.add(new Option(t.name, t.code, false, !!t.is_default));
-    sw.add(new Option(t.name, t.code, false, !!t.is_default));
+  // Planning is for the upcoming term only — show just Fall 2026.
+  const shown = terms.filter(t => t.code === "FA26");
+  for (const t of (shown.length ? shown : terms)) {
+    land.add(new Option(t.name, t.code, false, true));
+    sw.add(new Option(t.name, t.code, false, true));
   }
   $("#btn-go").addEventListener("click", () => enterTerm(land.value));
   land.addEventListener("keydown", e => { if (e.key === "Enter") enterTerm(land.value); });
@@ -602,7 +604,7 @@ function meetingCells(m) {
 function instructorHtml(name) {
   if (!name) return "Staff";
   if (/^staff$/i.test(name.trim())) return "Staff";
-  return esc(name) + ' <span class="mailico">&#9993;</span>';
+  return esc(name);
 }
 
 /* component rows print in section-code order (A00 LE, then A01 DI...) like
@@ -630,11 +632,9 @@ function unitRowsHtml(course, unit) {
     availCell = full
       ? '<td rowspan="' + span + '"><span class="full-red">FULL Waitlist(' + (sec.waitlist_ct || 0) + ")</span></td>"
       : '<td rowspan="' + span + '">' + sec.seats_avail + "</td>";
-    const second = full
-      ? '<button class="btn btn-sm" data-act="waitlist" data-sec="' + sec.id + '">Waitlist</button>'
-      : '<button class="btn btn-sm" data-act="enroll" data-sec="' + sec.id + '">Enroll</button>';
+    /* planning-only: the single action is Plan (any section, full or not) */
     actionCell = '<td rowspan="' + span + '" class="act">'
-      + '<button class="btn btn-sm" data-act="plan" data-sec="' + sec.id + '">Plan</button>' + second + "</td>";
+      + '<button class="btn btn-sm" data-act="plan" data-sec="' + sec.id + '">Plan</button></td>';
   }
 
   let html = "<tr>";
@@ -785,14 +785,7 @@ function renderSchedule() {
 const LIST_COLS = ["Subject Course", "Title", "Section Code", "Type", "Instructor",
   "Grade Option", "Units", "Days", "Time", "BLDG", "Room", "Status /<br>(Position)", "Action"];
 
-function statusCellText(it) {
-  if (it.status === "enrolled") return "Enrolled";
-  if (it.status === "planned") return "Planned";
-  const sec = chosenSection(it);
-  const pos = it.position != null ? it.position
-    : (sec && sec.waitlist_ct ? sec.waitlist_ct + 1 : 1);
-  return "Waitlist (" + pos + ")";
-}
+function statusCellText(_it) { return "Planned"; }
 
 function renderListView() {
   const root = $("#view-list");
@@ -800,7 +793,7 @@ function renderListView() {
     root.innerHTML = '<table class="list-table"><thead><tr>'
       + LIST_COLS.map(h => "<th>" + h + "</th>").join("") + "</tr></thead></table>"
       + '<div class="list-empty">No classes on your schedule for this term. '
-      + "Search for classes above, then Enroll or Plan them.</div>";
+      + "Search for classes above, then Plan them.</div>";
     return;
   }
   let html = '<table class="list-table"><thead><tr>'
@@ -819,16 +812,8 @@ function renderListView() {
     const sec = chosenSection(it);
     const full = sec && (sec.seats_avail || 0) <= 0;
 
-    let act;
-    if (it.status === "planned") {
-      act = '<button class="btn btn-sm" data-a="remove" data-id="' + it.item_id + '">Remove</button>'
-        + (full
-          ? '<button class="btn btn-sm" data-a="waitlist" data-id="' + it.item_id + '">Waitlist</button>'
-          : '<button class="btn btn-sm" data-a="enroll" data-id="' + it.item_id + '">Enroll</button>');
-    } else {
-      act = '<button class="btn btn-sm" data-a="drop" data-id="' + it.item_id + '">Drop</button>'
-        + '<button class="btn btn-sm" data-a="change" data-id="' + it.item_id + '">Change</button>';
-    }
+    const act = '<button class="btn btn-sm" data-a="remove" data-id="' + it.item_id + '">Remove</button>'
+      + '<button class="btn btn-sm" data-a="change" data-id="' + it.item_id + '">Change</button>';
 
     html += '<tr class="' + cls + '">'
       + '<td class="l"><b>' + esc(itemCode(it)) + "</b></td>"
@@ -908,10 +893,8 @@ function blockClass(st) {
 
 function calBlockHtml(it, m, conflict, heightPx, topPx, lane) {
   const cls = "cal-block" + blockClass(it.status) + (conflict ? " conflict" : "");
-  const btns = it.status === "planned"
-    ? '<button class="btn btn-sm" data-a="remove" data-id="' + it.item_id + '">Remove</button>'
-    : '<button class="btn btn-sm" data-a="drop" data-id="' + it.item_id + '">Drop</button>'
-      + '<button class="btn btn-sm" data-a="change" data-id="' + it.item_id + '">Change</button>';
+  const btns = '<button class="btn btn-sm" data-a="remove" data-id="' + it.item_id + '">Remove</button>'
+    + '<button class="btn btn-sm" data-a="change" data-id="' + it.item_id + '">Change</button>';
   /* conflicting blocks overlap with a cascade offset, like real WebReg (D-p16) */
   const laneCss = lane && lane.n > 1
     ? "left:calc(" + (lane.i * 16) + "% + 2px);right:calc(" + ((lane.n - 1 - lane.i) * 16)
@@ -983,7 +966,7 @@ function renderCalendarView() {
       + '<div class="cal-body" style="height:' + bodyH + 'px">';
     for (const blk of byDay[d]) {
       const top = (blk.a - CAL_START) / 60 * PX_PER_HOUR;
-      const h = Math.max(78, (blk.b - blk.a) / 60 * PX_PER_HOUR);
+      const h = Math.max(92, (blk.b - blk.a) / 60 * PX_PER_HOUR);
       const conflict = conflictKeys.has(blk.it.item_id + ":" + blk.m.id);
       html += calBlockHtml(blk.it, blk.m, conflict, h, top, blk.lane);
     }

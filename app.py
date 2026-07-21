@@ -296,17 +296,9 @@ def api_schedule_add():
     sec = conn.execute("SELECT * FROM sections WHERE id=?", (section_pk,)).fetchone()
     if not sec or not sec["enrollable"] or sec["cancelled"]:
         return jsonify({"error": "Invalid section."}), 400
-    label = _course_label(conn, sec["course_id"])
     sid = _get_schedule(term)
-    dup = conn.execute(
-        "SELECT 1 FROM schedule_items WHERE schedule_id=? AND course_id=?",
-        (sid, sec["course_id"])).fetchone()
-    if dup:
-        return jsonify({"error": f"You are already enrolled in {label}."}), 409
-    if status == "enrolled" and (sec["seats_avail"] or 0) <= 0:
-        return jsonify({"error": f"There are no seats available for {label}. "
-                                 "You may add yourself to the waitlist."}), 409
-
+    # Planning tool: you may plan the same course several times (e.g. compare
+    # two lecture options) and even the same section twice — nothing is blocked.
     position = None
     if status == "waitlisted":
         position = (sec["waitlist_ct"] or 0) + 1

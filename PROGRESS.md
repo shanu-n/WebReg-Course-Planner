@@ -21,3 +21,15 @@
 
 ### Data-quality sweep (FA26)
 1,766 courses · 153 subjects · 8,061 section rows · 5,888 enrollable rows with seat counts · 1,216 finals. ~2,422 rows have no meeting day/time — verified these are legitimately-TBA sections (grad tutorials, independent study, research), exactly as WebReg displays them.
+
+## 2026-07-21 — Feedback round 1 (Feedback (1).pdf)
+All 8 items implemented:
+1. Removed the fake MY TRITONLINK nav tab strip (Current Students / Advising & Grades / …).
+2. Term selector shows **only Fall 2026** (client filters `/api/terms` to FA26).
+3. Removed the external-link ↗ glyphs next to Catalog / Prerequisites / Resources / Evaluations (and everywhere else) — `.popout` now `display:none`.
+4. **Bug fixed:** calendar-block Remove/Change buttons were cut off — raised min block height to 92px and blocks expand on hover (`height:auto`, overflow visible) so buttons are always reachable.
+5. Removed the email ✉ glyph next to instructor names.
+6. **Can now plan multiple of the same class** (the key scheduling feature): dropped the "already enrolled" duplicate-course block and the section UNIQUE constraint; any course/section can be planned repeatedly to compare options.
+7. Removed the Enroll/Waitlist actions everywhere — planning-only. Results action is a single **Plan**; schedule rows/blocks use Remove + Change; status is always "Planned"; wording updated.
+8. Removed the Add Event button.
+DB rebuilt (schema change), verified live at :5070 (screenshots in docs/research/verify/fb_*.png).

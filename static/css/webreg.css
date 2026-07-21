@@ -127,27 +127,8 @@ button, select, input { font-family: Arial, Helvetica, sans-serif; font-size: 12
 
 .status-line { margin: 14px 0 4px; font-size: 12px; }
 
-/* popout (external link) glyph */
-.popout {
-  display: inline-block;
-  width: 11px; height: 11px;
-  border: 1px solid #1B65A6;
-  border-radius: 2px;
-  position: relative;
-  vertical-align: -1px;
-  margin-left: 2px;
-}
-.popout::after {
-  content: "";
-  position: absolute;
-  right: -3px; top: -3px;
-  width: 5px; height: 5px;
-  background: #fff;
-  border-top: 1px solid #1B65A6;
-  border-right: 1px solid #1B65A6;
-}
-.popout-w { border-color: #fff; }
-.popout-w::after { background: #0A4A65; border-color: #fff; }
+/* external-link glyphs removed per feedback — kept as no-ops so markup is safe */
+.popout, .popout-w { display: none; }
 
 /* ------------------------------------------------ term-select screen */
 .term-pick {
@@ -512,8 +493,18 @@ tr.row-planned td { background: #fff; color: #888; }
 .cal-block .strip span { white-space: nowrap; }
 .cal-block .bl { text-align: center; line-height: 12px; padding: 1px 2px; }
 .cal-block .bcode { font-weight: bold; font-size: 11px; }
-.cal-block .bbtns { text-align: center; padding: 2px 0; }
+.cal-block .bbtns { text-align: center; padding: 2px 0 3px; white-space: nowrap; }
+.cal-block .bbtns .btn-sm { padding: 1px 5px; font-size: 10px; margin: 0 1px; }
 .cal-block .bdate { font-style: italic; font-weight: bold; }
+/* Short blocks would clip the Remove/Change buttons — reveal the full block
+   on hover (auto height, nothing cut off), lifted above its neighbours. */
+.cal-block:hover {
+  height: auto !important;
+  min-height: 92px;
+  overflow: visible;
+  z-index: 60 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
 .cal-block.wl { background: #CEEBEE; color: #04303f; border-color: #9cc5cc; }
 .cal-block.wl .strip { background: #a5cfd6; color: #04303f; }
 .cal-block.pl {

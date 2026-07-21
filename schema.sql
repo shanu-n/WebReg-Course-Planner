@@ -65,10 +65,10 @@ CREATE TABLE IF NOT EXISTS schedule_items (
   schedule_id   INTEGER NOT NULL REFERENCES schedules(id),
   course_id     INTEGER NOT NULL REFERENCES courses(id),
   section_pk    INTEGER NOT NULL REFERENCES sections(id), -- the enrollable row chosen
-  status        TEXT NOT NULL DEFAULT 'enrolled',         -- enrolled | waitlisted | planned
+  status        TEXT NOT NULL DEFAULT 'planned',          -- planning-only tool: always 'planned'
   units         TEXT NOT NULL,
   grade_option  TEXT NOT NULL DEFAULT 'L',                -- L | P (P/NP) | S (S/U)
-  waitlist_pos  INTEGER,                                  -- position when waitlisted (ct+1 at add time)
-  added_at      TEXT NOT NULL DEFAULT (datetime('now')),
-  UNIQUE(schedule_id, section_pk)
+  waitlist_pos  INTEGER,                                  -- legacy column, unused in planning-only mode
+  added_at      TEXT NOT NULL DEFAULT (datetime('now'))
+  -- no uniqueness: a planner may add the same course/section multiple times
 );
