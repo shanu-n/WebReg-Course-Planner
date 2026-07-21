@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Course Enrollment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/webreg.css">
+</head>
+<body>
+
+<!-- ===== MY TRITONLINK chrome ===== -->
+<div class="tl-banner">
+  <span class="tl-brand">Functional Course Planner not TSS Slop</span>
+  <span class="tl-wordmark">UC San Diego</span>
+</div>
+<div class="tl-shard">
+  <svg viewBox="0 0 1200 74" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
+    <polygon points="380,0 560,0 470,58" fill="#14425C" opacity="0.85"/>
+    <polygon points="470,0 700,0 610,46" fill="#1A719C" opacity="0.55"/>
+    <polygon points="540,0 640,52 760,0" fill="#0A4A65" opacity="0.75"/>
+    <polygon points="600,0 830,0 730,64" fill="#FFCD00" opacity="0.55"/>
+    <polygon points="700,0 900,0 800,40" fill="#1A719C" opacity="0.45"/>
+    <polygon points="300,0 430,0 380,34" fill="#FFCD00" opacity="0.4"/>
+    <polygon points="760,0 960,30 900,0" fill="#14425C" opacity="0.6"/>
+    <polygon points="430,0 520,40 470,0" fill="#7FB2C6" opacity="0.6"/>
+    <polygon points="820,0 1010,0 930,36" fill="#7FB2C6" opacity="0.45"/>
+    <polygon points="240,0 340,0 300,22" fill="#1A719C" opacity="0.3"/>
+    <polygon points="930,0 1060,0 1000,22" fill="#FFCD00" opacity="0.3"/>
+    <rect x="0" y="0" width="1200" height="74" fill="url(#fade)"/>
+    <defs>
+      <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+        <stop offset="1" stop-color="#ffffff" stop-opacity="1"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+
+<div class="page">
+
+  <!-- ===== screen 1: term select ===== -->
+  <div id="screen-term">
+    <h1 class="page-title">Course Enrollment</h1>
+    <div class="term-pick">
+      <b>Select a term to begin:</b>
+      <select id="landing-term"></select>
+      <button class="btn" id="btn-go">Go</button>
+    </div>
+  </div>
+
+  <!-- ===== screen 2: main app ===== -->
+  <div id="screen-main" hidden>
+    <div class="hdr-row">
+      <h1 class="page-title">Course Enrollment</h1>
+      <div class="hdr-links">
+        <a id="lnk-appt">Appointment time</a><span class="sep">|</span><a
+          id="lnk-enrinfo"
+          href="https://students.ucsd.edu/academics/enrollment/calendars/index.html"
+          target="_blank" rel="noopener">Enrollment Information <span class="popout"></span></a>
+        <span class="sep">|</span>
+        <select id="term-switch"></select>
+      </div>
+    </div>
+
+    <div class="status-line" id="status-line">
+      Plan your courses — build and compare schedules. Everything is saved to your local schedule only.
+    </div>
+
+    <div id="conflict-banner" hidden></div>
+
+    <!-- search -->
+    <div class="search-panel">
+      <div class="search-row">
+        <div class="search-label">
+          <b>Search for Classes:</b><br>
+          <a id="lnk-adv">Advanced Search</a>
+        </div>
+        <span class="ac-wrap">
+          <input id="q" placeholder="(e.g., BILD, BILD 3 or computer 3 )" autocomplete="off">
+          <div id="ac" class="ac" hidden></div>
+        </span>
+        <button class="btn" id="btn-search">Search</button>
+      </div>
+
+      <div id="adv" class="adv" hidden>
+        <table class="adv-left"><tbody>
+          <tr>
+            <td class="lab">Subject:</td>
+            <td><div class="tokbox" id="subj-box" tabindex="0"><span class="placeholder">Select one or more</span></div></td>
+          </tr>
+          <tr><td class="lab">Course:</td>
+              <td><input type="text" id="f-courseno" placeholder="Enter one or more"></td></tr>
+          <tr><td class="lab">Instructor:</td>
+              <td><input type="text" id="f-instructor" placeholder="Last, First"></td></tr>
+          <tr><td class="lab">Title:</td>
+              <td><input type="text" id="f-title"></td></tr>
+          <tr><td class="lab">Section ID:</td>
+              <td><input type="text" id="f-sectionid" placeholder="Enter one or more"></td></tr>
+        </tbody></table>
+
+        <div class="adv-right">
+          <div class="so-hd">Show only</div>
+          <table><tbody>
+            <tr><td class="rowlab">Lower:</td>
+                <td><label><input type="checkbox" class="rng" value="1-99">1-99</label></td>
+                <td><label><input type="checkbox" class="rng" value="87,90">87,90</label></td>
+                <td><label><input type="checkbox" class="rng" value="99">99</label></td></tr>
+            <tr><td class="rowlab">Upper:</td>
+                <td><label><input type="checkbox" class="rng" value="100-198">100-198</label></td>
+                <td><label><input type="checkbox" class="rng" value="195">195</label></td>
+                <td><label><input type="checkbox" class="rng" value="199">199</label></td></tr>
+            <tr><td class="rowlab">Graduate:</td>
+                <td><label><input type="checkbox" class="rng" value="200-297">200-297</label></td>
+                <td><label><input type="checkbox" class="rng" value="298">298</label></td>
+                <td><label><input type="checkbox" class="rng" value="299">299</label></td></tr>
+            <tr><td></td>
+                <td><label><input type="checkbox" class="rng" value="300+">300+</label></td>
+                <td><label><input type="checkbox" class="rng" value="400+">400+</label></td>
+                <td><label><input type="checkbox" class="rng" value="500+">500+</label></td></tr>
+          </tbody></table>
+          <div class="adv-days" style="margin-top:6px;">
+            <b>Days:</b>
+            <label><input type="checkbox" class="day" value="M">M</label>
+            <label><input type="checkbox" class="day" value="Tu">Tu</label>
+            <label><input type="checkbox" class="day" value="W">W</label>
+            <label><input type="checkbox" class="day" value="Th">Th</label>
+            <label><input type="checkbox" class="day" value="F">F</label>
+            <label><input type="checkbox" class="day" value="Sa">Sa</label>
+            <label><input type="checkbox" class="day" value="Su">Su</label>
+          </div>
+          <div class="adv-times">
+            <b>Start:</b> <select id="f-start"></select>
+            <b>End:</b> <select id="f-end"></select>
+          </div>
+          <div class="adv-open">
+            <b>Only show sections with seats available:</b>
+            <input type="checkbox" id="f-open">
+          </div>
+        </div>
+        <div class="adv-btns">
+          <button class="btn" id="btn-reset">Reset</button>
+          <button class="btn" id="btn-search2">Search</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- results -->
+    <div id="results-region" class="results-region" hidden>
+      <div class="results-toggle-row"><a id="lnk-toggle-results">Hide search result</a></div>
+      <div id="results-inner">
+        <div class="results-toolbar">
+          Show <select id="page-size">
+            <option>10</option><option>25</option><option>50</option><option>100</option>
+          </select>
+          <span id="pager"></span>
+          <span class="found" id="found-count"></span>
+        </div>
+        <div class="results-panel">
+          <div class="results-panel-hd">Search results and action
+            <span class="round-toggle" id="panel-collapse">&#8211;</span>
+          </div>
+          <div id="results-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- my schedule -->
+    <div class="sched-hdr">
+      <b>My schedule:</b>
+      <select id="sched-name"><option>Create new, copy, rename ...</option></select>
+    </div>
+    <div class="sched-area" id="sched-area">
+      <div class="sched-tabs">
+        <span class="tab active" data-view="list">List</span>
+        <span class="tab" data-view="calendar">Calendar</span>
+        <span class="tab" data-view="finals">Finals</span>
+        <span class="sched-links">
+          <a id="lnk-print">Print Schedule</a> |
+          <a id="lnk-books" href="https://ucsandiegobookstore.com/" target="_blank"
+             rel="noopener">View Book List <span class="popout popout-w"></span></a>
+        </span>
+      </div>
+      <div id="view-list"></div>
+      <div id="view-calendar" hidden></div>
+      <div id="view-finals" hidden></div>
+    </div>
+  </div>
+
+  <div class="planner-note">Planning tool &mdash; not connected to UCSD registration.</div>
+  <div class="page-footer">
+    <div>
+      UC San Diego 9500 Gilman Dr. La Jolla, CA 92093 (858) 534-2230<br>
+      Copyright &copy;2012 Regents of the University of California. All rights reserved.<br>
+      <a>Terms &amp; Conditions</a> | <a>Feedback</a>
+    </div>
+    <div class="footer-wordmark">UC San Diego</div>
+  </div>
+</div>
+
+<div class="chevrons" id="chevrons" hidden>
+  <div class="chev up" id="chev-up" title="Search"></div>
+  <div class="chev down" id="chev-down" title="My Schedule"></div>
+</div>
+
+<div id="modal-root" hidden></div>
+
+<script src="js/localdb.js"></script>
+<script src="js/webreg.js"></script>
+</body>
+</html>
