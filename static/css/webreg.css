@@ -649,6 +649,12 @@ table.confirm-table {
   font-size: 11px;
   margin: 26px 0 4px;
 }
+.copyright-note {
+  color: #aaa;
+  font-size: 10px;
+  margin: 0 0 20px;
+}
+.copyright-note a { color: #7a97a6; }
 .page-footer {
   border-top: 1px solid #ccc;
   margin-top: 6px;
