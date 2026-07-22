@@ -170,7 +170,11 @@ async function init() {
 function wireTipJar() {
   const jar = $("#tip-jar"), bar = $("#tip-bar");
   if (!jar || !bar) return;
-  if (localStorage.getItem("webreg_tip_collapsed") === "1") jar.classList.add("collapsed");
+  // On phones the expanded jar overlaps the schedule/results — start it
+  // collapsed by default there (unless the user has set a preference).
+  const pref = localStorage.getItem("webreg_tip_collapsed");
+  const collapse = pref === "1" || (pref === null && window.matchMedia("(max-width: 640px)").matches);
+  if (collapse) jar.classList.add("collapsed");
   bar.addEventListener("click", () => {
     jar.classList.toggle("collapsed");
     localStorage.setItem("webreg_tip_collapsed",

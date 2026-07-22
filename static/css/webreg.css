@@ -708,6 +708,12 @@ table.confirm-table {
   margin: 0 0 20px;
 }
 .copyright-note a { color: #7a97a6; }
+.feedback-note {
+  color: #aaa;
+  font-size: 10px;
+  margin: 2px 0 20px;
+}
+.feedback-note a { color: #7a97a6; }
 
 /* ===== tip / support corner (bottom-right, collapsible) ===== */
 .tip-jar {
