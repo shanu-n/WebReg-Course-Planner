@@ -69,6 +69,31 @@ button, select, input { font-family: Arial, Helvetica, sans-serif; font-size: 12
   white-space: nowrap;
 }
 
+/* "Unofficial" tag riding above the UC San Diego wordmark */
+.tl-unofficial {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #ffd34d;
+  line-height: 1;
+  margin-bottom: 1px;
+}
+
+/* clear affiliation disclaimer under the banner */
+.disclaimer-strip {
+  background: #fbf6e6;
+  border-bottom: 1px solid #eadfb8;
+  color: #6b5b1e;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+  padding: 5px 14px;
+}
+.disclaimer-strip b { color: #5a4a12; }
+
 /* pale-blue nav tab strip */
 .tl-nav {
   background: linear-gradient(#e8eef2, #c9d6de 80%, #b9c9d3);

@@ -66,7 +66,12 @@ function finalDate(daysField) {
 }
 function finalWeekday(daysField) {
   const toks = parseDays(String(daysField || "").replace(/\d.*$/, ""));
-  return toks.length ? toks[0] : "";
+  if (toks.length) return toks[0];
+  /* TSS (FA26) final rows carry a bare date with no weekday prefix — derive it */
+  const d = finalDate(daysField);
+  if (!d) return "";
+  const dt = new Date(d);
+  return isNaN(dt) ? "" : ["Su", "M", "Tu", "W", "Th", "F", "Sa"][dt.getDay()];
 }
 
 function timeRange(s) {
