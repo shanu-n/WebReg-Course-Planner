@@ -3,15 +3,34 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html, body {
-  background: #fff;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
-  color: #000;
-}
+:root {
+  --primary-blue: #1B65A6;
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --dark-teal: #0A4A65;
+  --mid-blue: #41788D;
+  --accent-orange: #CB6C12;
+  --border-gray: #c7c7c7;
+  --error-red: #C00;
+  --darker-blue: #14425C;
+} /* best practice: CSS variables. repeated colors (teal, mid-blue, orange, gray borders, red, dark-blue) I pulled into :root instead of having them be hardcoded at every use, so the palette can be updated in one place */
 
-a { color: #1B65A6; font-weight: bold; text-decoration: none; cursor: pointer; }
+html, body {
+  background: var(--bg-color);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-color);
+}
+/* best practice: relative units. changed font-size from a fixed 12px to 0.75rem so text scales when a user increases their browser's default font size, instead of staying locked at a fixed pixel value */
+
+a { color: var(--primary-blue); font-weight: bold; text-decoration: underline; cursor: pointer; } /* best practice: not relying on color alone. removing "none" from text-decoration keeps the underline visible at rest, since colorblind users can't distinguish a link from plain text by color alone. also changed the hardcoded blue color to the variable "--primary-blue" so that the code stayes easily modifiable and maintainable and not hard-coded */
 a:hover { text-decoration: underline; }
+
+a:focus, button:focus, select:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+/* best practice: visible focus indicator. :hover was defined but :focus wasn't, so keyboard-only users tabbing through the page had no visual sign of where they were */
 
 b, strong { font-weight: bold; }
 
@@ -37,14 +56,14 @@ button, select, input { font-family: Arial, Helvetica, sans-serif; font-size: 12
 .btn-sm { padding: 0 7px; font-size: 10px; line-height: 14px; }
 /* a section already on the schedule: dark, non-interactive "Planned" chip */
 .planned-chip {
-  background: #0A4A65;
+  background: var(--dark-teal);
   color: #fff;
   border-color: #06384d;
   box-shadow: none;
   cursor: default;
   font-weight: bold;
 }
-.planned-chip:hover { background: #0A4A65; }
+.planned-chip:hover { background: var(--dark-teal); }
 
 /* ------------------------------------------------ TritonLink banner */
 .tl-banner {
@@ -62,6 +81,13 @@ button, select, input { font-family: Arial, Helvetica, sans-serif; font-size: 12
   letter-spacing: 1px;
   white-space: nowrap;
 }
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: local('EB Garamond');
+  font-display: swap;
+} /* best practice: font loading. font-display: swap shows the fallback serif font immediately instead of leaving the wordmark invisible while 'EB Garamond' is still loading */
+
 .tl-wordmark {
   font-family: Garamond, 'EB Garamond', 'Times New Roman', serif;
   font-size: 31px;
@@ -99,7 +125,7 @@ button, select, input { font-family: Arial, Helvetica, sans-serif; font-size: 12
   background: linear-gradient(#e8eef2, #c9d6de 80%, #b9c9d3);
   border-bottom: 1px solid #a8bcc7;
   height: 29px;
-  padding-left: 24px;
+  padding-inline-start: 24px; /* best practice: logical properties. padding-left assumes a left-to-right layout, so switching to padding-inline-start keeps the spacing correct if the page is translated into a right-to-left language */
 }
 .tl-nav ul { list-style: none; height: 29px; display: flex; }
 .tl-nav li {
@@ -145,7 +171,7 @@ button, select, input { font-family: Arial, Helvetica, sans-serif; font-size: 12
 }
 
 .page-title {
-  color: #CB6C12;
+  color: var(--accent-orange);
   font-size: 22px;
   font-weight: bold;
   padding: 6px 0 4px;
@@ -179,7 +205,7 @@ button, select, input { font-family: Arial, Helvetica, sans-serif; font-size: 12
 .search-row { display: flex; align-items: flex-start; }
 .search-label { width: 150px; line-height: 1.35; }
 .search-label b { font-size: 13px; }
-.search-label a { font-weight: normal; font-size: 11px; color: #1B65A6; }
+.search-label a { font-weight: normal; font-size: 11px; color: var(--primary-blue); }
 .ac-wrap { position: relative; margin: 0 10px 0 4px; }
 #q {
   width: 320px;
@@ -286,7 +312,7 @@ button, select, input { font-family: Arial, Helvetica, sans-serif; font-size: 12
   height: 21px;
   line-height: 21px;
   text-align: center;
-  background: #0A4A65;
+  background: var(--dark-teal);
   color: #fff;
   font-size: 11px;
   font-weight: bold;
@@ -294,14 +320,14 @@ button, select, input { font-family: Arial, Helvetica, sans-serif; font-size: 12
   cursor: pointer;
   user-select: none;
 }
-.pg.arrow { background: none; color: #0A4A65; font-size: 13px; min-width: 14px; padding: 0 2px; }
-.pg.cur { background: #fff; color: #000; border: 1px solid #0A4A65; line-height: 19px; cursor: default; }
+.pg.arrow { background: none; color: var(--dark-teal); font-size: 13px; min-width: 14px; padding: 0 2px; }
+.pg.cur { background: #fff; color: #000; border: 1px solid var(--dark-teal); line-height: 19px; cursor: default; }
 .pg.off { opacity: .45; cursor: default; }
 
-.results-panel { border: 1px solid #c7c7c7; margin-bottom: 12px; }
+.results-panel { border: 1px solid var(--border-gray); margin-bottom: 12px; }
 .results-panel-hd {
   background: linear-gradient(#f4f4f4, #e4e4e4);
-  border-bottom: 1px solid #c7c7c7;
+  border-bottom: 1px solid var(--border-gray);
   font-weight: bold;
   font-size: 11px;
   padding: 5px 8px;
@@ -312,7 +338,7 @@ button, select, input { font-family: Arial, Helvetica, sans-serif; font-size: 12
   right: 8px; top: 3px;
   width: 15px; height: 15px;
   border-radius: 50%;
-  background: #1B65A6;
+  background: var(--primary-blue);
   color: #fff;
   text-align: center;
   line-height: 14px;
@@ -322,7 +348,7 @@ button, select, input { font-family: Arial, Helvetica, sans-serif; font-size: 12
 }
 
 /* course drawers */
-.drawer { border-top: 1px solid #c7c7c7; }
+.drawer { border-top: 1px solid var(--border-gray); }
 .drawer:first-child { border-top: none; }
 .drawer-hd {
   background: linear-gradient(#f0f0f0, #e2e2e2);
@@ -369,7 +395,7 @@ table.sec-table {
 }
 .sec-table th {
   background: linear-gradient(#eee, #d0d0d0);
-  border: 1px solid #c7c7c7;
+  border: 1px solid var(--border-gray);
   padding: 3px 4px;
   font-weight: bold;
   text-align: center;
@@ -381,17 +407,17 @@ table.sec-table {
   vertical-align: middle;
   background: #fff;
 }
-.sec-table tr.finalrow td { border-top: 1px solid #c7c7c7; }
+.sec-table tr.finalrow td { border-top: 1px solid var(--border-gray); }
 .sec-table .final-lab { font-weight: bold; }
 .sec-table .final-date { text-align: right; padding-right: 10px; }
-.sec-table .full-red { color: #C00; font-weight: bold; white-space: nowrap; }
+.sec-table .full-red { color: var(--error-red); font-weight: bold; white-space: nowrap; }
 .sec-table .noterow td {
   text-align: left;
   background: #f4f9fb;
   color: #333;
 }
-.sec-table .cancelled { color: #C00; }
-.mailico { color: #1B65A6; font-size: 10px; }
+.sec-table .cancelled { color: var(--error-red); }
+.mailico { color: var(--primary-blue); font-size: 10px; }
 .bookico {
   display: inline-block;
   width: 12px; height: 11px;
@@ -414,7 +440,7 @@ table.sec-table {
 .sched-hdr select { min-width: 210px; color: #222; }
 
 .sched-tabs {
-  background: #0A4A65;
+  background: var(--dark-teal);
   padding: 5px 10px 0 6px;
   display: flex;
   align-items: flex-end;
@@ -433,7 +459,7 @@ table.sec-table {
   border-bottom: none;
   cursor: pointer;
 }
-.tab.active { background: #fff; color: #CB6C12; }
+.tab.active { background: #fff; color: var(--accent-orange); }
 /* highlight the new Map tab until a user clicks it (glow + bold + NEW badge) */
 .tab.glow-new {
   position: relative;
@@ -447,10 +473,17 @@ table.sec-table {
   0%, 100% { box-shadow: 0 0 4px 1px rgba(255,180,0,.55); }
   50%      { box-shadow: 0 0 14px 5px rgba(255,180,0,.95); }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .tab.glow-new {
+    animation: none;
+  }
+} /* best practice: respect motion preferences. the pulsing glow animation can trigger discomfort for some users, so it's turned off when prefers-reduced-motion is set */
+
 .tab.glow-new::after {
   content: "NEW";
   position: absolute; top: -8px; right: -7px;
-  background: #CB6C12; color: #fff;
+  background: var(--accent-orange); color: #fff;
   font-size: 8px; font-weight: bold; letter-spacing: .5px;
   padding: 1px 4px; border-radius: 8px; line-height: 1;
   box-shadow: 0 1px 2px rgba(0,0,0,.3);
@@ -469,11 +502,11 @@ table.list-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 11px;
-  border: 1px solid #0A4A65;
+  border: 1px solid var(--dark-teal);
 }
 .list-table th {
   background: linear-gradient(#eee, #d0d0d0);
-  border: 1px solid #c7c7c7;
+  border: 1px solid var(--border-gray);
   padding: 4px 4px;
   font-weight: bold;
   text-align: center;
@@ -485,18 +518,18 @@ table.list-table {
   vertical-align: middle;
 }
 .list-table td.l { text-align: left; }
-tr.row-enrolled td { background: #41788D; color: #fff; border-color: #35657a; }
+tr.row-enrolled td { background: var(--mid-blue); color: #fff; border-color: #35657a; }
 tr.row-waitlisted td { background: #CEEBEE; color: #000; border-color: #b2d8dc; }
 tr.row-planned td { background: #fff; color: #555; }
 tr.row-event td { background: #FBF4DC; color: #5a4a14; border-color: #e3d5a5; }
 .list-table .act { white-space: nowrap; }
 .list-table .act .btn { margin: 0 2px; color: #000; }
-.list-empty { padding: 14px; font-size: 11px; color: #444; border: 1px solid #0A4A65; border-top: none; }
+.list-empty { padding: 14px; font-size: 11px; color: #444; border: 1px solid var(--dark-teal); border-top: none; }
 
 /* calendar view */
-.cal-wrap { border: 1px solid #0A4A65; overflow-x: auto; }
+.cal-wrap { border: 1px solid var(--dark-teal); overflow-x: auto; }
 .cal-grid { display: flex; min-width: 700px; }
-.cal-gutter { width: 46px; flex: none; background: #0A4A65; }
+.cal-gutter { width: 46px; flex: none; background: var(--dark-teal); }
 .cal-gutter .gh {
   height: 60px;
   color: #fff;
@@ -510,7 +543,7 @@ tr.row-event td { background: #FBF4DC; color: #5a4a14; border-color: #e3d5a5; }
 .cal-col-hd {
   height: 30px;
   line-height: 30px;
-  background: #0A4A65;
+  background: var(--dark-teal);
   color: #fff;
   font-weight: bold;
   font-size: 12px;
@@ -533,7 +566,7 @@ tr.row-event td { background: #FBF4DC; color: #5a4a14; border-color: #e3d5a5; }
 .cal-block {
   position: absolute;
   left: 2px; right: 2px;
-  background: #41788D;
+  background: var(--mid-blue);
   border: 1px solid #2e5a6c;
   color: #fff;
   font-size: 10px;
@@ -557,12 +590,12 @@ tr.row-event td { background: #FBF4DC; color: #5a4a14; border-color: #e3d5a5; }
 /* Short blocks would clip the Remove/Change buttons — reveal the full block
    on hover (auto height, nothing cut off), lifted above its neighbours. */
 .cal-block:hover {
-  height: auto !important;
+  height: auto;
   min-height: 92px;
   overflow: visible;
-  z-index: 60 !important;
+  z-index: 60;
   box-shadow: 0 2px 8px rgba(0,0,0,.35);
-}
+} /* best practice: avoid !important. forcing height/z-index with !important can override a user's own custom accessibility stylesheet, so the flag is dropped in favor of normal specificity */
 .cal-block.wl { background: #CEEBEE; color: #04303f; border-color: #9cc5cc; }
 .cal-block.wl .strip { background: #a5cfd6; color: #04303f; }
 .cal-block.pl {
@@ -573,7 +606,7 @@ tr.row-event td { background: #FBF4DC; color: #5a4a14; border-color: #e3d5a5; }
 .cal-block.pl .strip { background: #dbe6ea; color: #456; }
 .cal-block.ev { background: #FBF4DC; color: #5a4a14; border-color: #C8A648; }
 .cal-block.ev .strip { background: #EAD9A8; color: #5a4a14; }
-.cal-block.conflict { border: 2px solid #C00; }
+.cal-block.conflict { border: 2px solid var(--error-red); }
 .cal-unsched {
   border-top: 1px solid #c9d6dc;
   padding: 5px 8px;
@@ -584,7 +617,7 @@ tr.row-event td { background: #FBF4DC; color: #5a4a14; border-color: #e3d5a5; }
 .cal-unsched .us-item { margin-right: 18px; white-space: nowrap; }
 
 /* ------------------------------------------------ map view */
-#view-map { border: 1px solid #0A4A65; border-top: none; }
+#view-map { border: 1px solid var(--dark-teal); border-top: none; }
 .map-controls {
   padding: 7px 10px; background: #eef3f5; border-bottom: 1px solid #cdd8dd;
   font-size: 12px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
@@ -596,17 +629,17 @@ tr.row-event td { background: #FBF4DC; color: #5a4a14; border-color: #e3d5a5; }
 #leaflet-map { height: 460px; width: 100%; background: #e8eef0; }
 #leaflet-map .leaflet-container { font: inherit; }
 #walk-summary { padding: 8px 10px 12px; }
-.walk-hd { font-weight: bold; font-size: 13px; color: #0A4A65; margin: 4px 0 6px; }
+.walk-hd { font-weight: bold; font-size: 13px; color: var(--dark-teal); margin: 4px 0 6px; }
 .walk-day { margin-bottom: 8px; }
 .walk-dayname { font-weight: bold; font-size: 12px; color: #333; margin: 4px 0 2px; }
 .walk-row {
   font-size: 12px; padding: 4px 8px; margin: 2px 0;
-  background: #f2f7f9; border-left: 3px solid #41788D; border-radius: 2px;
+  background: #f2f7f9; border-left: 3px solid var(--mid-blue); border-radius: 2px;
 }
-.walk-row.tight { background: #fbecec; border-left-color: #C00; }
+.walk-row.tight { background: #fbecec; border-left-color: var(--error-red); }
 .walk-meta { color: #555; }
 .walk-ok { color: #178a3a; font-weight: bold; }
-.walk-flag { color: #C00; font-weight: bold; }
+.walk-flag { color: var(--error-red); font-weight: bold; }
 .walk-none { font-size: 12px; color: #555; padding: 4px 2px; }
 .leaflet-tooltip.map-lbl {
   background: rgba(10,74,101,.9); color: #fff; border: none;
@@ -617,13 +650,13 @@ tr.row-event td { background: #FBF4DC; color: #5a4a14; border-color: #e3d5a5; }
 /* conflict banner */
 .conflict-banner {
   background: #F9EBEB;
-  border: 1px solid #C00;
+  border: 1px solid var(--error-red);
   border-radius: 6px;
   padding: 10px 14px;
   margin: 14px 0;
   font-size: 12px;
 }
-.conflict-banner .hd { color: #C00; font-weight: bold; margin-bottom: 6px; }
+.conflict-banner .hd { color: var(--error-red); font-weight: bold; margin-bottom: 6px; }
 .conflict-banner ul { margin: 0 0 8px 30px; }
 .conflict-banner li { margin: 2px 0; }
 .warn-tri {
@@ -631,7 +664,7 @@ tr.row-event td { background: #FBF4DC; color: #5a4a14; border-color: #e3d5a5; }
   width: 0; height: 0;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-bottom: 12px solid #C00;
+  border-bottom: 12px solid var(--error-red);
   margin-right: 6px;
   vertical-align: -1px;
 }
@@ -709,13 +742,13 @@ table.confirm-table {
 .ev-days input { vertical-align: -2px; margin-right: 2px; }
 
 .result-red {
-  border: 1px solid #C00;
+  border: 1px solid var(--error-red);
   border-radius: 8px;
   background: #F9EBEB;
   padding: 10px 14px;
   font-size: 12px;
 }
-.result-red .hd { color: #C00; font-weight: bold; margin-bottom: 6px; }
+.result-red .hd { color: var(--error-red); font-weight: bold; margin-bottom: 6px; }
 .alert-yellow {
   border: 1px solid #d8c27a;
   border-radius: 6px;
@@ -725,7 +758,7 @@ table.confirm-table {
   margin-bottom: 12px;
 }
 .alert-yellow .hd { color: #b06d10; font-weight: bold; margin-bottom: 4px; }
-.alert-yellow .red { color: #C00; font-weight: bold; }
+.alert-yellow .red { color: var(--error-red); font-weight: bold; }
 .alert-yellow ul { margin: 4px 0 4px 26px; }
 
 /* appointment modal */
@@ -766,7 +799,7 @@ table.confirm-table {
   border: 1px solid #dcdcdc; border-radius: 4px;
   color: #b3b3b3; font-size: 11px; text-align: center;
 }
-.ad-slot .ad-tag { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #c7c7c7; }
+.ad-slot .ad-tag { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--border-gray); }
 .ad-slot ins { display: block; }
 /* wide screens: upgrade to a big 300x600 half-page unit (more room, more revenue) */
 @media (min-width: 1620px) {
@@ -785,10 +818,10 @@ table.confirm-table {
   padding: 6px 14px; font-size: 12px;
 }
 .site-nav a {
-  color: #14425C; font-weight: bold; padding: 3px 10px; border-radius: 4px;
+  color: var(--darker-blue); font-weight: bold; padding: 3px 10px; border-radius: 4px;
 }
 .site-nav a:hover { background: #e3ebef; text-decoration: none; }
-.site-nav a.active { background: #0A4A65; color: #fff; }
+.site-nav a.active { background: var(--dark-teal); color: #fff; }
 
 /* footer nav on the tool page (keeps the tool itself visually unchanged) */
 .footer-nav { color: #888; font-size: 11px; margin: 2px 0 4px; }
@@ -799,16 +832,16 @@ table.confirm-table {
   max-width: 760px; margin: 0 auto; padding: 8px 4px 40px;
   font-size: 14px; line-height: 1.65; color: #222;
 }
-.content h1 { color: #CB6C12; font-size: 26px; margin: 18px 0 6px; }
+.content h1 { color: var(--accent-orange); font-size: 26px; margin: 18px 0 6px; }
 .content .lede { color: #555; font-size: 15px; margin-bottom: 22px; }
-.content h2 { color: #14425C; font-size: 19px; margin: 28px 0 8px; padding-top: 6px; border-top: 1px solid #eee; }
-.content h3 { color: #0A4A65; font-size: 15px; margin: 18px 0 4px; }
+.content h2 { color: var(--darker-blue); font-size: 19px; margin: 28px 0 8px; padding-top: 6px; border-top: 1px solid #eee; }
+.content h3 { color: var(--dark-teal); font-size: 15px; margin: 18px 0 4px; }
 .content p, .content li { font-size: 14px; }
 .content ul, .content ol { margin: 6px 0 12px 24px; }
 .content li { margin: 4px 0; }
-.content a { color: #1B65A6; }
+.content a { color: var(--primary-blue); }
 .content .callout {
-  background: #f2f7f9; border-left: 4px solid #41788D; border-radius: 3px;
+  background: #f2f7f9; border-left: 4px solid var(--mid-blue); border-radius: 3px;
   padding: 10px 14px; margin: 16px 0; font-size: 13.5px;
 }
 .content .callout.warn { background: #fbf6e6; border-left-color: #e0a400; }
@@ -817,10 +850,10 @@ table.confirm-table {
 .content th { background: #eef3f5; }
 .content .updated { color: #999; font-size: 12px; margin-top: 30px; }
 .content .cta {
-  display: inline-block; margin: 6px 0; background: #0A4A65; color: #fff;
+  display: inline-block; margin: 6px 0; background: var(--dark-teal); color: #fff;
   padding: 8px 16px; border-radius: 5px; font-weight: bold;
 }
-.content .cta:hover { background: #14425C; text-decoration: none; }
+.content .cta:hover { background: var(--darker-blue); text-decoration: none; }
 
 /* ===== tip / support corner (bottom-right, collapsible) ===== */
 .tip-jar {
