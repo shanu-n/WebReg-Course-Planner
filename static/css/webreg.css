@@ -462,7 +462,7 @@ table.list-table {
 .list-table td.l { text-align: left; }
 tr.row-enrolled td { background: #41788D; color: #fff; border-color: #35657a; }
 tr.row-waitlisted td { background: #CEEBEE; color: #000; border-color: #b2d8dc; }
-tr.row-planned td { background: #fff; color: #888; }
+tr.row-planned td { background: #fff; color: #000; }
 .list-table .act { white-space: nowrap; }
 .list-table .act .btn { margin: 0 2px; color: #000; }
 .list-empty { padding: 14px; font-size: 11px; color: #444; border: 1px solid #0A4A65; border-top: none; }
