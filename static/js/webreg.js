@@ -512,17 +512,26 @@ function courseUnits(course) {
   for (const s of course.sections) {
     (byGroup[s.group_code] = byGroup[s.group_code] || []).push(s);
   }
+  const bycode = (a, b) => a.section_code.localeCompare(b.section_code);
   return Object.keys(byGroup).sort().map(g => {
     const rows = byGroup[g];
     const finals = rows.filter(r => r.meeting_type === "FI");
-    const parents = rows.filter(r => r.meeting_type !== "FI" && !r.enrollable)
-      .sort((a, b) => a.section_code.localeCompare(b.section_code));
-    const enr = rows.filter(r => r.enrollable && r.meeting_type !== "FI")
-      .sort((a, b) => a.section_code.localeCompare(b.section_code));
+    const meetings = rows.filter(r => r.meeting_type !== "FI");
     const notes = [...new Set(rows.map(r => r.note).filter(Boolean))];
-    const units = enr.length
-      ? enr.map(e => ({ parents, sec: e, finals }))
-      : (parents.length ? [{ parents, sec: null, finals }] : []);
+
+    // Which rows carry a Plan button. Normally the enrollable sub-sections.
+    // If a course has meeting times but no bookable section (e.g. waitlist-only
+    // grad classes), still let it be planned: plan its discussion/lab rows, or
+    // the lecture itself if that's all it has.
+    let plannable = meetings.filter(r => r.enrollable);
+    if (!plannable.length) {
+      const subs = meetings.filter(r => r.meeting_type !== "LE");
+      plannable = subs.length ? subs : meetings.slice();
+    }
+    plannable = plannable.slice().sort(bycode);
+    const parents = meetings.filter(r => !plannable.includes(r)).sort(bycode);
+
+    const units = plannable.map(e => ({ parents, sec: e, finals }));
     return { group: g, units, finals, notes };
   }).filter(g => g.units.length || g.finals.length);
 }
@@ -698,10 +707,13 @@ function unitRowsHtml(course, unit) {
     availCell = '<td rowspan="' + span + '" class="cancelled">Cancelled</td>';
     actionCell = "<td rowspan=\"" + span + "\"></td>";
   } else {
-    const full = (sec.seats_avail || 0) <= 0;
-    availCell = full
-      ? '<td rowspan="' + span + '"><span class="full-red">FULL Waitlist(' + (sec.waitlist_ct || 0) + ")</span></td>"
-      : '<td rowspan="' + span + '">' + sec.seats_avail + "</td>";
+    const hasSeats = sec.seats_limit != null || sec.seats_avail != null;
+    const full = hasSeats && (sec.seats_avail || 0) <= 0;
+    availCell = !hasSeats
+      ? '<td rowspan="' + span + '"></td>'
+      : full
+        ? '<td rowspan="' + span + '"><span class="full-red">FULL Waitlist(' + (sec.waitlist_ct || 0) + ")</span></td>"
+        : '<td rowspan="' + span + '">' + sec.seats_avail + "</td>";
     /* planning-only: Plan the section, or show a dark "Planned" chip once it's
        on your schedule (can't plan the same section twice). */
     const planned = isSectionPlanned(sec.id);
@@ -1144,6 +1156,36 @@ function renderFinalsView() {
 
 /* ---------------- map view (campus map + walking distances) */
 
+/* UCSD residential neighborhoods (representative coords) — optional home pin */
+const DORMS = [
+  { name: "Revelle College", lat: 32.8742, lng: -117.2420 },
+  { name: "John Muir College", lat: 32.8792, lng: -117.2432 },
+  { name: "Thurgood Marshall College", lat: 32.8835, lng: -117.2426 },
+  { name: "Earl Warren College", lat: 32.8840, lng: -117.2325 },
+  { name: "Eleanor Roosevelt College (ERC)", lat: 32.8853, lng: -117.2418 },
+  { name: "Seventh College (North Torrey Pines)", lat: 32.8880, lng: -117.2425 },
+  { name: "Sixth College / Pepper Canyon", lat: 32.8779, lng: -117.2327 },
+  { name: "Pepper Canyon Apartments", lat: 32.8788, lng: -117.2298 },
+  { name: "Rita Atkinson Residences", lat: 32.8722, lng: -117.2355 },
+  { name: "One Miramar Street (grad/family)", lat: 32.8737, lng: -117.2266 },
+];
+function getDorm() {
+  const n = localStorage.getItem("webreg_dorm");
+  return n ? DORMS.find(d => d.name === n) || null : null;
+}
+function setDorm(name) {
+  if (name) localStorage.setItem("webreg_dorm", name);
+  else localStorage.removeItem("webreg_dorm");
+}
+function dormControlHtml() {
+  const cur = localStorage.getItem("webreg_dorm") || "";
+  return '<div class="map-controls"><span class="mc-label">🏠 Where do you live?</span>'
+    + '<select id="dorm-select"><option value="">Not on campus / skip</option>'
+    + DORMS.map(d => '<option value="' + esc(d.name) + '"'
+        + (d.name === cur ? " selected" : "") + ">" + esc(d.name) + "</option>").join("")
+    + '</select><span class="mc-hint">adds a home pin + your walk to your first class each day</span></div>';
+}
+
 function ensureLeaflet() {
   if (window.L) return Promise.resolve();
   return new Promise((resolve, reject) => {
@@ -1204,7 +1246,12 @@ async function renderMapView() {
     return;
   }
   if (!root.querySelector("#leaflet-map")) {
-    root.innerHTML = '<div id="leaflet-map"></div><div id="walk-summary"></div>';
+    root.innerHTML = dormControlHtml()
+      + '<div id="leaflet-map"></div><div id="walk-summary"></div>';
+    $("#dorm-select").addEventListener("change", e => {
+      setDorm(e.target.value);
+      renderMapView();
+    });
   }
   try { await ensureLeaflet(); }
   catch (e) {
@@ -1248,11 +1295,30 @@ async function renderMapView() {
     pts.push([p.loc.lat, p.loc.lng]);
   }
 
-  // back-to-back walking segments per day
+  // optional home pin (green) if the user set a dorm
+  const dorm = getDorm();
+  if (dorm) {
+    L.circleMarker([dorm.lat, dorm.lng], {
+      radius: 9, color: "#0f5c2e", weight: 2, fillColor: "#2fb457", fillOpacity: 0.95,
+    }).addTo(S.mapLayer)
+      .bindTooltip("🏠 " + escHtml(dorm.name),
+        { permanent: true, direction: "right", className: "map-lbl dorm-lbl", offset: [9, 0] });
+    pts.push([dorm.lat, dorm.lng]);
+  }
+
+  // walking segments per day: home → first class, then back-to-back
   const byDay = locatedMeetings(bmap);
   const walks = [];
   for (const d of DAY_ORDER) {
     const seq = byDay[d];
+    if (!seq.length) continue;
+    if (dorm) {
+      const first = seq[0];
+      const dist = metersBetween(dorm, first.loc), walk = walkMinutes(dist);
+      L.polyline([[dorm.lat, dorm.lng], [first.loc.lat, first.loc.lng]],
+        { color: "#2fb457", weight: 3, opacity: 0.75, dashArray: "2 6" }).addTo(S.mapLayer);
+      walks.push({ d, kind: "dorm", to: first, dist, walk });
+    }
     for (let i = 0; i + 1 < seq.length; i++) {
       const from = seq[i], to = seq[i + 1];
       if (from.loc === to.loc || (from.loc.lat === to.loc.lat && from.loc.lng === to.loc.lng)) continue;
@@ -1261,7 +1327,7 @@ async function renderMapView() {
       L.polyline([[from.loc.lat, from.loc.lng], [to.loc.lat, to.loc.lng]],
         { color: gap >= 0 && walk > gap ? "#C00" : "#0A4A65", weight: 3, opacity: 0.7, dashArray: "6 5" })
         .addTo(S.mapLayer);
-      walks.push({ d, from, to, dist, walk, gap });
+      walks.push({ d, kind: "b2b", from, to, dist, walk, gap });
     }
   }
 
@@ -1284,17 +1350,25 @@ const DAY_FULL = { M: "Monday", Tu: "Tuesday", W: "Wednesday", Th: "Thursday",
 function renderWalkSummary(walks) {
   const el = $("#walk-summary");
   if (!walks.length) {
-    el.innerHTML = '<div class="walk-none">No back-to-back classes in different buildings — '
-      + "nothing to walk between. Pins above show where your classes meet.</div>";
+    el.innerHTML = '<div class="walk-none">Nothing to walk between yet — plan classes '
+      + "(and optionally set your dorm above) to see walking times here.</div>";
     return;
   }
-  let html = '<div class="walk-hd">Walking between back-to-back classes</div>';
+  let html = '<div class="walk-hd">Your walks</div>';
   const byDay = {};
   for (const w of walks) (byDay[w.d] = byDay[w.d] || []).push(w);
   for (const d of DAY_ORDER) {
     if (!byDay[d]) continue;
     html += '<div class="walk-day"><div class="walk-dayname">' + DAY_FULL[d] + "</div>";
     for (const w of byDay[d]) {
+      if (w.kind === "dorm") {
+        html += '<div class="walk-row dorm">'
+          + "<b>🏠 Home</b> → <b>" + escHtml(itemCode(w.to.it)) + "</b> "
+          + '<span class="walk-meta">' + escHtml(w.to.m.building)
+          + " · " + Math.round(w.dist) + " m · ~" + w.walk + " min walk to your first class</span>"
+          + "</div>";
+        continue;
+      }
       const tight = w.gap >= 0 && w.walk > w.gap;
       html += '<div class="walk-row' + (tight ? " tight" : "") + '">'
         + "<b>" + escHtml(itemCode(w.from.it)) + "</b> → <b>" + escHtml(itemCode(w.to.it)) + "</b> "

@@ -300,7 +300,7 @@ def api_schedule_add():
     status = d.get("status", "enrolled")
     conn = db()
     sec = conn.execute("SELECT * FROM sections WHERE id=?", (section_pk,)).fetchone()
-    if not sec or not sec["enrollable"] or sec["cancelled"]:
+    if not sec or sec["cancelled"] or sec["meeting_type"] == "FI":
         return jsonify({"error": "Invalid section."}), 400
     sid = _get_schedule(term)
     # You may plan the same COURSE several times (compare lecture options), but
@@ -354,7 +354,7 @@ def api_schedule_change():
     position = item["waitlist_pos"]
     if new_pk is not None and new_pk != item["section_pk"]:
         sec = conn.execute("SELECT * FROM sections WHERE id=?", (new_pk,)).fetchone()
-        if (not sec or not sec["enrollable"] or sec["cancelled"]
+        if (not sec or sec["cancelled"] or sec["meeting_type"] == "FI"
                 or sec["course_id"] != item["course_id"]):
             return jsonify({"error": "Invalid section."}), 400
         label = _course_label(conn, sec["course_id"])

@@ -557,6 +557,14 @@ tr.row-planned td { background: #fff; color: #888; }
 
 /* ------------------------------------------------ map view */
 #view-map { border: 1px solid #0A4A65; border-top: none; }
+.map-controls {
+  padding: 7px 10px; background: #eef3f5; border-bottom: 1px solid #cdd8dd;
+  font-size: 12px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.map-controls .mc-label { font-weight: bold; }
+.map-controls select { font-size: 12px; padding: 2px 4px; }
+.map-controls .mc-hint { color: #777; font-size: 11px; }
+.walk-row.dorm { background: #eefaf0; border-left-color: #2fb457; }
 #leaflet-map { height: 460px; width: 100%; background: #e8eef0; }
 #leaflet-map .leaflet-container { font: inherit; }
 #walk-summary { padding: 8px 10px 12px; }

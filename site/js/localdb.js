@@ -78,8 +78,20 @@
   /* group meetings that travel with a chosen section (siblings + itself),
      finals last — matches app.py api_schedule */
   function groupMeetings(course, groupCode, sectionPk) {
+    // A meeting travels with the chosen section if it's that section, a final,
+    // or a shared row. For a normally-bookable choice, shared rows are the
+    // non-enrollable ones (lectures). For a forced-plannable choice (no
+    // bookable section in the group), only lectures are shared — so other
+    // discussions aren't wrongly attached.
+    const chosen = course.sections.find(s => s.id === sectionPk);
+    const chosenBookable = chosen && chosen.enrollable;
     return course.sections
-      .filter(s => s.group_code === groupCode && (!s.enrollable || s.id === sectionPk))
+      .filter(s => {
+        if (s.group_code !== groupCode) return false;
+        if (s.meeting_type === "FI") return true;   // finals always travel
+        if (s.id === sectionPk) return true;
+        return chosenBookable ? !s.enrollable : s.meeting_type === "LE";
+      })
       .sort((a, b) => {
         const fa = a.meeting_type === "FI" ? 1 : 0, fb = b.meeting_type === "FI" ? 1 : 0;
         return fa - fb || String(a.section_code).localeCompare(String(b.section_code));
@@ -249,7 +261,9 @@
 
     if (path === "/api/schedule/add" && method === "POST") {
       const hit = DATA.bySection.get(body.section_pk);
-      if (!hit || !hit.sec.enrollable || hit.sec.cancelled)
+      // planning-only: any real, non-cancelled section may be planned — even
+      // waitlist-only / "logistics-incomplete" classes with no bookable flag
+      if (!hit || hit.sec.cancelled || hit.sec.meeting_type === "FI")
         return jsonResp({ error: "Invalid section." }, 400);
       const s = loadSched();
       if (s.items.some(it => it.section_pk === body.section_pk)) {
@@ -281,7 +295,7 @@
       if (body.section_pk != null && body.section_pk !== it.section_pk) {
         const hit = DATA.bySection.get(body.section_pk);
         const cur = DATA.bySection.get(it.section_pk);
-        if (!hit || !hit.sec.enrollable || hit.sec.cancelled
+        if (!hit || hit.sec.cancelled || hit.sec.meeting_type === "FI"
             || !cur || hit.course.id !== cur.course.id)
           return jsonResp({ error: "Invalid section." }, 400);
         if (s.items.some(x => x !== it && x.section_pk === body.section_pk))
