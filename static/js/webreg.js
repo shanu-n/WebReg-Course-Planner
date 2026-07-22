@@ -204,7 +204,6 @@ function enterTerm(code) {
   S.term = code;
   $("#screen-term").hidden = true;
   $("#screen-main").hidden = false;
-  $("#chevrons").hidden = false;
   $("#term-switch").value = code;
   refreshSchedule();
   refreshScheduleList();
@@ -811,10 +810,6 @@ function wireScheduleChrome() {
   $("#lnk-print").addEventListener("click", () => window.print());
   $("#lnk-appt").addEventListener("click", openAppointment);
   $("#sched-name").addEventListener("change", onSchedNameChange);
-  $("#chev-up").addEventListener("click", () =>
-    $(".search-panel").scrollIntoView({ behavior: "smooth" }));
-  $("#chev-down").addEventListener("click", () =>
-    $("#sched-area").scrollIntoView({ behavior: "smooth" }));
 }
 
 function itemCode(it) { return it.custom ? it.title : it.subject_code + " " + it.course_num; }
@@ -1338,7 +1333,8 @@ async function renderMapView() {
       fillColor: "#CB6C12", fillOpacity: 0.9,
     }).addTo(S.mapLayer);
     mk.bindPopup("<b>" + escHtml(name) + "</b><br>" + p.list.map(escHtml).join("<br>"));
-    mk.bindTooltip([...p.codes].join(", "),
+    mk.bindTooltip([...p.codes].map(([c, types]) =>
+      escHtml(c + " · " + [...types].join(", "))).join("<br>"),
       { permanent: true, direction: "right", className: "map-lbl", offset: [8, 0] });
     pts.push([p.loc.lat, p.loc.lng]);
   }

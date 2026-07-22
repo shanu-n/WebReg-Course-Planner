@@ -24,10 +24,11 @@ NAV = [
 # Where the real Google AdSense <ins> goes once the account is approved.
 # Until then these render as neutral placeholder boxes.
 AD_RAILS = """
-<div class="ad-rail ad-left"><div class="ad-slot"><span class="ad-tag">Advertisement</span><span>160&times;600</span></div></div>
-<div class="ad-rail ad-right"><div class="ad-slot"><span class="ad-tag">Advertisement</span><span>160&times;600</span></div></div>
-<!-- AdSense: replace each .ad-slot inner with
-     <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+<div class="ad-rail ad-left"><div class="ad-slot"><span class="ad-tag">Advertisement</span></div></div>
+<div class="ad-rail ad-right"><div class="ad-slot"><span class="ad-tag">Advertisement</span></div></div>
+<!-- AdSense: the rail is 300px wide (>=1620px screens) / 160px otherwise.
+     Use a responsive display unit, or replace each .ad-slot inner with
+     <ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px"
           data-ad-client="ca-pub-XXXX" data-ad-slot="YYYY"></ins>
      and add the loader <script> (see privacy.html) in <head>. -->
 """

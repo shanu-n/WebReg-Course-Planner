@@ -756,7 +756,7 @@ table.confirm-table {
 /* ===== ad-supported variant: gutter ad rails + content pages ===== */
 /* Side rails sit in the empty margins beside the 990px column, and only
    appear when the window is wide enough to not touch the content. */
-.ad-rail { position: fixed; top: 108px; width: 160px; z-index: 20; }
+.ad-rail { position: fixed; top: 96px; width: 160px; z-index: 20; }
 .ad-left  { left:  max(6px, calc(50% - 495px - 174px)); }
 .ad-right { right: max(6px, calc(50% - 495px - 174px)); }
 .ad-slot {
@@ -768,6 +768,14 @@ table.confirm-table {
 }
 .ad-slot .ad-tag { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: #c7c7c7; }
 .ad-slot ins { display: block; }
+/* wide screens: upgrade to a big 300x600 half-page unit (more room, more revenue) */
+@media (min-width: 1620px) {
+  .ad-rail { width: 300px; }
+  .ad-left  { left:  max(6px, calc(50% - 495px - 322px)); }
+  .ad-right { right: max(6px, calc(50% - 495px - 322px)); }
+  .ad-slot { width: 300px; }
+}
+/* not enough gutter for even the small rail — hide entirely (keeps mobile clean) */
 @media (max-width: 1359px) { .ad-rail { display: none; } }
 
 /* section nav shared by the content pages */
