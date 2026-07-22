@@ -738,13 +738,21 @@ async function refreshSchedule() {
     S.schedule = [];
   }
   renderSchedule();
+  updateMapGlow();
   // keep the results grid's Plan/Planned state in sync with the schedule
   if (S.courses && !$("#results-region").hidden) renderResults();
 }
 
-function wireScheduleChrome() {
+function updateMapGlow() {
   const mapTab = $('.tab[data-view="map"]');
-  if (mapTab && localStorage.getItem("webreg_map_seen") !== "1") mapTab.classList.add("glow-new");
+  if (!mapTab) return;
+  // glow only once there are 2+ planned classes (when walking distances become
+  // useful) and the user hasn't opened the Map tab yet
+  const seen = localStorage.getItem("webreg_map_seen") === "1";
+  mapTab.classList.toggle("glow-new", !seen && S.schedule.length >= 2);
+}
+
+function wireScheduleChrome() {
   $all(".tab").forEach(t => t.addEventListener("click", () => {
     S.view = t.dataset.view;
     if (t.dataset.view === "map") {
