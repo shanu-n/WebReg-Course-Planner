@@ -794,6 +794,63 @@ table.confirm-table {
 .chev.down::after { transform: rotate(-28deg); }
 .chev:hover::before, .chev:hover::after { background: #333; }
 
+/* ================= phone / narrow layout ================= */
+@media (max-width: 640px) {
+  html, body { overflow-x: hidden; }
+
+  /* header banner — shrink so the brand + wordmark never clip off-screen */
+  .tl-banner { height: 46px; padding: 0 12px; }
+  .tl-brand { font-size: 11px; letter-spacing: 0; }
+  .tl-wordmark { font-size: 15px; }
+  .tl-shard, .tl-shard svg { height: 42px; }
+
+  /* tighter page gutters */
+  .page { padding: 4px 12px 0; }
+  .page-title { font-size: 19px; padding: 6px 0 2px; }
+
+  /* header links wrap; the term select drops to its own full-width line */
+  .hdr-row { gap: 2px 0; }
+  .hdr-links { white-space: normal; }
+  .hdr-links select { min-width: 0; width: 100%; margin-top: 4px; }
+
+  /* search — stack label / input / button, full width */
+  .search-row { flex-direction: column; align-items: stretch; }
+  .search-label { width: auto; margin-bottom: 4px; }
+  .ac-wrap { display: block; margin: 0 0 6px; }
+  #q { width: 100%; box-sizing: border-box; }
+  .ac { min-width: 0; width: 100%; }
+  .search-row .btn { align-self: flex-start; }
+
+  /* advanced search — single column, full-width fields */
+  .adv { flex-direction: column; gap: 14px; margin-left: 0; }
+  .adv-left input[type=text], .tokbox, .tokdrop { width: 100%; box-sizing: border-box; }
+  .tokdrop { min-width: 0; }
+
+  /* my-schedule header + tabs */
+  .sched-hdr { flex-wrap: wrap; }
+  .sched-hdr select { min-width: 0; flex: 1 1 55%; }
+  .sched-tabs { flex-wrap: wrap; padding: 5px 6px 0; }
+  .tab { padding: 5px 12px; }
+  .sched-links { width: 100%; margin-left: 0; text-align: right; padding: 6px 2px 4px; }
+
+  /* wide tables scroll instead of stretching the page */
+  #view-list { overflow-x: auto; }
+  .list-table, .sec-table { min-width: 540px; }
+
+  /* results toolbar wraps */
+  .results-toolbar { flex-wrap: wrap; }
+  .results-toolbar .found { margin-left: 12px; }
+
+  /* misc overflow guards */
+  .appt-cols { flex-wrap: wrap; gap: 20px; }
+  .cal-unsched .us-item { white-space: normal; }
+  .modal-body { padding: 14px 12px 12px; overflow-x: auto; }
+  .modal-btns .btn { min-width: 72px; }
+
+  /* the floating scroll chevrons are redundant on touch — hide them */
+  .chevrons { display: none; }
+}
+
 /* ------------------------------------------------ print */
 @media print {
   .tl-banner, .tl-nav, .tl-shard, .search-panel, .results-toggle-row,
