@@ -8,7 +8,8 @@
 (function () {
   "use strict";
 
-  const LS_KEY = "webreg_fa26_schedule_v1";
+  const LS_KEY = "webreg_fa26_schedule_v1";      // legacy single-schedule key
+  const STORE_KEY = "webreg_fa26_scheds_v1";     // multi-schedule store
   const DATA = { loaded: null, courses: [], subjects: [], terms: [],
                  byCourse: new Map(), bySection: new Map(), subjSet: new Set() };
 
@@ -33,18 +34,64 @@
     return DATA.loaded;
   }
 
-  /* -------------------------------------------------- schedule storage */
-  function loadSched() {
-    try { return JSON.parse(localStorage.getItem(LS_KEY)) || { seq: 1, items: [] }; }
-    catch (e) { return { seq: 1, items: [] }; }
+  /* -------------------------------------------------- schedule storage
+     Multiple named schedules, one active. The /api/schedule* endpoints act on
+     the active one; /api/schedules* manage the set.  Legacy single-schedule
+     storage is migrated on first load. */
+  function defaultStore() {
+    return { active: "My Schedule", order: ["My Schedule"],
+             sched: { "My Schedule": { seq: 1, items: [] } } };
   }
-  function saveSched(s) { localStorage.setItem(LS_KEY, JSON.stringify(s)); }
+  function loadStore() {
+    try {
+      const s = JSON.parse(localStorage.getItem(STORE_KEY));
+      if (s && s.sched && s.active && s.sched[s.active]) return s;
+    } catch (e) { /* fall through */ }
+    const store = defaultStore();
+    try {                                   // migrate the old single schedule
+      const old = JSON.parse(localStorage.getItem(LS_KEY));
+      if (old && Array.isArray(old.items))
+        store.sched["My Schedule"] = { seq: old.seq || 1, items: old.items };
+    } catch (e) { /* none */ }
+    return store;
+  }
+  function saveStore(s) { localStorage.setItem(STORE_KEY, JSON.stringify(s)); }
+  function activeSched(s) {
+    if (!s.sched[s.active]) s.sched[s.active] = { seq: 1, items: [] };
+    return s.sched[s.active];
+  }
+
+  // active-schedule accessors used by the /api/schedule endpoints
+  function loadSched() { return activeSched(loadStore()); }
+  function saveSched(sched) {
+    const st = loadStore();
+    st.sched[st.active] = sched;
+    saveStore(st);
+  }
+
+  function uniqueName(store, base) {
+    let name = base, i = 2;
+    while (store.sched[name]) name = base + " " + (i++);
+    return name;
+  }
 
   /* group meetings that travel with a chosen section (siblings + itself),
      finals last — matches app.py api_schedule */
   function groupMeetings(course, groupCode, sectionPk) {
+    // A meeting travels with the chosen section if it's that section, a final,
+    // or a shared row. For a normally-bookable choice, shared rows are the
+    // non-enrollable ones (lectures). For a forced-plannable choice (no
+    // bookable section in the group), only lectures are shared — so other
+    // discussions aren't wrongly attached.
+    const chosen = course.sections.find(s => s.id === sectionPk);
+    const chosenBookable = chosen && chosen.enrollable;
     return course.sections
-      .filter(s => s.group_code === groupCode && (!s.enrollable || s.id === sectionPk))
+      .filter(s => {
+        if (s.group_code !== groupCode) return false;
+        if (s.meeting_type === "FI") return true;   // finals always travel
+        if (s.id === sectionPk) return true;
+        return chosenBookable ? !s.enrollable : s.meeting_type === "LE";
+      })
       .sort((a, b) => {
         const fa = a.meeting_type === "FI" ? 1 : 0, fb = b.meeting_type === "FI" ? 1 : 0;
         return fa - fb || String(a.section_code).localeCompare(String(b.section_code));
@@ -165,9 +212,58 @@
     if (path === "/api/search") return jsonResp(search(u.searchParams));
     if (path === "/api/schedule") return jsonResp(scheduleItems());
 
+    // ----- multiple named schedules -----
+    if (path === "/api/schedules") {
+      const st = loadStore();
+      return jsonResp({ active: st.active, names: st.order.slice() });
+    }
+    if (path === "/api/schedules/activate" && method === "POST") {
+      const st = loadStore();
+      if (!st.sched[body.name]) return jsonResp({ error: "No such schedule." }, 400);
+      st.active = body.name; saveStore(st);
+      return jsonResp({ ok: true, active: st.active });
+    }
+    if (path === "/api/schedules/create" && method === "POST") {
+      const st = loadStore();
+      const name = uniqueName(st, (body.name || "Schedule").trim() || "Schedule");
+      st.sched[name] = { seq: 1, items: [] };
+      st.order.push(name); st.active = name; saveStore(st);
+      return jsonResp({ ok: true, active: name });
+    }
+    if (path === "/api/schedules/copy" && method === "POST") {
+      const st = loadStore();
+      const name = uniqueName(st, (body.name || (st.active + " copy")).trim() || (st.active + " copy"));
+      st.sched[name] = JSON.parse(JSON.stringify(activeSched(st)));
+      st.order.push(name); st.active = name; saveStore(st);
+      return jsonResp({ ok: true, active: name });
+    }
+    if (path === "/api/schedules/rename" && method === "POST") {
+      const st = loadStore();
+      const want = (body.name || "").trim();
+      if (!want) return jsonResp({ error: "Enter a name." }, 400);
+      if (want === st.active) return jsonResp({ ok: true, active: st.active });
+      if (st.sched[want]) return jsonResp({ error: "A schedule with that name already exists." }, 409);
+      st.sched[want] = st.sched[st.active];
+      delete st.sched[st.active];
+      st.order = st.order.map(n => (n === st.active ? want : n));
+      st.active = want; saveStore(st);
+      return jsonResp({ ok: true, active: want });
+    }
+    if (path === "/api/schedules/delete" && method === "POST") {
+      const st = loadStore();
+      if (st.order.length <= 1) return jsonResp({ error: "Can't delete your only schedule." }, 400);
+      const gone = st.active;
+      delete st.sched[gone];
+      st.order = st.order.filter(n => n !== gone);
+      st.active = st.order[0]; saveStore(st);
+      return jsonResp({ ok: true, active: st.active });
+    }
+
     if (path === "/api/schedule/add" && method === "POST") {
       const hit = DATA.bySection.get(body.section_pk);
-      if (!hit || !hit.sec.enrollable || hit.sec.cancelled)
+      // planning-only: any real, non-cancelled section may be planned — even
+      // waitlist-only / "logistics-incomplete" classes with no bookable flag
+      if (!hit || hit.sec.cancelled || hit.sec.meeting_type === "FI")
         return jsonResp({ error: "Invalid section." }, 400);
       const s = loadSched();
       if (s.items.some(it => it.section_pk === body.section_pk)) {
@@ -199,7 +295,7 @@
       if (body.section_pk != null && body.section_pk !== it.section_pk) {
         const hit = DATA.bySection.get(body.section_pk);
         const cur = DATA.bySection.get(it.section_pk);
-        if (!hit || !hit.sec.enrollable || hit.sec.cancelled
+        if (!hit || hit.sec.cancelled || hit.sec.meeting_type === "FI"
             || !cur || hit.course.id !== cur.course.id)
           return jsonResp({ error: "Invalid section." }, 400);
         if (s.items.some(x => x !== it && x.section_pk === body.section_pk))

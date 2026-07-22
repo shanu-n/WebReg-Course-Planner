@@ -72,6 +72,14 @@ function finalWeekday(daysField) {
 function timeRange(s) {
   return (s.time_start && s.time_end) ? s.time_start + "-" + s.time_end : "TBA";
 }
+
+/* TSS uses 999/9998/9999 as a "no seat cap" sentinel (independent study,
+   research, etc.); real caps top out well below that. Show these as TBA. */
+const SEAT_SENTINEL = 999;
+function isSentinelSeats(v) { return v != null && v >= SEAT_SENTINEL; }
+function seatsDisplay(v) {
+  return v == null ? "" : (v >= SEAT_SENTINEL ? "TBA" : String(v));
+}
 function orTBA(v) { return v ? esc(v) : "TBA"; }
 
 function fmtUnitsVal(v) { return (+v).toFixed(2); }
@@ -156,6 +164,18 @@ async function init() {
   buildTimeSelects();
   wireSearch();
   wireScheduleChrome();
+  wireTipJar();
+}
+
+function wireTipJar() {
+  const jar = $("#tip-jar"), bar = $("#tip-bar");
+  if (!jar || !bar) return;
+  if (localStorage.getItem("webreg_tip_collapsed") === "1") jar.classList.add("collapsed");
+  bar.addEventListener("click", () => {
+    jar.classList.toggle("collapsed");
+    localStorage.setItem("webreg_tip_collapsed",
+      jar.classList.contains("collapsed") ? "1" : "0");
+  });
 }
 
 function buildTimeSelects() {
@@ -178,6 +198,60 @@ function enterTerm(code) {
   $("#chevrons").hidden = false;
   $("#term-switch").value = code;
   refreshSchedule();
+  refreshScheduleList();
+}
+
+/* ---------------- named-schedule manager (My schedule: dropdown) */
+
+async function refreshScheduleList() {
+  let data;
+  try { data = await api("/api/schedules"); }
+  catch (e) { return; }   // older/Flask backend without multi-schedule support
+  const sel = $("#sched-name");
+  if (!sel) return;
+  sel.innerHTML = "";
+  const mine = document.createElement("optgroup");
+  mine.label = "My schedules";
+  for (const n of data.names) mine.appendChild(new Option(n, "s:" + n, false, n === data.active));
+  sel.appendChild(mine);
+  const acts = document.createElement("optgroup");
+  acts.label = "———";
+  acts.appendChild(new Option("＋  New schedule…", "__new"));
+  acts.appendChild(new Option("⧉  Duplicate this one…", "__copy"));
+  acts.appendChild(new Option("✎  Rename this one…", "__rename"));
+  if (data.names.length > 1) acts.appendChild(new Option("🗑  Delete this one", "__delete"));
+  sel.appendChild(acts);
+  sel.dataset.active = data.active;
+}
+
+async function onSchedNameChange() {
+  const sel = $("#sched-name");
+  const v = sel.value;
+  const active = sel.dataset.active || "";
+  try {
+    if (v.startsWith("s:")) {
+      if (v.slice(2) !== active) await post("/api/schedules/activate", { name: v.slice(2) });
+    } else if (v === "__new") {
+      const n = (prompt("Name your new schedule:", "Plan B") || "").trim();
+      if (!n) return refreshScheduleList();
+      await post("/api/schedules/create", { name: n });
+    } else if (v === "__copy") {
+      const n = (prompt("Name for the copy:", active + " copy") || "").trim();
+      if (!n) return refreshScheduleList();
+      await post("/api/schedules/copy", { name: n });
+    } else if (v === "__rename") {
+      const n = (prompt("Rename “" + active + "” to:", active) || "").trim();
+      if (!n) return refreshScheduleList();
+      await post("/api/schedules/rename", { name: n });
+    } else if (v === "__delete") {
+      if (!confirm("Delete the schedule “" + active + "”? This can’t be undone.")) return refreshScheduleList();
+      await post("/api/schedules/delete", {});
+    }
+  } catch (e) {
+    alert(e.message || "Couldn’t update schedules.");
+  }
+  await refreshSchedule();
+  await refreshScheduleList();
 }
 
 function switchTerm(code) {
@@ -446,17 +520,26 @@ function courseUnits(course) {
   for (const s of course.sections) {
     (byGroup[s.group_code] = byGroup[s.group_code] || []).push(s);
   }
+  const bycode = (a, b) => a.section_code.localeCompare(b.section_code);
   return Object.keys(byGroup).sort().map(g => {
     const rows = byGroup[g];
     const finals = rows.filter(r => r.meeting_type === "FI");
-    const parents = rows.filter(r => r.meeting_type !== "FI" && !r.enrollable)
-      .sort((a, b) => a.section_code.localeCompare(b.section_code));
-    const enr = rows.filter(r => r.enrollable && r.meeting_type !== "FI")
-      .sort((a, b) => a.section_code.localeCompare(b.section_code));
+    const meetings = rows.filter(r => r.meeting_type !== "FI");
     const notes = [...new Set(rows.map(r => r.note).filter(Boolean))];
-    const units = enr.length
-      ? enr.map(e => ({ parents, sec: e, finals }))
-      : (parents.length ? [{ parents, sec: null, finals }] : []);
+
+    // Which rows carry a Plan button. Normally the enrollable sub-sections.
+    // If a course has meeting times but no bookable section (e.g. waitlist-only
+    // grad classes), still let it be planned: plan its discussion/lab rows, or
+    // the lecture itself if that's all it has.
+    let plannable = meetings.filter(r => r.enrollable);
+    if (!plannable.length) {
+      const subs = meetings.filter(r => r.meeting_type !== "LE");
+      plannable = subs.length ? subs : meetings.slice();
+    }
+    plannable = plannable.slice().sort(bycode);
+    const parents = meetings.filter(r => !plannable.includes(r)).sort(bycode);
+
+    const units = plannable.map(e => ({ parents, sec: e, finals }));
     return { group: g, units, finals, notes };
   }).filter(g => g.units.length || g.finals.length);
 }
@@ -632,10 +715,18 @@ function unitRowsHtml(course, unit) {
     availCell = '<td rowspan="' + span + '" class="cancelled">Cancelled</td>';
     actionCell = "<td rowspan=\"" + span + "\"></td>";
   } else {
-    const full = (sec.seats_avail || 0) <= 0;
-    availCell = full
-      ? '<td rowspan="' + span + '"><span class="full-red">FULL Waitlist(' + (sec.waitlist_ct || 0) + ")</span></td>"
-      : '<td rowspan="' + span + '">' + sec.seats_avail + "</td>";
+    // TSS uses 999/9998/9999 as a "no cap" sentinel (independent study,
+    // research, etc.) — show those as TBA, not a giant number.
+    const sentinel = isSentinelSeats(sec.seats_limit) || isSentinelSeats(sec.seats_avail);
+    const hasSeats = sec.seats_limit != null || sec.seats_avail != null;
+    const full = !sentinel && hasSeats && (sec.seats_avail || 0) <= 0;
+    availCell = sentinel
+      ? '<td rowspan="' + span + '">TBA</td>'
+      : !hasSeats
+        ? '<td rowspan="' + span + '"></td>'
+        : full
+          ? '<td rowspan="' + span + '"><span class="full-red">FULL Waitlist(' + (sec.waitlist_ct || 0) + ")</span></td>"
+          : '<td rowspan="' + span + '">' + sec.seats_avail + "</td>";
     /* planning-only: Plan the section, or show a dark "Planned" chip once it's
        on your schedule (can't plan the same section twice). */
     const planned = isSectionPlanned(sec.id);
@@ -650,7 +741,7 @@ function unitRowsHtml(course, unit) {
   html += '<td rowspan="' + span + '">' + esc(sec ? sec.section_id : "") + "</td>";
   html += meetingCells(meetings[0]);
   html += availCell;
-  html += '<td rowspan="' + span + '">' + (sec && sec.seats_limit != null ? sec.seats_limit : "") + "</td>";
+  html += '<td rowspan="' + span + '">' + seatsDisplay(sec && sec.seats_limit) + "</td>";
   html += '<td rowspan="' + span + '">' + (sec ? (sec.waitlist_ct || 0) : "") + "</td>";
   html += '<td rowspan="' + span + '"><a href="https://ucsandiegobookstore.com/" target="_blank" rel="noopener">'
     + '<span class="bookico"></span> <span class="popout"></span></a></td>';
@@ -672,18 +763,33 @@ async function refreshSchedule() {
     S.schedule = [];
   }
   renderSchedule();
+  updateMapGlow();
   // keep the results grid's Plan/Planned state in sync with the schedule
   if (S.courses && !$("#results-region").hidden) renderResults();
+}
+
+function updateMapGlow() {
+  const mapTab = $('.tab[data-view="map"]');
+  if (!mapTab) return;
+  // glow only once there are 2+ planned classes (when walking distances become
+  // useful) and the user hasn't opened the Map tab yet
+  const seen = localStorage.getItem("webreg_map_seen") === "1";
+  mapTab.classList.toggle("glow-new", !seen && S.schedule.length >= 2);
 }
 
 function wireScheduleChrome() {
   $all(".tab").forEach(t => t.addEventListener("click", () => {
     S.view = t.dataset.view;
+    if (t.dataset.view === "map") {
+      t.classList.remove("glow-new");
+      localStorage.setItem("webreg_map_seen", "1");
+    }
     $all(".tab").forEach(x => x.classList.toggle("active", x === t));
     renderSchedule();
   }));
   $("#lnk-print").addEventListener("click", () => window.print());
   $("#lnk-appt").addEventListener("click", openAppointment);
+  $("#sched-name").addEventListener("change", onSchedNameChange);
   $("#chev-up").addEventListener("click", () =>
     $(".search-panel").scrollIntoView({ behavior: "smooth" }));
   $("#chev-down").addEventListener("click", () =>
@@ -786,9 +892,11 @@ function renderSchedule() {
   $("#view-list").hidden = S.view !== "list";
   $("#view-calendar").hidden = S.view !== "calendar";
   $("#view-finals").hidden = S.view !== "finals";
+  $("#view-map").hidden = S.view !== "map";
   if (S.view === "list") renderListView();
   if (S.view === "calendar") renderCalendarView();
   if (S.view === "finals") renderFinalsView();
+  if (S.view === "map") renderMapView();
 }
 
 /* ---------------- list view */
@@ -878,7 +986,7 @@ function wireItemButtons(root) {
 
 /* ---------------- calendar view */
 
-const CAL_START = 7 * 60, CAL_END = 22 * 60, PX_PER_HOUR = 48;
+const CAL_START = 7 * 60, CAL_END = 22 * 60, PX_PER_HOUR = 60;
 const DAY_ORDER = ["M", "Tu", "W", "Th", "F", "Sa", "Su"];
 const DAY_NAMES = { M: "Monday", Tu: "Tuesday", W: "Wednesday", Th: "Thursday",
   F: "Friday", Sa: "Saturday", Su: "Sunday" };
@@ -977,7 +1085,9 @@ function renderCalendarView() {
       + '<div class="cal-body" style="height:' + bodyH + 'px">';
     for (const blk of byDay[d]) {
       const top = (blk.a - CAL_START) / 60 * PX_PER_HOUR;
-      const h = Math.max(92, (blk.b - blk.a) / 60 * PX_PER_HOUR);
+      // block height = the class's real duration (1px per minute); short
+      // blocks show time + course, and expand on hover for full details.
+      const h = Math.max(30, (blk.b - blk.a) / 60 * PX_PER_HOUR);
       const conflict = conflictKeys.has(blk.it.item_id + ":" + blk.m.id);
       html += calBlockHtml(blk.it, blk.m, conflict, h, top, blk.lane);
     }
@@ -1056,6 +1166,240 @@ function renderFinalsView() {
   html += "</div></div>";
   root.innerHTML = html;
 }
+
+/* ---------------- map view (campus map + walking distances) */
+
+/* UCSD residential neighborhoods (representative coords) — optional home pin */
+const DORMS = [
+  { name: "Revelle College", lat: 32.8742, lng: -117.2420 },
+  { name: "John Muir College", lat: 32.8792, lng: -117.2432 },
+  { name: "Sixth College", lat: 32.8813, lng: -117.2432 },
+  { name: "Thurgood Marshall College", lat: 32.8832, lng: -117.2414 },
+  { name: "Earl Warren College", lat: 32.8840, lng: -117.2325 },
+  { name: "Eleanor Roosevelt College (ERC)", lat: 32.8853, lng: -117.2418 },
+  { name: "Seventh College (North Torrey Pines)", lat: 32.8880, lng: -117.2425 },
+  { name: "Eighth College (Theatre District)", lat: 32.8721, lng: -117.2419 },
+  { name: "Pepper Canyon West (towers)", lat: 32.8776, lng: -117.2327 },
+  { name: "Pepper Canyon East apartments", lat: 32.8790, lng: -117.2298 },
+  { name: "Rita Atkinson Residences", lat: 32.8722, lng: -117.2355 },
+  { name: "One Miramar Street (grad/family)", lat: 32.8737, lng: -117.2266 },
+];
+function getDorm() {
+  const n = localStorage.getItem("webreg_dorm");
+  return n ? DORMS.find(d => d.name === n) || null : null;
+}
+function setDorm(name) {
+  if (name) localStorage.setItem("webreg_dorm", name);
+  else localStorage.removeItem("webreg_dorm");
+}
+function dormControlHtml() {
+  const cur = localStorage.getItem("webreg_dorm") || "";
+  return '<div class="map-controls"><span class="mc-label">🏠 Where do you live?</span>'
+    + '<select id="dorm-select"><option value="">Not on campus / skip</option>'
+    + DORMS.map(d => '<option value="' + esc(d.name) + '"'
+        + (d.name === cur ? " selected" : "") + ">" + esc(d.name) + "</option>").join("")
+    + '</select><span class="mc-hint">adds a home pin + your walk to your first class each day</span></div>';
+}
+
+function ensureLeaflet() {
+  if (window.L) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "vendor/leaflet.css";      // self-hosted — no external CDN
+    document.head.appendChild(css);
+    const js = document.createElement("script");
+    js.src = "vendor/leaflet.js";
+    js.onload = resolve;
+    js.onerror = reject;
+    document.head.appendChild(js);
+  });
+}
+
+async function loadBuildings() {
+  if (S.buildings) return S.buildings;
+  try { S.buildings = await (await fetch("data/buildings.json")).json(); }
+  catch (e) { S.buildings = {}; }
+  return S.buildings;
+}
+
+const WALK_MPS = 1.35, DETOUR = 1.3;   // ~campus walking pace, path-vs-straight factor
+function metersBetween(a, b) {
+  const R = 6371000, r = Math.PI / 180;
+  const dLat = (b.lat - a.lat) * r, dLng = (b.lng - a.lng) * r;
+  const s = Math.sin(dLat / 2) ** 2 +
+    Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(s));
+}
+function walkMinutes(m) { return Math.max(1, Math.round(m * DETOUR / WALK_MPS / 60)); }
+
+/* per-day sequence of located meetings (for pins + back-to-back walks) */
+function locatedMeetings(bmap) {
+  const byDay = {};
+  for (const d of DAY_ORDER) byDay[d] = [];
+  for (const it of S.schedule) {
+    for (const m of itemWeeklyMeetings(it)) {
+      const a = parseTimeMin(m.time_start), b = parseTimeMin(m.time_end);
+      const loc = bmap[m.building];
+      if (a == null || b == null || !loc) continue;
+      for (const d of parseDays(m.days))
+        if (byDay[d]) byDay[d].push({ it, m, a, b, loc });
+    }
+  }
+  for (const d of DAY_ORDER) byDay[d].sort((x, y) => x.a - y.a);
+  return byDay;
+}
+
+async function renderMapView() {
+  const root = $("#view-map");
+  const bmap = await loadBuildings();
+
+  if (!S.schedule.length) {
+    root.innerHTML = '<div class="list-empty" style="border-top:1px solid #0A4A65">'
+      + "Plan some classes and they'll appear on the campus map here, "
+      + "with walking times between your back-to-back classes.</div>";
+    return;
+  }
+  if (!root.querySelector("#leaflet-map")) {
+    root.innerHTML = dormControlHtml()
+      + '<div id="leaflet-map"></div><div id="walk-summary"></div>';
+    $("#dorm-select").addEventListener("change", e => {
+      setDorm(e.target.value);
+      renderMapView();
+    });
+  }
+  try { await ensureLeaflet(); }
+  catch (e) {
+    root.innerHTML = '<div class="list-empty">Couldn\'t load the map (network blocked). '
+      + "Your class buildings: " + esc(distinctBuildings(bmap).join(", ")) + "</div>";
+    return;
+  }
+
+  // one marker per distinct building, popup lists the classes there
+  const pins = {};
+  for (const it of S.schedule) {
+    for (const m of itemWeeklyMeetings(it)) {
+      const loc = bmap[m.building];
+      if (!loc) continue;
+      const p = (pins[m.building] = pins[m.building] || { loc, list: [], codes: new Set() });
+      p.codes.add(itemCode(it));
+      p.list.push(itemCode(it) + " " + m.meeting_type + " · " + (m.days || "") + " " + timeRange(m)
+        + (m.room ? " · " + m.building + " " + m.room : ""));
+    }
+  }
+
+  if (!S.map) {
+    S.map = L.map("leaflet-map", { scrollWheelZoom: false })
+      .setView([32.8801, -117.2340], 15);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      { maxZoom: 19, attribution: "© OpenStreetMap" }).addTo(S.map);
+    S.mapLayer = L.layerGroup().addTo(S.map);
+  }
+  S.mapLayer.clearLayers();
+
+  const pts = [];
+  for (const [name, p] of Object.entries(pins)) {
+    // vector marker (no image assets) with a label
+    const mk = L.circleMarker([p.loc.lat, p.loc.lng], {
+      radius: 8, color: "#0A4A65", weight: 2,
+      fillColor: "#CB6C12", fillOpacity: 0.9,
+    }).addTo(S.mapLayer);
+    mk.bindPopup("<b>" + escHtml(name) + "</b><br>" + p.list.map(escHtml).join("<br>"));
+    mk.bindTooltip([...p.codes].join(", "),
+      { permanent: true, direction: "right", className: "map-lbl", offset: [8, 0] });
+    pts.push([p.loc.lat, p.loc.lng]);
+  }
+
+  // optional home pin (green) if the user set a dorm
+  const dorm = getDorm();
+  if (dorm) {
+    L.circleMarker([dorm.lat, dorm.lng], {
+      radius: 9, color: "#0f5c2e", weight: 2, fillColor: "#2fb457", fillOpacity: 0.95,
+    }).addTo(S.mapLayer)
+      .bindTooltip("🏠 " + escHtml(dorm.name),
+        { permanent: true, direction: "right", className: "map-lbl dorm-lbl", offset: [9, 0] });
+    pts.push([dorm.lat, dorm.lng]);
+  }
+
+  // walking segments per day: home → first class, then back-to-back
+  const byDay = locatedMeetings(bmap);
+  const walks = [];
+  for (const d of DAY_ORDER) {
+    const seq = byDay[d];
+    if (!seq.length) continue;
+    if (dorm) {
+      const first = seq[0];
+      const dist = metersBetween(dorm, first.loc), walk = walkMinutes(dist);
+      L.polyline([[dorm.lat, dorm.lng], [first.loc.lat, first.loc.lng]],
+        { color: "#2fb457", weight: 3, opacity: 0.75, dashArray: "2 6" }).addTo(S.mapLayer);
+      walks.push({ d, kind: "dorm", to: first, dist, walk });
+    }
+    for (let i = 0; i + 1 < seq.length; i++) {
+      const from = seq[i], to = seq[i + 1];
+      if (from.loc === to.loc || (from.loc.lat === to.loc.lat && from.loc.lng === to.loc.lng)) continue;
+      const dist = metersBetween(from.loc, to.loc);
+      const walk = walkMinutes(dist), gap = to.a - from.b;
+      L.polyline([[from.loc.lat, from.loc.lng], [to.loc.lat, to.loc.lng]],
+        { color: gap >= 0 && walk > gap ? "#C00" : "#0A4A65", weight: 3, opacity: 0.7, dashArray: "6 5" })
+        .addTo(S.mapLayer);
+      walks.push({ d, kind: "b2b", from, to, dist, walk, gap });
+    }
+  }
+
+  if (pts.length) S.map.fitBounds(pts, { padding: [40, 40], maxZoom: 16 });
+  setTimeout(() => S.map.invalidateSize(), 60);
+
+  renderWalkSummary(walks);
+}
+
+function distinctBuildings(bmap) {
+  const s = new Set();
+  for (const it of S.schedule)
+    for (const m of itemWeeklyMeetings(it)) if (bmap[m.building]) s.add(m.building);
+  return [...s];
+}
+
+const DAY_FULL = { M: "Monday", Tu: "Tuesday", W: "Wednesday", Th: "Thursday",
+  F: "Friday", Sa: "Saturday", Su: "Sunday" };
+
+function renderWalkSummary(walks) {
+  const el = $("#walk-summary");
+  if (!walks.length) {
+    el.innerHTML = '<div class="walk-none">Nothing to walk between yet — plan classes '
+      + "(and optionally set your dorm above) to see walking times here.</div>";
+    return;
+  }
+  let html = '<div class="walk-hd">Your walks</div>';
+  const byDay = {};
+  for (const w of walks) (byDay[w.d] = byDay[w.d] || []).push(w);
+  for (const d of DAY_ORDER) {
+    if (!byDay[d]) continue;
+    html += '<div class="walk-day"><div class="walk-dayname">' + DAY_FULL[d] + "</div>";
+    for (const w of byDay[d]) {
+      if (w.kind === "dorm") {
+        html += '<div class="walk-row dorm">'
+          + "<b>🏠 Home</b> → <b>" + escHtml(itemCode(w.to.it)) + "</b> "
+          + '<span class="walk-meta">' + escHtml(w.to.m.building)
+          + " · " + Math.round(w.dist) + " m · ~" + w.walk + " min walk to your first class</span>"
+          + "</div>";
+        continue;
+      }
+      const tight = w.gap >= 0 && w.walk > w.gap;
+      html += '<div class="walk-row' + (tight ? " tight" : "") + '">'
+        + "<b>" + escHtml(itemCode(w.from.it)) + "</b> → <b>" + escHtml(itemCode(w.to.it)) + "</b> "
+        + '<span class="walk-meta">' + escHtml(w.from.m.building) + " → " + escHtml(w.to.m.building)
+        + " · " + Math.round(w.dist) + " m · ~" + w.walk + " min walk"
+        + (w.gap >= 0 ? " · " + w.gap + " min between classes" : "")
+        + "</span> " + (tight ? '<span class="walk-flag">⚠ tight</span>'
+                              : '<span class="walk-ok">✓</span>')
+        + "</div>";
+    }
+    html += "</div>";
+  }
+  el.innerHTML = html;
+}
+
+function escHtml(s) { return esc(s); }
 
 /* ================================================================ modals */
 
@@ -1193,10 +1537,8 @@ function showSuccess(message) {
   openModal(
     '<div class="result-green"><div class="hd"><span class="ok-circ">&#10003;</span>Request Successful</div>'
     + esc(message) + "</div>"
-    + '<div class="modal-btns"><button class="btn" id="m-close">Close</button>'
-    + '<button class="btn" id="m-email">Send Me Email Confirmation</button></div>');
+    + '<div class="modal-btns"><button class="btn" id="m-close">Close</button></div>');
   $("#m-close").addEventListener("click", closeModal);
-  $("#m-email").addEventListener("click", closeModal);
 }
 
 function showModalError(e, mode, course, unit) {

@@ -9,10 +9,17 @@
 <meta property="og:description" content="Plan your UCSD Fall 2026 schedule the classic WebReg way — real courses, professors, times, rooms, and seats.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sahirssharma.github.io/WebReg-Course-Planner/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://sahirssharma.github.io/WebReg-Course-Planner/img/og-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="WebReg">
 <meta name="twitter:description" content="Plan your UCSD Fall 2026 schedule the classic WebReg way.">
-<link rel="stylesheet" href="css/webreg.css">
+<meta name="twitter:image" content="https://sahirssharma.github.io/WebReg-Course-Planner/img/og-preview.png">
+<link rel="stylesheet" href="css/webreg.css?v=bc712366">
+<!-- privacy-friendly page-open analytics (GoatCounter) -->
+<script data-goatcounter="https://ssssss.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -175,13 +182,14 @@
     <!-- my schedule -->
     <div class="sched-hdr">
       <b>My schedule:</b>
-      <select id="sched-name"><option>Create new, copy, rename ...</option></select>
+      <select id="sched-name" title="Switch, create, copy, rename, or delete a schedule"></select>
     </div>
     <div class="sched-area" id="sched-area">
       <div class="sched-tabs">
         <span class="tab active" data-view="list">List</span>
         <span class="tab" data-view="calendar">Calendar</span>
         <span class="tab" data-view="finals">Finals</span>
+        <span class="tab" data-view="map">Map</span>
         <span class="sched-links">
           <a id="lnk-print">Print Schedule</a> |
           <a id="lnk-books" href="https://ucsandiegobookstore.com/" target="_blank"
@@ -191,10 +199,17 @@
       <div id="view-list"></div>
       <div id="view-calendar" hidden></div>
       <div id="view-finals" hidden></div>
+      <div id="view-map" hidden></div>
     </div>
   </div>
 
-  <div class="planner-note">Planning tool &mdash; not connected to UCSD registration.</div>
+  <div class="planner-note">Planning tool &mdash; not connected to UCSD registration.
+    <span class="data-asof">Course data as of July 21, 2026.</span></div>
+  <div class="copyright-note">&copy; 2026 Sahir Sharma &middot; <a
+    href="https://github.com/SahirSSharma/WebReg-Course-Planner/blob/main/LICENSE"
+    target="_blank" rel="noopener">MIT License</a> &middot; <a
+    href="https://github.com/SahirSSharma/WebReg-Course-Planner"
+    target="_blank" rel="noopener">View source on GitHub</a></div>
 </div>
 
 <div class="chevrons" id="chevrons" hidden>
@@ -204,7 +219,22 @@
 
 <div id="modal-root" hidden></div>
 
-<script src="js/localdb.js"></script>
-<script src="js/webreg.js"></script>
+<!-- ===== support / tip corner (bottom-right) ===== -->
+<div id="tip-jar" class="tip-jar">
+  <div class="tip-bar" id="tip-bar">
+    <span>💸 Tip the dev</span><span class="tip-caret" id="tip-caret">▾</span>
+  </div>
+  <div class="tip-body" id="tip-body">
+    <img class="tip-meme" src="img/meme.gif" alt=""
+         onerror="this.style.display='none'">
+    <div class="tip-note">Bless me?</div>
+    <img class="tip-qr" src="img/venmo-qr.png"
+         alt="Venmo @Sahir-Sharma — scan to pay">
+    <div class="tip-zelle"><b>Zelle</b> &middot; 650-334-7008</div>
+  </div>
+</div>
+
+<script src="js/localdb.js?v=7685801d"></script>
+<script src="js/webreg.js?v=dfcb6d65"></script>
 </body>
 </html>
