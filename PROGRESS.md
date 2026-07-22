@@ -1,5 +1,8 @@
 # Progress Log
 
+## 2026-07-21 — Distribution playbook
+- Wrote `docs/DISTRIBUTION.md`: full channel-by-channel plan (Reddit follow-up + mod sidebar ask, class-year Discords, YikYak timing, org emails — CSES/ACM/TESC/AS, Guardian + Triton media pitches, advisor outreach, faculty of mega-courses), email templates, enrollment-window timing calendar, analytics-before-outreach step, and the caution to keep Registrar/ITS out of the loop while data comes from scraping. Launch post ("I brought WebReg Back!!!") sits at ~376 upvotes but is archived — follow-up post is the top action.
+
 ## 2026-07-21 — Integration pass (all builders merged, E2E green)
 - Seeded `data/webreg.db` (DEMO term = real SP15 CSE data, 4 courses / 39 sections; FA26 placeholder awaits TSS import).
 - Fixed 5 integration bugs: default port 5060→**5070** (browsers block 5060/SIP as unsafe), `/api/appointment` response shape, final-exam dates lost between scraper format and UI (seed.py now normalizes FI rows into `days`), waitlist position display (queue length vs your position), DI-before-LE row ordering in results/confirm.
