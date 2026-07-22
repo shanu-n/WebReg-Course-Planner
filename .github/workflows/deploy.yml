@@ -53,6 +53,18 @@ jobs:
           else
             echo "staging branch not present yet — skipping preview build"
           fi
+      - name: Build ad site (/ads) from staging
+        run: |
+          # ad-supported variant (gutter ads + About/Guide/FAQ/Privacy/Terms).
+          # Same tool + data as staging, just with WEBREG_ADS=1. Transition
+          # site that will later move to its own domain.
+          if [ -f preview/scripts/build_site.py ]; then
+            cd preview && WEBREG_ADS=1 python3 scripts/build_site.py
+            mkdir -p "$GITHUB_WORKSPACE/_site/ads"
+            cp -a site/. "$GITHUB_WORKSPACE/_site/ads/"
+          else
+            echo "staging branch not present — skipping /ads build"
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

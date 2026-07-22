@@ -9,3 +9,10 @@ data/*.db-shm
 data/*.db-wal
 .impeccable/
 data/tss_fa26/
+
+# ad-variant content pages (generated in CI for /ads, not committed)
+site/guide.html
+site/faq.html
+site/about.html
+site/privacy.html
+site/terms.html

@@ -1312,8 +1312,10 @@ async function renderMapView() {
     for (const m of itemWeeklyMeetings(it)) {
       const loc = bmap[m.building];
       if (!loc) continue;
-      const p = (pins[m.building] = pins[m.building] || { loc, list: [], codes: new Set() });
-      p.codes.add(itemCode(it));
+      const p = (pins[m.building] = pins[m.building] || { loc, list: [], codes: new Map() });
+      const code = itemCode(it);
+      if (!p.codes.has(code)) p.codes.set(code, new Set());
+      p.codes.get(code).add(TYPE_LONG[m.meeting_type] || m.meeting_type);
       p.list.push(itemCode(it) + " " + m.meeting_type + " · " + (m.days || "") + " " + timeRange(m)
         + (m.room ? " · " + m.building + " " + m.room : ""));
     }
