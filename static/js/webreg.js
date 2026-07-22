@@ -1174,7 +1174,7 @@ const DORMS = [
   { name: "Revelle College", lat: 32.8742, lng: -117.2420 },
   { name: "John Muir College", lat: 32.8792, lng: -117.2432 },
   { name: "Sixth College", lat: 32.8813, lng: -117.2432 },
-  { name: "Thurgood Marshall College", lat: 32.8835, lng: -117.2426 },
+  { name: "Thurgood Marshall College", lat: 32.8832, lng: -117.2414 },
   { name: "Earl Warren College", lat: 32.8840, lng: -117.2325 },
   { name: "Eleanor Roosevelt College (ERC)", lat: 32.8853, lng: -117.2418 },
   { name: "Seventh College (North Torrey Pines)", lat: 32.8880, lng: -117.2425 },
