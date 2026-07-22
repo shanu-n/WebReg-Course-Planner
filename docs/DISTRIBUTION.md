@@ -5,7 +5,11 @@
 ## Where we stand (proof of demand)
 
 - r/UCSD launch post **"I brought WebReg Back!!! (As a course planner)"** — ~376 upvotes, comment section is pure gold: "can we vote this dude as valedictorian", "Bro already did it holy GOAT", tips already coming in via Venmo, a grad student thanking you, and the killer quote: *"hope this gets so widespread that it gets used more than that stupid AI"* (i.e., TritonGPT resentment is real fuel).
-- Strong YikYak support (screenshot these before they expire — YikYak posts die fast, and they're social proof for every pitch below).
+- **YikYak is on fire** (screenshots archived in `docs/social-proof/yikyak/`, 2026-07-21):
+  - Your main post: **86 upvotes** — "I LOVE YOU", "GOAT", "UR THE GOAT", "I could kiss u right now ily", "thank you goat, **I shared to my friends**" (organic word-of-mouth already happening).
+  - Someone else posted a Paul Revere midnight-ride meme "WEBREG ALTERNATIVE IS OUT!!!!" — **48 upvotes** — you didn't even make it.
+  - "WHOEVER ADDED THE MAP, I LOVE YOU" (+15) and "This is the system we needed !! & the map is teaaa" — the **map / where-do-you-live walk-times feature is the breakout hit**; lead with it in every pitch and screenshot.
+  - Multiple strangers reposting "for visibility". This is self-sustaining momentum — the job now is to catch it in channels that don't expire.
 - Feedback email already in the footer: **sas063@ucsd.edu**. Send all outreach from this address — a @ucsd.edu sender massively raises reply rates with campus orgs and staff.
 
 **The pitch, one line:** "A UCSD student rebuilt the classic WebReg interface as a free course planner with accurate Fall 2026 data, after TSS replaced it — 350+ upvotes on r/UCSD in a day."
@@ -72,7 +76,7 @@ Professors teaching 300+ person intro courses (CSE 8A/11, MATH 20A/B, CHEM 6A, B
 ## Timing (this matters more than the channel)
 
 - **Now → mid-Sep**: new-student orientation + first-time freshman enrollment → Class of 2030 Discord, OL channels, meme IG.
-- **~1–2 weeks before each enrollment appointment window** (fall continuing-student passes, then Week 8-ish of each quarter for the next one): Reddit follow-up + YikYak + org newsletters. That's when planning pain peaks.
+- **~1–2 weeks before each enrollment appointment window**: Reddit follow-up + YikYak + org newsletters. That's when planning pain peaks. **Intel from YikYak (2026-07-21): fall registration appointments have been pushed back to ~August** ("why is it now pushed back like a month", "registration time not into august…") — that's a gift: an extra month of planning-limbo where your planner is the only thing students can actually do, and a clear date to schedule the big push around.
 - Media pitches: anytime — but they'll run faster right before enrollment.
 
 ## Email templates
@@ -98,7 +102,7 @@ Add a lightweight privacy-friendly counter (GoatCounter/Plausible are free-tier 
 
 ## Checklist
 
-- [ ] Screenshot YikYak posts today (they expire)
+- [x] Screenshot YikYak posts (done 2026-07-21 → `docs/social-proof/yikyak/`, 7 shots incl. 86-upvote main post + 48-upvote meme)
 - [ ] Follow-up r/UCSD post (features shipped since launch)
 - [ ] Modmail r/UCSD mods: sidebar/wiki/megathread link
 - [ ] Post + pin request in class-year Discords (esp. Class of 2030)
