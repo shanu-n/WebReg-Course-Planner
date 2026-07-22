@@ -39,10 +39,16 @@ def rows(cursor):
 
 # ---------------------------------------------------------------- pages
 
+def _data_asof():
+    """The 'Data as of' date, written by scripts/refresh.py."""
+    f = Path(__file__).resolve().parent / "data" / "refreshed_at.txt"
+    return f.read_text().strip() if f.exists() else "—"
+
+
 @app.route("/")
 def page_term_select():
     """Classic WebReg landing: pick a term, hit Go."""
-    return render_template("index.html")
+    return render_template("index.html", data_asof=_data_asof())
 
 
 # ---------------------------------------------------------------- api: catalog

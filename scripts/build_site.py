@@ -40,6 +40,11 @@ def regen_index():
     js_v = _ver(ROOT / "static/js/webreg.js")
     ldb_v = _ver(ROOT / "site/js/localdb.js")
     src = (ROOT / "templates" / "index.html").read_text()
+    # bake the "Data as of" date (Flask fills this in dev; the static site
+    # has no server, so substitute the committed value here)
+    stamp = ROOT / "data" / "refreshed_at.txt"
+    asof = stamp.read_text().strip() if stamp.exists() else "—"
+    src = src.replace("{{ data_asof }}", asof)
     src = src.replace("/static/css/webreg.css", f"css/webreg.css?v={css_v}")
     src = src.replace("/static/img/", "img/")
     src = src.replace(
