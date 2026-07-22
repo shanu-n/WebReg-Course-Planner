@@ -24,13 +24,13 @@
 <body>
 
 <!-- ===== MY TRITONLINK chrome ===== -->
-<div class="tl-banner">
+<header class="tl-banner"> <!-- best practice: landmarking. replaced <div> with <header> bc <header> provides an automatic accessibility landmark for screen readers to identify the top level site branding easily -->
   <span class="tl-brand">Functional Course Planner not TSS Slop</span>
   <span class="tl-wordmark"><span class="tl-unofficial">Unofficial</span>UC San Diego</span>
-</div>
+</header>
 <div class="disclaimer-strip">
-  Unofficial, student-made planning tool &mdash; <b>not affiliated with, endorsed by, or operated by UC San Diego.</b>
-  &ldquo;UC San Diego,&rdquo; &ldquo;Triton,&rdquo; and &ldquo;WebReg&rdquo; are marks of the university, used here only to describe what this tool helps with.
+  Unofficial, student-made planning tool &mdash; <strong>not affiliated with, endorsed by, or operated by UC San Diego.</strong> <!-- best practice: semantic over presentational. <b> is purely visual whereas <strong> denotes importance, which is communicated to non sighted users via assistive technology -->
+    <q>UC San Diego</q> &ldquo;Triton,&rdquo; and &ldquo;WebReg&rdquo; are marks of the university, used here only to describe what this tool helps with. <!-- best practice: I18n. using the <q> tag allows the browser to render any language specific quotation marks accordingly -->
 </div>
 <div class="tl-shard">
   <svg viewBox="0 0 1200 74" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
@@ -55,13 +55,13 @@
   </svg>
 </div>
 
-<div class="page">
+<main class="page"> <!-- best practice: landmarking. identifying the primary content area with <main> allows assistive technology users to skip repeated navigation blocks -->
 
   <!-- ===== screen 1: term select ===== -->
   <div id="screen-term">
     <h1 class="page-title">Course Enrollment</h1>
     <div class="term-pick">
-      <b>Select a term to begin:</b>
+      <label for="landing-term">Select a term to begin:</label> <!-- best practice: form accessibility. associating a <label> with an input via the 'for' and 'id' attributes lets screen readers announce the purpose of the field -->
       <select id="landing-term"></select>
       <button class="btn" id="btn-go">Go</button>
     </div>
@@ -70,12 +70,12 @@
   <!-- ===== screen 2: main app ===== -->
   <div id="screen-main" hidden>
     <div class="hdr-row">
-      <h1 class="page-title">Course Enrollment</h1>
+      <h2 class="page-title">Course Enrollment</h2> <!-- best practice: logical outline. changed <h1> here to <h2> bc a document should follow a hierarchical format and only one <h1> should exist as the primary title, so other major sections like this should now use <h2> -->
       <div class="hdr-links">
-        <a id="lnk-appt">Appointment time</a><span class="sep">|</span><a
+        <button type="button" id="lnk-appt">Appointment time</button><span class="sep">|</span><a
           id="lnk-enrinfo"
           href="https://students.ucsd.edu/academics/enrollment/calendars/index.html"
-          target="_blank" rel="noopener">Enrollment Information <span class="popout"></span></a>
+          target="_blank" rel="noopener">Enrollment Information <span class="popout"></span></a> <!-- best practice: functional accessibility. an <a> tag without a 'href' is not keyboard navigable so we can use <button> for triggers that perform actions on the current page -->
         <span class="sep">|</span>
         <select id="term-switch"></select>
       </div>
@@ -91,23 +91,23 @@
     <div class="search-panel">
       <div class="search-row">
         <div class="search-label">
-          <b>Search for Classes:</b><br>
+          <label for="q">Search for Classes:</label><br> <!-- best practice: labeling. every interactive input requires a descriptive <label> -->
           <a id="lnk-adv">Advanced Search</a>
         </div>
-        <span class="ac-wrap">
+        <div class="ac-wrap"> <!-- other correction: validator said we cant nest <div> in <span>, so I changed the wrapper from <span> to <div> -->
           <input id="q" placeholder="(e.g., BILD, BILD 3 or computer 3 )" autocomplete="off">
           <div id="ac" class="ac" hidden></div>
-        </span>
+        </div>
         <button class="btn" id="btn-search">Search</button>
       </div>
 
       <div id="adv" class="adv" hidden>
         <table class="adv-left"><tbody>
           <tr>
-            <td class="lab">Subject:</td>
+            <td><label class="lab">Subject:</label></td> <!-- best practice: form accessibility. ensuring the text is linked to the input improves accessibility -->
             <td><div class="tokbox" id="subj-box" tabindex="0"><span class="placeholder">Select one or more</span></div></td>
           </tr>
-          <tr><td class="lab">Course:</td>
+          <tr><td><label for="f-courseno" class="lab">Course:</label></td> <!-- best practice: form accessibility. linking the label to the specific input ID ensures blind users know exactly what information to enter in the text box -->
               <td><input type="text" id="f-courseno" placeholder="Enter one or more"></td></tr>
           <tr><td class="lab">Instructor:</td>
               <td><input type="text" id="f-instructor" placeholder="Last, First"></td></tr>
@@ -152,7 +152,7 @@
             <b>End:</b> <select id="f-end"></select>
           </div>
           <div class="adv-open">
-            <b>Only show sections with seats available:</b>
+            <label for="f-open">Only show sections with seats available:</label> <!-- best practice: form accessibility. wrapping the text in a <label> linked to the checkbox makes it easier to click and provides the necessary semantic link -->
             <input type="checkbox" id="f-open">
           </div>
         </div>
@@ -190,12 +190,12 @@
     </div>
     <div class="sched-area" id="sched-area">
       <div class="sched-tabs">
-        <span class="tab active" data-view="list">List</span>
+        <button type="button" class="tab active" data-view="list">List</button> <!-- best practice: functional accessibility. tab controls are interactive; using a <span> is div-itis and makes the control invisible to keyboard users -->
         <span class="tab" data-view="calendar">Calendar</span>
         <span class="tab" data-view="finals">Finals</span>
         <span class="tab" data-view="map">Map</span>
         <span class="sched-links">
-          <a id="lnk-add-event">Add Event</a> |
+          <button type="button" id="lnk-add-event">Add Event</button> | <!-- best practice: functional accessibility. links that perform on-page tasks (adding data) should be semantic <button> elements to make sure they have the correct ARIA role -->
           <a id="lnk-print">Print Schedule</a> |
           <a id="lnk-books" href="https://ucsandiegobookstore.com/" target="_blank"
              rel="noopener">View Book List <span class="popout popout-w"></span></a>
@@ -217,7 +217,7 @@
     target="_blank" rel="noopener">View source on GitHub</a></div>
   <div class="feedback-note">Feedback or bugs? <a
     href="mailto:sas063@ucsd.edu?subject=WebReg%20Course%20Planner%20feedback">sas063@ucsd.edu</a></div>
-</div>
+  </main>
 
 
 <div id="modal-root" hidden></div>
@@ -225,11 +225,11 @@
 <!-- ===== support / tip corner (bottom-right) ===== -->
 <div id="tip-jar" class="tip-jar">
   <div class="tip-bar" id="tip-bar">
-    <span>💸 Tip the dev</span><span class="tip-caret" id="tip-caret">▾</span>
+    <span>💸 Tip the dev</span><span class="tip-caret" id="tip-caret" aria-hidden="true">▾</span> <!-- best practice: ARIA. Decorative characters like the caret symbol should be hidden from screen readers using 'aria-hidden' to avoid confusing vocal announcements -->
   </div>
   <div class="tip-body" id="tip-body">
-    <img class="tip-meme" src="img/meme.gif" alt=""
-         onerror="this.style.display='none'">
+    <img class="tip-meme" src="img/meme.gif" alt="A GIF of a woman clasping her hands, saying the words 'money wise', in front of a background filled with green hundred dollar bills." 
+         onerror="this.style.display='none'"> <!-- best practice: accessibility. <img> requires a descriptive alt attribute to provide content access for blind users or if the image fails to load -->
     <div class="tip-note">Bless me?</div>
     <img class="tip-qr" src="img/venmo-qr.png"
          alt="Venmo @Sahir-Sharma — scan to pay">
