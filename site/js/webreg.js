@@ -72,6 +72,14 @@ function finalWeekday(daysField) {
 function timeRange(s) {
   return (s.time_start && s.time_end) ? s.time_start + "-" + s.time_end : "TBA";
 }
+
+/* TSS uses 999/9998/9999 as a "no seat cap" sentinel (independent study,
+   research, etc.); real caps top out well below that. Show these as TBA. */
+const SEAT_SENTINEL = 999;
+function isSentinelSeats(v) { return v != null && v >= SEAT_SENTINEL; }
+function seatsDisplay(v) {
+  return v == null ? "" : (v >= SEAT_SENTINEL ? "TBA" : String(v));
+}
 function orTBA(v) { return v ? esc(v) : "TBA"; }
 
 function fmtUnitsVal(v) { return (+v).toFixed(2); }
@@ -707,13 +715,18 @@ function unitRowsHtml(course, unit) {
     availCell = '<td rowspan="' + span + '" class="cancelled">Cancelled</td>';
     actionCell = "<td rowspan=\"" + span + "\"></td>";
   } else {
+    // TSS uses 999/9998/9999 as a "no cap" sentinel (independent study,
+    // research, etc.) — show those as TBA, not a giant number.
+    const sentinel = isSentinelSeats(sec.seats_limit) || isSentinelSeats(sec.seats_avail);
     const hasSeats = sec.seats_limit != null || sec.seats_avail != null;
-    const full = hasSeats && (sec.seats_avail || 0) <= 0;
-    availCell = !hasSeats
-      ? '<td rowspan="' + span + '"></td>'
-      : full
-        ? '<td rowspan="' + span + '"><span class="full-red">FULL Waitlist(' + (sec.waitlist_ct || 0) + ")</span></td>"
-        : '<td rowspan="' + span + '">' + sec.seats_avail + "</td>";
+    const full = !sentinel && hasSeats && (sec.seats_avail || 0) <= 0;
+    availCell = sentinel
+      ? '<td rowspan="' + span + '">TBA</td>'
+      : !hasSeats
+        ? '<td rowspan="' + span + '"></td>'
+        : full
+          ? '<td rowspan="' + span + '"><span class="full-red">FULL Waitlist(' + (sec.waitlist_ct || 0) + ")</span></td>"
+          : '<td rowspan="' + span + '">' + sec.seats_avail + "</td>";
     /* planning-only: Plan the section, or show a dark "Planned" chip once it's
        on your schedule (can't plan the same section twice). */
     const planned = isSectionPlanned(sec.id);
@@ -728,7 +741,7 @@ function unitRowsHtml(course, unit) {
   html += '<td rowspan="' + span + '">' + esc(sec ? sec.section_id : "") + "</td>";
   html += meetingCells(meetings[0]);
   html += availCell;
-  html += '<td rowspan="' + span + '">' + (sec && sec.seats_limit != null ? sec.seats_limit : "") + "</td>";
+  html += '<td rowspan="' + span + '">' + seatsDisplay(sec && sec.seats_limit) + "</td>";
   html += '<td rowspan="' + span + '">' + (sec ? (sec.waitlist_ct || 0) : "") + "</td>";
   html += '<td rowspan="' + span + '"><a href="https://ucsandiegobookstore.com/" target="_blank" rel="noopener">'
     + '<span class="bookico"></span> <span class="popout"></span></a></td>';
