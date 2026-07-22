@@ -97,5 +97,77 @@
     "note": ""
    }
   ]
+ },
+ {
+  "subject": "CSS",
+  "number": "209",
+  "title": "Computational Social Science Research Seminar",
+  "units": "1.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "157906",
+    "group": "A",
+    "type": "SE",
+    "code": "A81",
+    "days": "W",
+    "time_start": "11:00a",
+    "time_end": "11:50a",
+    "building": "Social Sciences Building",
+    "room": "104",
+    "instructor": "Will Styler",
+    "avail": 16,
+    "limit": 16,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
+ },
+ {
+  "subject": "CSS",
+  "number": "211",
+  "title": "Statistical Methods for Computational Social Science",
+  "units": "4.00",
+  "restriction": "",
+  "sections": [
+   {
+    "section_id": "",
+    "group": "A",
+    "type": "LE",
+    "code": "A00",
+    "days": "F",
+    "time_start": "10:00a",
+    "time_end": "12:50p",
+    "building": "Cognitive Science Building",
+    "room": "003",
+    "instructor": "Jason Fleischer",
+    "avail": null,
+    "limit": null,
+    "waitlist": 0,
+    "enrollable": 0,
+    "cancelled": false,
+    "note": ""
+   },
+   {
+    "section_id": "157907",
+    "group": "A",
+    "type": "LA",
+    "code": "A50",
+    "days": "",
+    "time_start": "",
+    "time_end": "",
+    "building": "",
+    "room": "",
+    "instructor": "Jason Fleischer",
+    "avail": 16,
+    "limit": 16,
+    "waitlist": 0,
+    "enrollable": 1,
+    "cancelled": false,
+    "note": ""
+   }
+  ]
  }
 ]

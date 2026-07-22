@@ -3,35 +3,34 @@
 
 Usage:  python3 scripts/refresh.py
 
-What it does, in order:
-  1. Archives the previous raw capture (data/tss_raw -> data/tss_raw.last) so
-     this session is a clean snapshot with no stale-merge ambiguity.
-  2. Runs tss/connect.py — a REAL browser opens. Log in with UCSD SSO + Duo,
-     open Schedule of Classes, pick Fall 2026, and search the departments you
-     want refreshed (search everything for a full refresh, or just the ones
-     that changed). Close the window when done.
-  3. Runs tss/import_tss.py — turns the capture into data/parsed/FA26/<SUBJ>.json.
-     This only ADDS or UPDATES the subjects you searched; every other subject's
-     data is kept, so a partial browse can never shrink the catalog.
-  4. Stamps today's date into data/refreshed_at.txt (the "Data as of" line the
-     site shows).
-  5. Runs scripts/build_site.py (seed -> export -> rebuild site/).
+Modern TSS opens the Schedule-of-Classes UI as a popup we can't drive, so we
+DON'T browse it. Instead we log in once, then read the class data straight
+from its backing OData v4 service with the session cookies. You just log in
+and close the window — the script does the rest.
+
+Steps:
+  1. tss/connect.py — a REAL browser opens. Log in with UCSD SSO + Duo, then
+     simply CLOSE the window. (You do NOT need to click into Schedule of
+     Classes — ignore any tab that flickers open and shut.)
+  2. tss/fetch_soc.py — pulls the full FA26 catalog + events directly from the
+     yucsd_con_module OData service using the session you just created.
+     -> data/tss_fa26/{modules,events}.json
+  3. tss/import_fa26.py — maps the dumps into data/parsed/FA26/<DEPT>.json.
+  4. Stamps today's date into data/refreshed_at.txt (the site's "Data as of").
+  5. scripts/build_site.py — seed -> export -> rebuild site/.
 
 It does NOT touch git. When Claude runs this for you it reviews the result,
 commits it to the `staging` branch, and pushes the PREVIEW deploy — the live
-site friends use (main) is only updated when you say "ship".
+site (main) is only updated when you say "ship".
 """
 import datetime
 import json
-import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PY = sys.executable
-RAW = ROOT / "data" / "tss_raw"
-RAW_LAST = ROOT / "data" / "tss_raw.last"
 PARSED = ROOT / "data" / "parsed" / "FA26"
 STAMP = ROOT / "data" / "refreshed_at.txt"
 
@@ -42,7 +41,6 @@ def sh(*cmd, check=True):
 
 
 def course_count():
-    """Total courses currently in the parsed FA26 catalog."""
     if not PARSED.is_dir():
         return 0
     n = 0
@@ -58,39 +56,35 @@ def main():
     print("=" * 64)
     print("WebReg data refresh")
     print("=" * 64)
-
     before = course_count()
     print(f"Current catalog: {before} courses in data/parsed/FA26/")
 
-    # 1. archive the previous raw capture so this session is self-contained
-    if RAW.exists():
-        if RAW_LAST.exists():
-            shutil.rmtree(RAW_LAST)
-        shutil.move(str(RAW), str(RAW_LAST))
-        print(f"Archived previous capture -> data/{RAW_LAST.name}")
-    RAW.mkdir(parents=True, exist_ok=True)
-
-    # 2. capture — browser opens; user logs in (SSO + Duo) and browses
-    print("\n>>> A browser is opening. Log in (SSO + Duo), open Schedule of "
-          "Classes,\n>>> pick Fall 2026, search the departments you want, then "
-          "CLOSE the window.\n")
+    # 1. capture the session — browser opens; user logs in and CLOSES it.
+    print("\n>>> A browser is opening. Log in (UCSD SSO + Duo), then just "
+          "CLOSE the window.\n>>> You do NOT need to browse anywhere — ignore "
+          "any tab that flickers.\n")
     r = sh(PY, ROOT / "tss" / "connect.py", check=False)
     if r.returncode != 0:
-        print("\nCapture step exited abnormally — aborting, nothing changed.")
+        print("\nLogin/capture step failed — aborting, nothing changed.")
         return 1
 
-    # 3. import — adds/updates only the subjects captured this session
-    r = sh(PY, ROOT / "tss" / "import_tss.py", check=False)
+    # 2. pull the FA26 data straight from OData (no browsing needed)
+    r = sh(PY, ROOT / "tss" / "fetch_soc.py", check=False)
     if r.returncode != 0:
-        print("\nNo new class data was captured (did you reach Schedule of "
-              "Classes\nand run a search?). Catalog left unchanged — nothing "
-              "to build.")
+        print("\nDirect OData pull failed (did you log in before closing the "
+              "window?). Catalog left unchanged.")
+        return 1
+
+    # 3. map the dumps into the parsed catalog
+    r = sh(PY, ROOT / "tss" / "import_fa26.py", check=False)
+    if r.returncode != 0:
+        print("\nImport failed — catalog left unchanged.")
         return 1
 
     after = course_count()
-    print(f"\nCatalog after import: {after} courses ({after - before:+d}).")
+    print(f"\nCatalog after refresh: {after} courses ({after - before:+d}).")
 
-    # 4. stamp the refresh date (the site's "Data as of" line)
+    # 4. stamp the refresh date
     today = datetime.date.today().strftime("%B %-d, %Y")
     STAMP.write_text(today + "\n")
     print(f"Stamped data/refreshed_at.txt = {today}")
