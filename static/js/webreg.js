@@ -242,14 +242,18 @@ async function onSchedNameChange() {
     } else if (v === "__copy") {
       const n = (prompt("Name for the copy:", active + " copy") || "").trim();
       if (!n) return refreshScheduleList();
-      await post("/api/schedules/copy", { name: n });
+      const r = await post("/api/schedules/copy", { name: n });
+      migrateEvents(active, (r && r.active) || n, true);
     } else if (v === "__rename") {
       const n = (prompt("Rename “" + active + "” to:", active) || "").trim();
       if (!n) return refreshScheduleList();
-      await post("/api/schedules/rename", { name: n });
+      const r = await post("/api/schedules/rename", { name: n });
+      const now = (r && r.active) || n;
+      if (now !== active) migrateEvents(active, now, false);
     } else if (v === "__delete") {
       if (!confirm("Delete the schedule “" + active + "”? This can’t be undone.")) return refreshScheduleList();
       await post("/api/schedules/delete", {});
+      deleteEventsFor(active);
     }
   } catch (e) {
     alert(e.message || "Couldn’t update schedules.");
@@ -766,6 +770,13 @@ async function refreshSchedule() {
   } catch (e) {
     S.schedule = [];
   }
+  try {
+    const sch = await api("/api/schedules");
+    S.evSched = sch.active || "My Schedule";
+  } catch (e) {
+    S.evSched = "My Schedule";   // single-schedule backend (Flask dev)
+  }
+  S.schedule = S.schedule.concat(customEventItems());
   renderSchedule();
   updateMapGlow();
   // keep the results grid's Plan/Planned state in sync with the schedule
@@ -791,6 +802,7 @@ function wireScheduleChrome() {
     $all(".tab").forEach(x => x.classList.toggle("active", x === t));
     renderSchedule();
   }));
+  $("#lnk-add-event").addEventListener("click", () => openEventModal(null));
   $("#lnk-print").addEventListener("click", () => window.print());
   $("#lnk-appt").addEventListener("click", openAppointment);
   $("#sched-name").addEventListener("change", onSchedNameChange);
@@ -800,7 +812,7 @@ function wireScheduleChrome() {
     $("#sched-area").scrollIntoView({ behavior: "smooth" }));
 }
 
-function itemCode(it) { return it.subject_code + " " + it.course_num; }
+function itemCode(it) { return it.custom ? it.title : it.subject_code + " " + it.course_num; }
 
 function itemWeeklyMeetings(it) {
   return it.meetings.filter(m => m.meeting_type !== "FI");
@@ -908,7 +920,7 @@ function renderSchedule() {
 const LIST_COLS = ["Subject Course", "Title", "Section Code", "Type", "Instructor",
   "Grade Option", "Units", "Days", "Time", "BLDG", "Room", "Status /<br>(Position)", "Action"];
 
-function statusCellText(_it) { return "Planned"; }
+function statusCellText(it) { return it.custom ? "Event" : "Planned"; }
 
 function renderListView() {
   const root = $("#view-list");
@@ -922,7 +934,7 @@ function renderListView() {
   let html = '<table class="list-table"><thead><tr>'
     + LIST_COLS.map(h => "<th>" + h + "</th>").join("") + "</tr></thead><tbody>";
 
-  const order = { enrolled: 0, waitlisted: 1, planned: 2 };
+  const order = { enrolled: 0, waitlisted: 1, planned: 2, event: 3 };
   const items = [...S.schedule].sort((a, b) =>
     (order[a.status] - order[b.status]) || itemCode(a).localeCompare(itemCode(b)));
 
@@ -931,7 +943,7 @@ function renderListView() {
     const weekly = itemWeeklyMeetings(it);
     const fi = itemFinal(it);
     const main = weekly[0] || chosenSection(it);
-    const instr = (it.meetings.map(m => m.instructor).find(Boolean)) || "Staff";
+    const instr = it.custom ? "" : ((it.meetings.map(m => m.instructor).find(Boolean)) || "Staff");
     const sec = chosenSection(it);
     const full = sec && (sec.seats_avail || 0) <= 0;
 
@@ -944,8 +956,8 @@ function renderListView() {
       + "<td>" + esc(main ? main.section_code : "") + "</td>"
       + "<td>" + esc(main ? main.meeting_type : "") + "</td>"
       + '<td class="l">' + esc(instr) + "</td>"
-      + "<td>" + esc(GRADE_CODE[it.grade_option] || it.grade_option) + "</td>"
-      + "<td>" + fmtUnitsVal(it.units) + "</td>"
+      + "<td>" + (it.custom ? "" : esc(GRADE_CODE[it.grade_option] || it.grade_option)) + "</td>"
+      + "<td>" + (it.custom ? "" : fmtUnitsVal(it.units)) + "</td>"
       + "<td>" + orTBA(main && main.days) + "</td>"
       + "<td>" + (main ? timeRange(main) : "TBA") + "</td>"
       + "<td>" + orTBA(main && main.building) + "</td>"
@@ -981,6 +993,11 @@ function wireItemButtons(root) {
     const it = S.schedule.find(x => x.item_id === +b.dataset.id);
     if (!it) return;
     const a = b.dataset.a;
+    if (it.custom) {
+      if (a === "remove") openEventRemove(it);
+      else if (a === "change") openEventModal(it);
+      return;
+    }
     if (a === "drop") openDrop(it, false);
     else if (a === "remove") openDrop(it, true);
     else if (a === "change") openChange(it);
@@ -1008,10 +1025,12 @@ function calGutterHtml() {
 function stripTime(t) { return String(t || "").replace(/[ap]m?$/i, ""); }
 
 function statusLabel(st) {
-  return st === "enrolled" ? "Enrolled" : st === "waitlisted" ? "Waitlist" : "Planned";
+  return st === "enrolled" ? "Enrolled" : st === "waitlisted" ? "Waitlist"
+    : st === "event" ? "Event" : "Planned";
 }
 function blockClass(st) {
-  return st === "waitlisted" ? " wl" : st === "planned" ? " pl" : "";
+  return st === "waitlisted" ? " wl" : st === "planned" ? " pl"
+    : st === "event" ? " ev" : "";
 }
 
 function calBlockHtml(it, m, conflict, heightPx, topPx, lane) {
@@ -1023,12 +1042,15 @@ function calBlockHtml(it, m, conflict, heightPx, topPx, lane) {
     ? "left:calc(" + (lane.i * 16) + "% + 2px);right:calc(" + ((lane.n - 1 - lane.i) * 16)
       + "% + 2px);z-index:" + (5 + lane.i) + ";"
     : "";
+  const detail = it.custom
+    ? '<div class="bl">' + (m.building ? esc(m.building) : "Your event") + "</div>"
+    : '<div class="bl">' + esc(m.meeting_type) + " / " + orTBA(m.building) + " " + esc(m.room || "") + "</div>"
+      + '<div class="bl">' + esc((m.instructor || it.meetings.map(x => x.instructor).find(Boolean) || "Staff")) + "</div>";
   return '<div class="' + cls + '" style="top:' + topPx + "px;height:" + heightPx + "px;" + laneCss + '">'
     + '<div class="strip"><span>' + stripTime(m.time_start) + " - " + stripTime(m.time_end)
     + "</span><span>" + statusLabel(it.status) + "</span></div>"
     + '<div class="bl bcode">' + esc(itemCode(it)) + "</div>"
-    + '<div class="bl">' + esc(m.meeting_type) + " / " + orTBA(m.building) + " " + esc(m.room || "") + "</div>"
-    + '<div class="bl">' + esc((m.instructor || it.meetings.map(x => x.instructor).find(Boolean) || "Staff")) + "</div>"
+    + detail
     + '<div class="bbtns">' + btns + "</div>"
     + "</div>";
 }
@@ -1439,6 +1461,162 @@ async function openAppointment() {
     + "</div>"
     + '<div class="modal-btns"><button class="btn" id="m-close">Close</button></div>');
   $("#m-close").addEventListener("click", closeModal);
+}
+
+/* ---------------- custom events (work, clubs, gym — any weekly block)
+   Stored per schedule name in localStorage only (browser + Flask dev alike),
+   and presented as schedule-item lookalikes so the list/calendar views and
+   the conflict engine work on them unchanged. */
+
+const EV_KEY = "webreg_fa26_events_v1";
+
+function loadEvStore() {
+  try {
+    const s = JSON.parse(localStorage.getItem(EV_KEY));
+    if (s && typeof s === "object") return s;
+  } catch (e) { /* corrupt — start fresh */ }
+  return {};
+}
+function saveEvStore(st) { localStorage.setItem(EV_KEY, JSON.stringify(st)); }
+
+function evSchedName() { return S.evSched || "My Schedule"; }
+function loadEvents() {
+  const rec = loadEvStore()[evSchedName()];
+  return rec && Array.isArray(rec.events) ? rec : { seq: 1, events: [] };
+}
+function saveEvents(rec) {
+  const st = loadEvStore();
+  st[evSchedName()] = rec;
+  saveEvStore(st);
+}
+/* keep events attached to their schedule through copy / rename / delete */
+function migrateEvents(from, to, keepOriginal) {
+  const st = loadEvStore();
+  if (!st[from] || from === to) return;
+  st[to] = keepOriginal ? JSON.parse(JSON.stringify(st[from])) : st[from];
+  if (!keepOriginal) delete st[from];
+  saveEvStore(st);
+}
+function deleteEventsFor(name) {
+  const st = loadEvStore();
+  delete st[name];
+  saveEvStore(st);
+}
+
+/* negative ids so custom items can never collide with real section/item pks */
+function customEventItems() {
+  return loadEvents().events.map(ev => ({
+    item_id: -ev.id, custom: true, event: ev,
+    status: "event", units: 0, grade_option: "", position: null,
+    course_id: null, subject_code: ev.title, course_num: "", title: ev.title,
+    section_pk: -ev.id, group_code: "", section_code: "", section_id: "",
+    meetings: [{
+      id: -ev.id, section_code: "", meeting_type: "EV",
+      days: ev.days.join(""), time_start: ev.time_start, time_end: ev.time_end,
+      building: ev.location || "", room: "", instructor: "",
+    }],
+  }));
+}
+
+/* 15-minute ticks across the calendar grid's visible range (7am–10pm) */
+function evTimeOptionsHtml(cur) {
+  let html = "";
+  for (let t = CAL_START; t <= CAL_END; t += 15) {
+    const h24 = Math.floor(t / 60), mm = t % 60;
+    const ap = h24 < 12 ? "a" : "p";
+    const hh = ((h24 + 11) % 12) + 1;
+    const v = hh + ":" + (mm < 10 ? "0" : "") + mm + ap;
+    html += '<option value="' + v + '"' + (v === cur ? " selected" : "") + ">" + v + "m</option>";
+  }
+  return html;
+}
+
+function evErrHtml(msg) {
+  return '<div class="result-red" style="margin-top:10px"><div class="hd">'
+    + '<span class="warn-tri"></span>' + esc(msg) + "</div></div>";
+}
+
+function openEventModal(existing) {
+  const ev = existing ? existing.event : null;
+  const dayChecks = DAY_ORDER.map(d =>
+    '<label><input type="checkbox" class="ev-day" value="' + d + '"'
+    + (ev && ev.days.includes(d) ? " checked" : "") + ">" + d + "</label>").join("");
+
+  openModal(
+    '<div class="modal-h">' + (ev ? "Confirm changes to your event"
+      : "Add an event to your schedule — work, clubs, gym, anything with a weekly time") + "</div>"
+    + '<table class="confirm-table ev-form"><tbody>'
+    + '<tr><th>Event Name</th><td><input type="text" id="ev-title" maxlength="40" value="'
+    + esc(ev ? ev.title : "") + '" placeholder="e.g., Work shift"></td></tr>'
+    + '<tr><th>Days</th><td class="ev-days">' + dayChecks + "</td></tr>"
+    + '<tr><th>Time</th><td>'
+    + '<select id="ev-start">' + evTimeOptionsHtml(ev ? ev.time_start : "9:00a") + "</select>"
+    + ' &nbsp;to&nbsp; '
+    + '<select id="ev-end">' + evTimeOptionsHtml(ev ? ev.time_end : "10:00a") + "</select></td></tr>"
+    + '<tr><th>Location <span class="ev-opt">(optional)</span></th>'
+    + '<td><input type="text" id="ev-loc" maxlength="40" value="' + esc(ev ? (ev.location || "") : "")
+    + '" placeholder="e.g., Geisel Library"></td></tr>'
+    + "</tbody></table>"
+    + '<div id="m-err"></div>'
+    + '<div class="modal-btns"><button class="btn" id="m-cancel">Cancel</button>'
+    + '<button class="btn" id="m-confirm">' + (ev ? "Confirm" : "Add Event") + "</button></div>");
+  $("#m-cancel").addEventListener("click", closeModal);
+  $("#ev-title").focus();
+
+  let warned = "";  // conflict alert shown for this exact candidate already
+  $("#m-confirm").addEventListener("click", () => {
+    const title = $("#ev-title").value.trim();
+    const days = $all(".ev-day").filter(c => c.checked).map(c => c.value);
+    const start = $("#ev-start").value, end = $("#ev-end").value;
+    const loc = $("#ev-loc").value.trim();
+    const err = $("#m-err");
+    if (!title) { err.innerHTML = evErrHtml("Give your event a name."); return; }
+    if (!days.length) { err.innerHTML = evErrHtml("Pick at least one day."); return; }
+    if (parseTimeMin(end) <= parseTimeMin(start)) {
+      err.innerHTML = evErrHtml("The end time must be after the start time."); return;
+    }
+    /* same contract as planning a class: warn about conflicts, allow anyway */
+    const cand = [{ meeting_type: "EV", days: days.join(""), time_start: start, time_end: end }];
+    const pairs = candidateConflicts(cand, existing ? existing.item_id : null, null);
+    const sig = JSON.stringify([days, start, end]);
+    if (pairs.length && warned !== sig) {
+      warned = sig;
+      err.innerHTML = conflictAlertHtml(pairs, title)
+        + '<div style="margin:6px 2px;font-size:11px">Click <b>'
+        + (ev ? "Confirm" : "Add Event") + "</b> again to keep it anyway.</div>";
+      return;
+    }
+    const rec = loadEvents();
+    if (ev) {
+      const stored = rec.events.find(x => x.id === ev.id);
+      if (stored) Object.assign(stored, { title, days, time_start: start, time_end: end, location: loc });
+    } else {
+      rec.events.push({ id: rec.seq++, title, days, time_start: start, time_end: end, location: loc });
+    }
+    saveEvents(rec);
+    refreshSchedule();
+    showSuccess((ev ? "Changed event " : "Added event ") + title + " ("
+      + days.join("") + " " + start + "-" + end + ") on your schedule.");
+  });
+}
+
+function openEventRemove(it) {
+  const m = it.meetings[0];
+  openModal(
+    '<div class="result-red"><div class="hd"><span class="warn-tri"></span>'
+    + "You are about to remove this event.</div>"
+    + "<b>Remove &ldquo;" + esc(it.title) + "&rdquo; (" + esc(m.days) + " "
+    + timeRange(m) + ") from your schedule?</b></div>"
+    + '<div class="modal-btns"><button class="btn" id="m-cancel">Cancel</button>'
+    + '<button class="btn" id="m-drop">Remove</button></div>');
+  $("#m-cancel").addEventListener("click", closeModal);
+  $("#m-drop").addEventListener("click", () => {
+    const rec = loadEvents();
+    rec.events = rec.events.filter(x => x.id !== it.event.id);
+    saveEvents(rec);
+    refreshSchedule();
+    showSuccess("Removed event " + it.title + " from your schedule.");
+  });
 }
 
 /* ---------------- confirm add (plan / enroll / waitlist) */

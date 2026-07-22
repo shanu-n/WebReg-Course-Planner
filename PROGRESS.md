@@ -1,6 +1,10 @@
 # Progress Log
 
-## 2026-07-21 — Distribution playbook
+## 2026-07-21 — Manual "Add Event" on the schedule
+- New **Add Event** link in the schedule tab bar (returns the classic-WebReg chrome link removed in feedback round 1 — now as a real feature): add any weekly block (work, clubs, gym) with name, days, start/end (15-min ticks, 7am–10pm), optional location.
+- Events are full citizens of the schedule: gold blocks in Calendar, own rows in List (status "Event"), counted by the conflict engine (banner + red borders + the same warn-then-allow confirm flow as planning a class), Remove/Change buttons everywhere classes have them.
+- Implemented 100% client-side in `webreg.js` (localStorage `webreg_fa26_events_v1`, negative ids so they never collide with section pks) — zero backend changes, so Flask dev and the static GitHub Pages build behave identically. Events are stored **per named schedule** and follow it through copy/rename/delete (migration hooks in `onSchedNameChange`).
+- Verified: 12-step Playwright E2E (validation, conflict warn, list/calendar render, persistence across reload, edit, remove) green on both Flask :5070 and the static build, plus a 6-step schedule-migration suite; screenshots at 1336/1440/2560 (`scratchpad ev_*.png` during dev).
 - Wrote `docs/DISTRIBUTION.md`: full channel-by-channel plan (Reddit follow-up + mod sidebar ask, class-year Discords, YikYak timing, org emails — CSES/ACM/TESC/AS, Guardian + Triton media pitches, advisor outreach, faculty of mega-courses), email templates, enrollment-window timing calendar, analytics-before-outreach step, and the caution to keep Registrar/ITS out of the loop while data comes from scraping. Launch post ("I brought WebReg Back!!!") sits at ~376 upvotes but is archived — follow-up post is the top action.
 
 ## 2026-07-21 — Integration pass (all builders merged, E2E green)
